@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<script>
+  // Scope: 作用域 一个变量或函数的作用范围。作用域在函数定义时，就已经确定了
+  // 作用：为了提高程序的可靠性，同时减少命名冲突
+  // 在 JS 中，一共有两种作用域：（ES5 中）
+  // 全局作用域：作用于整个 script 标签内部，或者作用于一个独立的 JS 文件。
+  // 函数作用域（局部作用域）：作用于函数内的代码环境。
+
+
+
+  // 全局作用域 和 window 对象
+  // 直接编写在 script 标签中的 JS 代码，都在全局作用域。全局作用域在页面打开时创建，在页面关闭时销毁
+  // 在全局作用域中有一个全局对象 window，它代表的是浏览器的窗口，由浏览器创建，我们可以直接使用。相关知识点如下：
+  // 创建的变量都会作为 window 对象的属性保存。比如在全局作用域内写 var a = 100，这里的 a 等价于 window.a。
+  // 创建的函数都会作为 window 对象的方法保存
+  var a = 123
+  function b() {}
+  console.log(window.a)
+  console.log(window.b)
+
+
+
+  // 作用域的访问关系
+  // 在内部作用域中可以访问外部作用域的变量，在外部作用域中无法访问到内部作用域的变量。
+  function foo() {
+    var c = 456
+    console.log(a)
+  }
+  foo()
+  // c未定义，会报错
+  // console.log(c)
+
+
+  // 变量的作用域
+  // 根据作用域的不同，变量可以分为两类：全局变量、局部变量
+  // 全局变量   全局作用域声明    全局作用域之下的任何地方均可访问    关闭页面时销毁
+  // 局部变量   函数作用域声明    函数作用域之内的任何地方均可访问    代码块结束运行时销毁
+  // 特殊情况，如果未经声明就赋值，不加 var let const，则为全局变量（无变量提升，变量提升见下方）
+  function bar() {
+    d = 789
+  }
+  bar()
+  console.log(window.d)
+
+
+
+  // 作用域的上下级关系
+  // 当在函数作用域操作一个变量时，它会先在自身作用域中寻找，如果有就直接使用（就近原则）。
+  // 如果没有则向上一级作用域中寻找，直到找到全局作用域；如果全局作用域中依然没有找到，则会报错 ReferenceError
+
+
+
+  // 全局作用域的预处理(声明提前)
+  // JS在解析代码之前，有一个“预处理（预解析）”阶段，将当前 JS 代码中所有变量的定义和函数的定义，放到所有代码的最前面
+
+
+
+  // 变量的声明提前（变量提升）
+  // 使用 var 关键字声明的变量（ 比如 var a = 1），会在所有的代码执行之前被声明（但是不会赋值）。
+  // 但是如果声明变量时不是用 var 关键字（比如直接写a = 1），则变量不会被声明提前
+  console.log(num1) // undefined 打印结果并没有报错，说明 a 被提前了，但是没有赋值
+  var num1 = 12
+  // console.log(num2)  // 报错，TDZ
+  // let num2 = 13
+  // console.log(num3)  // 报错，TDZ
+  // num3 = 13
+  // console.log(num4)  // 报错，TDZ
+  // const num4 = 13
+  // 既然在ES5 中存在变量提升的现象，那么，在实战开发中，为了避免出错，建议先声明一个变量，然后再使用这个变量
+
+
+
+  // 函数的声明提前（函数提升）
+  // 使用函数声明的形式创建的函数function foo(){}，会被声明提前
+  // 也就是说，整个函数会在所有的代码执行之前就被创建完成。所以，在代码顺序上，我们可以先调用函数，再定义函数
+  // 这也就能解释上方的 foo() 定义在调用之后还能正常运行的原因
+
+  // 但是函数表达式声明的函数，不会提前，比如：
+  // foo1()  // 报错，会说 foo1 不是函数
+  console.log(foo1) // var 的原因，变量声明提前
+  var foo1 = function () {
+    console.log('foo1')
+  } // 不会被提前
+  // console.log(foo2)  // 报错，const 不会使变量声明提前
+  const foo2 = function () {
+    console.log('foo2')
+  } // 不会被提前
+
+
+
+  // 函数提升和变量提升的优先级
+  console.log(foo3)
+  foo3() // foo3 B
+  var foo3 = function () {
+    console.log('foo3 A')
+  }
+  function foo3() {
+    console.log('foo3 B')
+  }
+  console.log(foo3)
+  foo3() // foo3 A
+  // 在JS的规则中，函数提升优先于变量提升
+  // 可以这样理解
+  // foo3变量和函数声明都提升到作用域顶部
+  /* 
+  function foo3() {
+    console.log('foo3 B')
+  }
+  var foo3
+  foo3() // 第一个 foo3 调用，因为提升后，函数提升优先变量提升，打印 foo3 B
+  */
+  // 正常执行下，变量被赋值
+  /* 
+  foo3 = function () {
+    console.log('foo3 A')
+  }
+  foo3() // 此时第二个 foo3 调用，foo3 指向的函数表达式就是生效了，打印 foo3 A
+  */
+  // 函数声明优先，变量赋值覆盖，新函数调用
+  // ES6 中不必关心谁先谁后，因为 let const 不存在提升的问题
+
+
+
+  // 函数作用域的预处理
+  // 函数中，使用 var 关键字声明的变量，会在函数中所有代码执行之前被提前声明
+  // 函数中，没有 var 声明的变量都是全局变量，且并不会被提前声明
+  var n1 = 1
+  function fn1() {
+    console.log(n1) // 1
+    n1 = 2 // 此时 n1 相当于 window.n1
+  }
+  fn1()
+  console.log(n1) // 2
+
+  function fn2() {
+    n2 = 2 // 此时 n2 相当于 window.n2
+  }
+  fn2()
+  console.log(n2) // 2
+
+  function fn3() {
+    console.log(n3) // undefined
+    var n3 = 2 // 声明提前
+  }
+  fn3()
+  // console.log(n3)  // 报错，未定义  var n3 = 2 仅在函数内生效
+
+
+
+  // ES5中没有块级作用域(应该是 var 的作用域和 let const 不一样，var 仅在函数内或者全局有效限制访问，这种块级不限制，而 ES5 只有 var)
+  console.log(n5)  // undefined
+  if (true) {
+    var n5 = 123  // 尝试改为 let
+    console.log(n5) // 123
+  }
+  console.log(n5)  // 123
+
+
+  // 作用域链
+  // 先来认识函数的嵌套：
+  // 只要是代码，就至少有一个作用域
+  // 函数内部有局部作用域
+  // 如果函数内部还嵌套了函数，那么在这个作用域中就又诞生了另一个作用域
+  // 作用域链：在嵌套函数中，变量会从内到外逐层寻找它的定义（查找时，采用就近原则）。也就是说，采用的是链式查找的方式来决定取哪个值，这种结构称之为作用域链
+  var n6 = 10
+  function fn6() {
+    console.log(n6)  // 10
+    n6 = 20 //  10->20
+    function n6Inner() {
+      console.log(n6)
+      n6 = 30
+    }
+    n6Inner()  // 20 20->30
+    console.log(n6) // 30
+  }
+
+  fn6()
+
+  // 尝试加上 var
+  var n7 = 10
+  function fn7() {
+    console.log(n7)  // undefined，为什么不是 10？因为当前函数作用域内，下方的 var n7 说了算，其声明被提升到了顶部
+    var n7 = 20 //  undefined->20
+    function n7Inner() {
+      console.log(n7)
+    }
+    n7Inner()  // 20 另一个函数的作用域内 20 找的上一级中的 n7，所以是 20
+    console.log(n7) // 20
+  }
+
+  fn7()
+</script>

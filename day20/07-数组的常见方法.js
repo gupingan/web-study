@@ -210,7 +210,7 @@ for (let i = 0; i < arr23.length; i++) {
 console.log('forEach()：遍历数组，但需要兼容 IE8 以上')
 arr23.forEach((item, index, array) => {
   console.log(item, index, array)
-})
+})  // forEach 是函数，不是为了提供控制流，因此无法使用 continue 与 break
 
 console.log('for of: 遍历数组(ES6语法)')
 for (let element of arr23) {

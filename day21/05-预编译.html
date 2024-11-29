@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // JS引擎：语法分析 > 预编译 > 解释执行
+
+      // 规律1：任何变量，如果未经声明就赋值，此变量是属于 window 的属性，而且不会做变量提升。（注意，无论在哪个作用域内赋值）
+      // 规律2：一切声明的全局变量，全是window的属性。（注意，这里说的是在全局作用域内声明的全局变量，不是说局部变量）
+      function foo() {
+        var a = (b = 100) // 连续赋值
+        // 根据上一章的知识，此处可以拆分为
+        // b = 100
+        // var a = b
+      }
+
+      foo() // 调用后，全局变量 b 被赋值为 100，a 不行，因为 a 是函数作用域下的变量
+
+      console.log(window.b) // 100
+      console.log(b) // 100
+
+      console.log(window.a) // 从window对象中访问 a，由于没有a这个属性，所以为 undefined
+      // console.log(a) // 报错，因为a是未定义的，不存在的
+
+      // 预编译
+      // 脚本预编译的步骤：脚本预编译，发生在脚本执行的前一刻。
+      // （1）创建全局对象。全局对象即 window。
+      // （2）找变量声明。将变量名作为 window 对象的属性名，值为 undefined。
+      // （3）找函数声明。函数名作为 window 对象的属性名，值为整个函数体。
+
+      // 函数预编译的步骤：函数预编译，发生在函数执行的前一刻。
+      // （1）创建AO对象。AO即 Activation Object 活跃对象，其实就是「执行期上下文」。
+      // （2）找形参和变量声明。将形参名和变量作为 AO 的属性名，值为undefined。
+      // （3）将实参值和形参统一。实参的值赋给形参。
+      // （4）查找函数声明。函数名作为 AO 对象的属性名，值为整个函数体。
+      function fn1(a) {
+        console.log(a)
+        var a = 666
+        console.log(a)
+        function a() {}
+        console.log(a)
+        var b = function () {}
+        console.log(b)
+        function c() {}
+      }
+
+      fn1(1)
+      /* 打印结果如下：
+      ƒ a() {}
+      666
+      666
+      ƒ () {}
+      */
+
+      // 详细的分析一下：
+      // （1）创建AO对象。AO即 Activation Object 活跃对象，其实就是「执行期上下文」。
+      /* AO = {} */
+      // （2）找形参和变量声明。将形参名和变量作为 AO 的属性名，值为undefined。
+      // 形参 a 和变量声明 var a、var b被找到，初始值为 undefined
+      /* AO = {
+        a: undefined,
+        b: undefined,
+        c: function c() {}
+      } */
+
+      // （3）将实参值和形参统一。实参的值赋给形参。
+      /* AO = {
+        a: 1,
+        b: undefined,
+        c: function c() {}
+      } */
+
+      // （4）查找函数声明。函数名作为 AO 对象的属性名，值为整个函数体。
+      /* AO = {
+        a: function a() {},
+        b: undefined,
+        c: function c() {}
+      } */
+
+      // 预编译得到 AO 对象，然后执行函数体，得到结果
+      // console.log(a) 打印 function a() {}
+      // var a = 666 修改 AO 中的 a 值
+      // console.log(a)  打印 666
+      // function a() {}   a函数在预编译阶段已提升，不会再次覆盖
+      // console.log(a)   打印 666
+      // var b = function () {}  AO 中的 b 值被覆盖为该匿名函数
+      // console.log(b)   打印 function () {}
+      // function c() {}  c函数在预编译阶段已提升，不会再次覆盖
+    </script>
+  </body>
+</html>

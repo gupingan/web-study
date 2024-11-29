@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1" name="按钮">点击我</button>
+    <script>
+      // 执行期上下文
+      // 当函数执行时（准确来说，是在函数发生预编译的前一刻），会创建一个执行期上下文的内部对象。一个执行期上下文定义了一个函数执行时的环境。
+      // 每调用一次函数，就会创建一个新的上下文对象，他们之间是相互独立且独一无二的。当函数执行完毕，它所产生的执行期上下文会被销毁
+
+      // ES5 函数内 this 的指向
+      // 1、以函数的形式（包括普通函数、定时器函数、立即执行函数）调用时，this 的指向永远都是 window。比如fun();相当于window.fun();
+      // 2、以方法的形式调用时，this 指向调用方法的那个对象
+      // 3、以构造函数的形式调用时，this 指向实例对象
+      // 4、以事件绑定函数的形式调用时，this 指向绑定事件的对象
+      // 5、使用 call 和 apply 调用时，this 指向指定的那个对象
+      function fun() {
+        console.log(this)
+        console.log(this.name)
+      }
+
+      var obj1 = {
+        name: 'obj1.name属性',
+        sayName: fun,
+      }
+
+      var obj2 = {
+        name: 'obj2.name属性',
+        sayName: fun,
+      }
+
+      var name = '全局的name属性'
+
+      //以函数形式调用，this是window
+      fun() //可以理解成 window.fun()
+      // 以方法的形式调用
+      obj1.sayName()
+      // 以构造函数的形式调用时
+      let fun1 = new fun()
+      fun1.name = 'new fun() 实例化'
+      // 以事件绑定函数的形式调用时
+      let btn1 = document.getElementById('btn1')
+      btn1.onclick = fun
+      // 使用 call 和 apply 调用时
+      fun.call(obj2)
+      fun.apply(obj2)
+
+      // ES6 中的箭头函数并不使用上面的准则，而是会继承外层函数调用的 this 绑定（无论 this 绑定到什么）。
+      let fun2 = () => {
+        console.log(this)
+        console.log(this.name)
+      }
+      fun2()
+
+      // 改变函数内部的 this 指向
+      // JS 专门为我们提供了一些方法来改变函数内部的 this 指向。常见的方法有 call()、apply()、bind() 方法。继续往下看。
+      // call()
+      // 可以调用一个函数，与此同时，它还可以改变这个函数内部的 this 指向
+      // 可以实现继承。之所以能实现继承，其实是利用了上面的作用
+      // fn1.call(想要将this指向哪里, 函数实参1, 函数实参2);  不需要改变传 null
+      fun.call(obj1)
+      function Father(myName, myAge) {
+        this.name = myName
+        this.age = myAge
+      }
+
+      function Son(myName, myAge) {
+        // 通过这一步，将 father 里面的 this 修改为 Son 里面的 this；另外，给 Son 加上相应的参数，让 Son 自动拥有 Father 里的属性。最终实现继承
+        Father.call(this, myName, myAge)
+      }
+
+
+      // apply()
+      // 可以调用一个函数，与此同时，它还可以改变这个函数内部的 this 指向。这一点，和 call()类似
+      // apply() 里面传入的实参，必须是数组（或者伪数组）
+      // fn1.apply(想要将this指向哪里, [函数实参1, 函数实参2]);  不需要改变传 null
+      function fun(a) {
+        console.log(this)
+        console.log(this.name)
+        console.log(a)
+      }
+
+      fun.apply(obj1, ['嘿嘿'])
+      let arr1 = [1, 5, 2, 3, 6]
+      console.log(Math.max.apply(null, arr1))
+      console.log(Math.min.apply(null, arr1))
+
+
+      // bind()  频繁
+      // 不会调用函数，但是可以改变函数内部的 this 指向
+      // 新函数 = fn1.bind(想要将this指向哪里, 函数实参1, 函数实参2);
+      // 不对调用 fn1 函数，会返回原有函数以及指定实参的原函数的拷贝
+      function fun(a) {
+        console.log(this)
+        console.log(this.name)
+        console.log(a)
+      }
+      let newFun = fun.bind(obj1, 'Love')
+      newFun()
+    </script>
+  </body>
+</html>
