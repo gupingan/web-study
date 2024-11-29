@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <p>我是段落1</p>
+    <p>我是段落2</p>
+    <p>我是段落3</p>
+  </div>
+  <style>
+    /* 有一些属性，当给自己设置的时候，自己的后代都继承上了，这个就是继承性。 */
+    div {
+      color: red;  /* div 中子代标签都为红色字体 */
+      border: red 1px solid;  /* 仅仅只是 div 自身有边框，子代没有边框 */
+    }
+    /* 关于文字样式的属性，都具有继承性 */
+    /* 关于盒子、定位、布局的属性，都没有继承性 */
+  </style>
+</body>
+</html>

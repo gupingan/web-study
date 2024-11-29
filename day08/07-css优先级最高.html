@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 提高属性权重到无穷大：k:v !important; */
+    /* 不建议使用，把控不好易造成混乱 */
+    #box {
+      color: red;
+      background-color: green;
+    }
+
+    .hezi {
+      color: blue;
+      background-color: red !important;
+    }
+
+    p {
+      color: green !important;
+      background-color: blue;
+    }
+
+
+    /* 无法提升继承中属性的权重，该是0还是0 */
+    div {
+      color: orange !important;
+    }
+
+    span {
+      color: purple;
+    }
+  </style>
+</head>
+<body>
+  <p class="hezi" id="box">我是什么颜色</p>
+  <div>
+    <span>我是什么颜色呢？</span>
+  </div>
+</body>
+</html>

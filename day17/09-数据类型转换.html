@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 变量的数据类型转换：将一种数据类型转换为另外一种数据类型
+      // 通常有三种形式的类型转换：
+      // 转换为字符串类型
+      // 转换为数字型
+      // 转换为布尔型
+
+      // 两大类型转换：显式类型转换 和 隐式类型转换
+
+      // 转为 String
+      // 1.调用 toString 方法
+      // 变量.toString()
+      // 常量.toString()
+      var n1 = true
+      const n2 = 123
+      console.log(n1.toString())
+      console.log(n2.toString())
+      // 1-1 console.log(123.toString()) // 报错，语法有问题，不能直接整数.方法，被误认为 1. 浮点数，非法的
+      console.log(Number(123).toString()) // 123  对象.方法
+      console.log((123).toString()) // 123  浮点数.方法
+      console.log((123).toString()) // 123   整数.方法，括号排除
+      // 1-2 null 和 undefined 不能调用 toString 方法，因为他们不具备这个方法
+      // console.log(null.toString())  // Uncaught TypeError: Cannot read properties of null (reading 'toString')
+      // console.log(undefined.toString())  // Uncaught TypeError: Cannot read properties of undefined (reading 'toString')
+      // 1-3 toString 还可以将数字转为特定进制的字符串
+      console.log(2..toString(2)) // 二进制 10
+      console.log(213..toString(16)) // 二进制 d5
+      // 如果不指定则默认转换为 10 进制
+      console.log(213..toString()) // 十进制 213
+      // 1-4 纯小数的小数点后面，如果0.后紧跟连续6个或6个以上的“0”时，那么，将用e来表示这个小数
+      console.log(0.000001.toString()) // 0.000001
+      console.log(0.0000001.toString()) // 1e-7
+      console.log(0.100000001.toString()) // 0.100000001
+      console.log(1.000000001.toString()) // 1.000000001
+
+      // 为什么可以直接 常量.方法？
+      // 除了 null、undefined之外，其他的常量都有对应的特殊的引用类型——基本包装类型，
+      // 所以代码在解释执行的时候，会将常量转为基本包装类型，这样就可以调用相应的引用类型的方法
+
+      // 2.使用 String 函数
+      // String(变量)
+      // String(常量)
+      let c = null,
+        d = undefined
+      console.log(String(n1))
+      console.log(String(n2))
+      console.log(String(123))
+      console.log(String(c))
+      console.log(String(d))
+      console.log(String(0.0000000001)) // 1e-10
+      // 对于 Number、Boolean、String、Object 而言，本质上就是调用 toString()方法，返回结果同 toString()方法。
+      // 但是对于 null 和 undefined，则不会调用 toString()方法。它会将 null 直接转换为 "null"。将 undefined 直接转换为 "undefined"。
+      // 3.使用 + 运算符
+      // 变量 + ''
+      // 常量 + ''
+      var s = 123
+      console.log(s + '')
+      console.log(321 + '')
+
+      // 转为 Number
+      // 1. 使用 Number() 函数
+      // Number(变量/常量)
+      var str1 = '134'
+      console.log(Number(str1)) // 134
+      console.log(Number(321.1)) // 321.1
+      console.log(Number(true)) // 1
+      console.log(Number(false)) // 0
+      console.log(Number(null)) // 0
+      console.log(Number(undefined)) // NaN
+      console.log(Number('hehe123')) // NaN
+      console.log(Number('123xixi')) // NaN
+      // 2. 隐式类型转换：正负号
+      console.log(+'123.1') // 123.1
+      console.log(-'123') // -123
+      console.log(-'123aaa') // NaN
+      console.log(-true) // -1
+      console.log(-false) // -0
+      console.log(+null) // 0
+      console.log(-null) // -0
+      console.log(-undefined) // NaN
+      // 3. 使用 parseInt()函数：参数 -> 字符串 -> 整数
+      // 将传入的数据当作字符串来处理，从左至右提取数值，一旦遇到非数值就立即停止；停止时如果还没有提取到数值，就返回NaN
+      console.log(parseInt('123')) // 123
+      console.log(parseInt('123aaa')) // 123
+      console.log(parseInt('aa123a')) // NaN
+      console.log(parseInt('1aa23a')) // 1
+      console.log(parseInt(true)) // NaN
+      console.log(parseInt(false)) // NaN
+      console.log(parseInt(null)) // NaN
+      console.log(parseInt(undefined)) // NaN
+      console.log(parseInt('111' + true)) // 111
+      console.log(parseInt(3.13)) // 3
+      // Number() 函数和 parseInt() 函数的区别
+      // Number(true) ：千方百计地想转换为数字；如果转换不了则返回 NaN
+      // parseInt(true)/parseFloat(true) ：提取出最前面的数字部分；没提取出来，那就返回 NaN
+      // parseInt() 函数可直接取整
+      console.log(parseInt('123.456')) // 123
+      // parseInt 以及下方的 parseFloat 都是将参数转为字符串在进行转换操作
+      // 带两个参数时，表示在转换时，包含了进制转换
+      console.log(parseInt('11', 2)) // 不是将 11 转为 二进制，而是将 11 看做二进制 转为十进制
+      console.log(parseInt('11', 8)) // 八进制 11 转为十进制 9
+      // 4. parseFloat()函数：字符串 --> 浮点数（小数）
+      // parseFloat()和 parseInt()的作用类似，不同的是，parseFloat()可以获得小数部分
+      console.log(parseFloat('123.456')) // 123.456
+      console.log(parseFloat('123.456.123.a')) // 123.456
+      console.log(parseFloat(true)) // NaN
+      console.log(parseFloat('11', 8)) // 不存在进制转换的情况
+
+      // 转换为 Boolean
+      // （1）情况一：数字 --> 布尔。 0 和 NaN的转换结果 false，其余的都是 true。比如 Boolean(NaN)的结果是 false。
+      console.log(Boolean(0)) // false
+      console.log(Boolean(NaN)) // false
+      console.log(Boolean(123)) // true
+      // （2）情况二：字符串 ---> 布尔。空串的转换结果是false，其余的都是 true。全是空格的字符串，转换结果也是 true。字符串'0'的转换结果也是 true。
+      console.log(Boolean('')) // false
+      console.log(Boolean(' ')) // true
+      console.log(Boolean('    ')) // true
+      // （3）情况三：null 和 undefined 都会转换为 false。
+      console.log(Boolean(null)) // false
+      console.log(Boolean(undefined)) // false
+      // （4）情况四：引用数据类型会转换为 true。注意，空数组[]和空对象{}，转换结果也是 true，这一点，很多人都不知道。
+      console.log(Boolean([])) // true
+      console.log(Boolean({})) // true
+      // 举例：（接口返回的内容不为空，前端才做进一步的事情）
+      const result1 = ''
+      const result2 = { a: 'data1', b: 'data2' }
+      if (result1) {
+        console.log('因为 result1的内容为空，所以代码进不了这里')
+      }
+
+      if (result2 && result2.a) {
+        // 接口返回了 result2，且 result2.a 里面有值，前端才做进一步的事情
+        console.log('代码能进来，前端继续在这里干活儿')
+      }
+
+      // 1. 隐式类型转换：逻辑运算
+      const a = 1
+      console.log(a == true) // 打印结果：true
+      console.log(typeof a) // 打印结果：number。可见，上面一行代码里，a 做了隐式类型转换，但是 a 的数据类型并没有发生变化，仍然是 Number 类型
+      console.log(0 == true) // 打印结果：false
+      // 2. 使用 !!  显式转换为 Boolean 类型
+      console.log(!!3) // true
+      console.log(!!null) // false
+      // 3.使用 Boolean()函数
+      console.log(Boolean(3)) // true
+      console.log(Boolean(null)) // false
+      console.log(Boolean([])) // true  和 python 不一样
+      console.log(Boolean([].length)) // false  空数组的长度为0
+      console.log(Boolean({})) // true 和 python 不一样
+
+      // 回顾：基本数据类型 Number 中，存在一个 isNaN() 函数
+      // 该函数判断参数是否为 NaN
+      // 该全局的执行过程：Number() 转换参数为数值，如果不为数值就是返回 true，否则返回 false
+      // 而 Number.isNaN() 则是：判断参数 !== NaN，没有对参数进行类型转换
+    </script>
+  </body>
+</html>

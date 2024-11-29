@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100vh;
+        overflow: hidden;
+        background-color: #000;
+      }
+
+      button {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 40px;
+        border-radius: 10px;
+        background: transparent;
+        border: 1px solid #123;
+        overflow: hidden;
+        color: white;
+        font-size: 16px;
+        user-select: none;
+      }
+
+      button::after {
+        content: '';
+        width: 110%;
+        height: 110%;
+        background-color: aqua;
+        position: absolute;
+        top: 50%;
+        right: -50%;
+        transform-origin: 0 0;
+        animation: l-rotate 2s infinite linear;
+        z-index: -999;
+      }
+
+      button::before {
+        content: '';
+        background-color: #000;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: 2px;
+        z-index: -888;
+        border-radius: inherit;
+        transition: background-color 0.3s;
+      }
+
+      @keyframes l-rotate {
+        to {
+          transform: rotateZ(360deg);
+        }
+      }
+
+      button:hover, button:hover::before {
+        background-color: #111;
+      }
+
+
+      button:active, button:active::before {
+        background-color: #123;
+      }
+
+      /* 可选：按压后暂停 */
+      /* button:active::after {
+        animation-play-state: paused;
+      } */
+    </style>
+  </head>
+  <body>
+    <button>点击注册</button>
+  </body>
+</html>

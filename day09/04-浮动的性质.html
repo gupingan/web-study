@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .div1,
+      .div4 {
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+      }
+
+      .div2 {
+        width: 300px;
+        height: 250px;
+        background-color: blue;
+      }
+
+      .div3 {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        float: left;
+      }
+
+      .div5 {
+        width: 200px;
+        height: 100px;
+        background-color: orange;
+        float: left;
+      }
+
+      .div6 {
+        width: 100px;
+        height: 200px;
+        background-color: black;
+        float: left;
+      }
+
+      .div7 {
+        background-color: orange;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 认识一下浮动：脱离标准文档流，漂浮一样的元素 -->
+    <p>正常情况：从上往下排列 div1 div2</p>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <p>增加浮动：div3 将浮在 div4 上</p>
+    <div class="div3"></div>
+    <div class="div4"></div>
+    <p>如果以下 div5 div6 都增加浮动左边呢？将会从左往右的根据空闲空间排列</p>
+    <div class="div5"></div>
+    <div class="div6"></div>
+
+    <hr style="clear: left" />
+    <p>重要：浮动元素的三性质</p>
+    <p>性质1：浮动的元素脱离标准文档流-</p>
+    <div>
+      <div class="div3">这是脱离标准文档流的 DIV，自主浮动</div>
+      <div class="div4">这是标准文档流中 DIV</div>
+    </div>
+    <p>性质2：浮动的元素有字围效果，参见上方文字未被遮挡</p>
+    <p>性质3：浮动的元素相互停靠(调整浏览器宽度看看停靠效果)</p>
+    <div>
+      <div class="div6" style="color: white">1</div>
+      <div class="div5">2</div>
+      <div class="div5">3</div>
+    </div>
+    <p style="clear: left">
+      性质4：收缩(一个浮动的元素，如果没有设置width，那么将自动收缩为内容的宽度)
+    </p>
+    <div class="div7">哈哈哈哈</div>
+    <div class="div7">嘿嘿嘿</div>
+    <p>注意：收缩并不是改变为行内块元素，行内块元素对于换行、空格等会处理成一个空格，这里显而易见没有空格</p>
+  </body>
+</html>

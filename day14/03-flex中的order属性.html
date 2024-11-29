@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      body {
+        background-color: #eee;
+        font-family: 'Microsoft Yahei';
+      }
+      section {
+        width: 1000px;
+        margin: 50px auto;
+      }
+      section h3 {
+        font-size: 22px;
+        font-weight: normal;
+      }
+
+      ul {
+        height: 800px;
+        border: 1px solid #999;
+        background-color: #fff;
+        display: flex;
+      }
+
+      ul li {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+      }
+
+      .red {
+        font-size: 50px;
+        text-align: center;
+        background: red;
+        line-height: 200px;
+      }
+
+      .blue {
+        text-align: center;
+        font-size: 50px;
+        color: white;
+        line-height: 200px;
+        background: blue;
+      }
+
+      section:nth-child(1) ul {
+        align-items: flex-start;
+      }
+      /* order 属性规定弹性项目相对于同一容器内其余弹性项目的顺序。 */
+      /* 如果元素不是弹性项目，则 order 属性无效。 */
+
+      .red {
+        /* 将红块往主轴正方向移动1位 */
+        /* order: 1; */
+        /* 将红块往主轴反方向移动1位 */
+        /* order: -1; */
+        /* 尝试往主轴正方向移动更多的位置 */
+        order: 1000;
+        /* 始终只能在最前面，无法真的有上千元素 */
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h3>order 顺序</h3>
+      <ul>
+        <li class="blue">1</li>
+        <li class="red">2</li>
+        <li class="blue">3</li>
+      </ul>
+    </section>
+  </body>
+</html>

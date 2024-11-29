@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1 true
+      // 如果其中一个操作数是布尔值而另一个不是，则将布尔值转换为数字：true 转换为 1，false 转换为 0。然后再次对两个操作数进行宽松比较
+      // [] == false  > 0 == 0
+      console.log([] == ![])
+
+      // 2 true
+      // 如果其中一个操作数是对象，另一个是原始值，则将对象转换为原始值
+      // 0 == 0
+      console.log([] == 0)
+
+      // 3 true
+      console.log([1, 2] == '1,2')
+
+      // 4 true
+      console.log([1] == true)
+
+      // 5 false
+      // 仅当两个操作数引用同一个对象时返回 true
+      console.log([1, 2] == [1, 2])
+
+      // 6 true
+      // 将字符串转换为数字。转换失败将导致 NaN，这将保证相等比较为 false
+      console.log('' == 0)
+
+      // 7 true
+      // 如果其中一个操作数为 null 或 undefined，另一个操作数也必须为 null 或 undefined 以返回 true。否则返回 false
+      console.log(null == undefined)
+
+      // 8 false
+      // NaN 永远不等于 NaN 不等于任何值
+      console.log(NaN === NaN)
+
+      // 9 false
+      // 数字与大整型：按数值进行比较。如果数字的值为 ±∞ 或 NaN，返回 false
+      console.log(Infinity == 11111123)
+
+      // 10 true
+      console.log(5 == '5')
+
+      // 11 true
+      console.log(0 == false)
+
+      // 12 true
+      console.log('5' > 3)
+
+      // 13 false
+      console.log(5 === '5')
+
+      // 14 true
+      console.log({} == '[object Object]')
+
+      // 15 false
+      console.log(Boolean([] + []))
+
+      // 16 true
+      console.log(1 + '2' == 12)
+
+      // 17 true
+      console.log((1 == '1') == true)
+
+      // 18 false
+      console.log(Object.is(-0, +0))
+
+      // 19 true
+      console.log([1, 2, 3] == '1,2,3')
+
+      // 20 false
+      // 如果其中一个操作数为 null 或 undefined，另一个操作数也必须为 null 或 undefined 以返回 true。否则返回 false
+      console.log(false == null)
+    </script>
+  </body>
+</html>

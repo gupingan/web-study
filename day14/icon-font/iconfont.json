@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "38263583",
+      "name": "下雪",
+      "font_class": "xiaxue",
+      "unicode": "e8d6",
+      "unicode_decimal": 59606
+    },
+    {
+      "icon_id": "38263584",
+      "name": "星星",
+      "font_class": "xingxing",
+      "unicode": "e8d7",
+      "unicode_decimal": 59607
+    }
+  ]
+}

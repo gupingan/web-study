@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>我是一个标题</h3>
+    <p>我是一个段落</p>
+    <p>我是一个段落</p>
+    <p>我是一个段落</p>
+    <h3>我是一个标题</h3>
+    <p>我是一个段落</p>
+    <p>我是一个段落</p>
+    <p>我是一个段落</p>
+    <h3>我是一个标题</h3>
+    <p>我是一个段落</p>
+    <p>我是一个段落</p>
+    <p>我是一个段落</p>
+    <h3>我是一个标题</h3>
+    <style>
+      /* 兄弟选择器 IE6 不支持 */
+      h3 + p {  /*不是代表 h3 和 p，非并集，而是表示 h3 后面的同级标签 p*/
+        color: red;
+      }
+    </style>
+  </body>
+</html>

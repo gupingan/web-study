@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #eee;
+        font-family: 微软雅黑;
+      }
+
+      .content {
+        width: 750px;
+        height: 320px;
+        margin: 80px auto;
+      }
+
+      .item {
+        float: left;
+        width: 230px;
+        height: 300px;
+        text-align: center;
+        margin-right: 20px;
+        background-image: linear-gradient(0deg, #eee 54%, #fff);
+        border-radius: 10px;
+        position: relative;
+        top: 0;
+        overflow: hidden;
+        transition: all 0.5s;
+      }
+
+      .item img {
+        margin-top: 30px;
+      }
+
+      .item .desc {
+        position: absolute;
+        left: 0;
+        bottom: -80px;
+        width: 100%;
+        height: 80px;
+        line-height: 80px;
+        color: white;
+        background-color: #ff6700;
+        transition: all 0.5s;
+      }
+
+      .item:hover {
+        top: -50px;
+        box-shadow: 0 0 15px #aaa;
+      }
+
+      .item:hover .desc {
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="item">
+        <img src="./images/1.png" draggable="false" alt="" />
+        <span class="desc">小米智能运动手环</span>
+      </div>
+      <div class="item">
+        <img src="./images/2.png" draggable="false" alt="" />
+        <span class="desc">小米智能液晶电视机</span>
+      </div>
+      <div class="item">
+        <img src="./images/3.jpg" draggable="false" alt="" />
+        <span class="desc">RedMi K50 Pro</span>
+      </div>
+    </div>
+  </body>
+</html>

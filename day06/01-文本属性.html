@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="normalize.css" />
+  </head>
+  <body>
+    <p>正常的一句话</p>
+    <p class="p1">单个字之间的间距</p>
+    <p class="p2">单词之间的间距：Hi My Friend</p>
+    <u>下划线 u 标签</u><br />
+    <u class="u1">通过 css 去除下划线</u>
+    <p class="p3">红色字体</p>
+    <p class="p4">中间对齐</p>
+    <p class="p5">右边对齐</p>
+    <p class="p6">单词大写：hi my friend</p>
+    <p class="p7">单词小写：HI MY FRIEND</p>
+    <p class="p8">每个词的首字母大写：hi my friend</p>
+    <style>
+      p {
+        margin: 0;
+        text-indent: 32px;
+      }
+
+      .p1 {
+        letter-spacing: 10px;
+      }
+
+      .p2 {
+        word-spacing: 120px;
+      }
+
+      .u1 {
+        text-decoration: none;
+      }
+
+      .p3 {
+        color: red;
+      }
+
+      .p4 {
+        text-align: center;
+      }
+
+      .p5 {
+        text-align: right;
+      }
+
+      .p6 {
+        text-transform: uppercase;
+      }
+
+      .p7 {
+        text-transform: lowercase;
+      }
+
+      .p8 {
+        text-transform: capitalize;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 为什么需要不同的数据类型？
+    // 不同的数据类型可占用不同大小的存储空间，为了充分利用内存，于是定义了不同的数据类型，不同的数据类型，所代表的寓意也不同
+    var a = 'heloow word'
+    var b = 123
+    // javascript 是一种弱类型语言，也称之为动态类型语言
+    // 类型取决于右边所赋予的值
+
+    // JS中的8中数据类型：
+    // 值类型（基本数据类型）：Number BigInt String Boolean Symbol Undefined NULL
+    // 引用类型（引用数据类型）：Object
+    // 关于 Function、Array、RegExp、Date、Error 等都是属于 Object 类型
+    // 自定义一个 Object（new一个新对象）
+    var o1 = new Object()
+    // 基本数据类型：参数赋值，传数值
+    // 引用数据类型：参数赋值，传值的地址
+    // 经典例子
+    var num1 = 1
+    var num2 = num1
+    num1++  // 表示 num 的值加1
+    console.log(num1)
+    console.log(num2)
+    // 打印 2 1
+    // num2 的值不变，num1 的值变了，因为仅仅只是拿到值，值是在内存中的，不一定说这个值相等，其存储的位置相等
+    // 也就是说，两个值不一样，变了一个，另一个不代表就要变
+    var obj1 = new Object()
+    obj1.name = '小明'
+    var obj2 = obj1
+    obj2.name = '小红'
+    console.log(obj1.name)
+    console.log(obj2.name)
+    // 都会打印 小红
+    // obj2 得的不仅仅是值，而是 obj1 存储的 Object 的地址，obj2 也存储了这个地址，当 obj1 地址对应的房间里的东西改变了
+    // obj2 这个地址对应的房间的值也会改变，也就是同一个地址，不单纯的看着像 传了值，而是值的地址，这就是引用数据类型的特性
+
+    // 进一步研究
+    // 栈内存和堆内存
+    // 所有的变量的值都存储在栈内存，所有创建的对象都存储在堆内存
+    // 对于基本数据类型来说，变量存储的值将存储在某个栈中的房间里，赋值后，开辟控件，存储值
+    // 对于引用数据类型来说，变量存储的值不是所想像的值，这个值会在堆内存中开辟空间存储自己的数据，堆内存的地址就存储到栈内存中
+    // 赋值后，对象创建时在堆内存开辟空间存储数据，栈内存开辟控件存储它的地址（房间号），这个地址也称之为对象的引用
+    // 对于上方的第二个例子，变量之间传的是同一个对象的地址，指向了堆内存中的一个起始地址，代表着这个对象
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* block 换行 块级元素性质 */
+    /* inline 同行 行内元素性质 */
+    /* inline-block 同行 支持宽高 行内块元素 */
+    div {
+      width: 590px;
+      height: 500px;
+      display: inline;
+      background-color: orange;
+    }
+
+    .p1 {
+      width: 350px;
+      display: inline-block;
+      background-color: orange;
+    }
+
+    .span1 {
+      width: 80%;
+      display: block;
+      background-color: orange;
+    }
+
+    .span2 {
+      margin-top: 10px;
+      width: 350px;
+      height: 200px;
+      display: inline-block;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div>这是个被转为 inline 的  DIV 标签</div>
+  <span>这是个 SPAN 标签</span>
+  <p class="p1">这是个被转为 inlne-block 的 P 标签</p>
+  <span>这是个SPAN 标签</span>
+  <p>这是个 P 标签</p>
+  <span class="span1">这是个被转为 block 的 SPAN 标签</span>
+  <span class="span2">这是个被转为 inline-block SPAN 标签</span>
+  <span>这是个SPAN 标签</span>
+</body>
+</html>

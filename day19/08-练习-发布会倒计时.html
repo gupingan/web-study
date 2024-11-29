@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #000;
+      }
+
+      div {
+        width: 100%;
+        margin: 200px auto;
+        color: white;
+        text-align: center;
+        font: 600 60px/60px 'simsun';
+        user-select: none;
+      }
+
+      div #date {
+        font: 700 106px/106px '微软雅黑';
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>距离小米发布会还有</p>
+      <p id="date"></p>
+    </div>
+    <script>
+      var date = document.querySelector('#date')
+      var timer = setInterval(() => {
+        countDown('2024/11/28 00:34:21')
+      }, 1)
+      function countDown(targetTime) {
+        // 计算
+        let timestamp = new Date(targetTime) - Date.now()
+        if (timestamp <= 0) {
+          clearInterval(timer)
+          date.innerHTML = '00天00小时00分00秒000毫秒'
+          return
+        }
+
+        // 转义
+        let day = Math.floor(timestamp / 1000 / 60 / 60 / 24) // 天
+        let hour = Math.floor((timestamp / 1000 / 60 / 60) % 24) // 小时
+        let minute = Math.floor((timestamp / 1000 / 60) % 60) // 分钟
+        let seconds = Math.floor((timestamp / 1000) % 60) // 秒
+        let milliseconds = Math.floor(timestamp % 1000) // 毫秒
+
+        // 补0
+        day = day < 10 ? '0' + day : day
+        hour = hour < 10 ? '0' + hour : hour
+        minute = minute < 10 ? '0' + minute : minute
+        seconds = seconds < 10 ? '0' + seconds : seconds
+        milliseconds =
+          milliseconds < 10
+            ? '00' + milliseconds
+            : milliseconds < 100
+            ? '0' + milliseconds
+            : milliseconds
+            
+        date.innerHTML = `${day}天${hour}小时${minute}分${seconds}秒${milliseconds}毫秒`
+      }
+    </script>
+  </body>
+</html>

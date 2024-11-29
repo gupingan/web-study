@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>导航栏</title>
+    <link rel="stylesheet" href="normalize.css" type="text/css" />
+  </head>
+  <body>
+    <ul class="nav">
+      <li href="#">
+        <a href="https://www.cnblogs.com/" target="_blank">博客园</a>
+      </li>
+      <li href="#">
+        <a href="https://www.cnblogs.com/gupingan" target="_self">首页</a>
+      </li>
+      <li href="#">
+        <a href="https://i.cnblogs.com/posts/edit" target="_blank">新随笔</a>
+      </li>
+      <li href="#">
+        <a
+          href="https://msg.cnblogs.com/send/%E9%A1%BE%E5%B9%B3%E5%AE%89"
+          target="_blank"
+          >联系</a
+        >
+      </li>
+      <li href="#"><a href="" target="_blank">订阅</a></li>
+      <li href="#">
+        <a href="https://i.cnblogs.com/posts" target="_blank">管理</a>
+      </li>
+    </ul>
+    <style>
+      .nav {
+        margin-left: calc((100% - 12% * 6) / 2);
+      }
+
+      .nav > li {
+        line-height: 64px;
+        text-align: center;
+        background-image: linear-gradient(180deg, #ffb700, #ff8c00);
+        margin-right: 5px;
+        list-style: none;
+        height: 64px;
+        width: 12%;
+        float: left;
+      }
+
+      .nav > li:last-child {
+        margin-right: 0;
+      }
+
+      .nav > li > a {
+        font-size: 20px;
+        font-family: 'Microsoft YaHei';
+        color: whitesmoke;
+        text-decoration: none;
+      }
+    </style>
+  </body>
+</html>

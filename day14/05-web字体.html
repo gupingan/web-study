@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="icon-font/iconfont.css" />
+    <script src="icon-font/iconfont.js"></script>
+    <style>
+      /* 使用 font-face 声明字体 */
+      @font-face {
+        font-family: 'Alibaba PuHuiTi';
+        src: url('alibaba/webfont.eot'); /* IE9*/
+        src: url('alibaba/webfont.eot?#iefix') format('embedded-opentype'),
+          /* IE6-IE8 */ url('alibaba/webfont.woff') format('woff'),
+          /* chrome、firefox */ url('alibaba/webfont.ttf') format('truetype'),
+          /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('alibaba/webfont.svg#webfont') format('svg'); /* iOS 4.1- */
+      }
+
+      /* 定义使用 Alibaba PuHuiTi 的样式 */
+      .alibaba-font {
+        font-family: 'Alibaba PuHuiTi' !important;
+        font-size: 16px;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      @font-face {
+        font-family: 'Icon Font';
+        src: url('icon-font/iconfont.ttf') format('truetype');
+      }
+
+      .icon-font {
+        font-family: 'Icon Font' !important;
+      }
+
+      .icon {
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="alibaba-font">学而时习之，不亦说乎</p>
+    <p class="alibaba-font">
+      结婚就是给自由穿件棉衣，活动起来不方便，但会很温暖
+    </p>
+    <p class="alibaba-font">Alibaba 普惠体</p>
+    <!-- unicode -->
+    <p class="alibaba-font icon-font">贵州下&#xe8d6;啦</p>
+    <!-- font-class -->
+    <p class="alibaba-font">
+      很大很美的<span class="iconfont icon-xiaxue"></span>
+    </p>
+    <!-- symbol -->
+    <p class="alibaba-font">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-xiaxue"></use>
+      </svg>中送炭
+    </p>
+  </body>
+</html>

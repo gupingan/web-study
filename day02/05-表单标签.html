@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      姓名：<input value="呵呵" />逗比<br />
+      昵称：<input value="哈哈" readonly /><br />
+      名字：<input type="text" value="name" disabled /><br />
+      密码：<input type="password" value="pwd" size="50" /><br />
+      性别：<input
+        type="radio"
+        name="gender"
+        id="gender1"
+        value="male"
+        checked
+      />男
+      <input type="radio" name="gender" id="gender2" value="female" />女<br />
+      爱好：<input
+        type="checkbox"
+        name="hobby"
+        id="hobby1"
+        value="football"
+      />足球
+      <input type="checkbox" name="hobby" id="hobby2" value="basketball" />篮球
+      <input type="checkbox" name="hobby" id="hobby3" value="eat" checked />美食
+      <input type="checkbox" name="hobby" id="hobby4" value="sleep" />睡觉<br />
+    </form>
+    <form>
+      <input type="button" value="普通按钮" /><br />
+      <input type="submit" value="提交按钮" /><br />
+      <input type="reset" value="重置按钮" /><br />
+      <input type="image" value="图片按钮1" /><br />
+      <input
+        type="image"
+        src="05.png"
+        alt="一张美女图"
+        width="50px"
+        value="图片按钮2"
+        title="点击美女可有惊喜"
+      /><br />
+      <input
+        type="file"
+        name="file"
+        id="file1"
+        value="文件上传"
+        title="选择一个神秘的文件吧！"
+      /><br />
+      <select name="school" id="school1">
+        <option value="s1">贵州理工学院</option>
+        <option value="s2">贵州大学</option>
+        <option value="s3" selected>贵州民族大学</option>
+        <option value="s4">贵州师范学院</option></select
+      ><br /><br />
+      <select name="school" id="school2" size="2">
+        <option value="s1">贵州理工学院</option>
+        <option value="s2">贵州大学</option>
+        <option value="s3">贵州民族大学</option>
+        <option value="s4">贵州师范学院</option></select
+      ><br /><br />
+      <select name="school" id="school3" multiple>
+        <option value="s1">贵州理工学院</option>
+        <option value="s2" selected>贵州大学</option>
+        <option value="s3" selected>贵州民族大学</option>
+        <option value="s4">贵州师范学院</option></select
+      ><br /><br />
+      <textarea name="textInfo" id="ti1" cols="18" rows="5" readonly>
+爸爸的爸爸
+        叫爷爷</textarea
+      >
+    </form>
+    <hr />
+    <form>
+      <fieldset>
+        <legend>账号信息</legend>
+        姓名：<input value="呵呵" />逗比<br />
+        密码：<input
+          type="password"
+          name="password"
+          id="pwd1"
+          value="pwd"
+          size="18"
+        /><br />
+      </fieldset>
+      <fieldset>
+        <legend>其他信息</legend>
+        爱好：<input
+          type="checkbox"
+          name="hobby"
+          id="hobby1"
+          value="football"
+        />足球
+        <input
+          type="checkbox"
+          name="hobby"
+          id="hobby2"
+          value="basketball"
+        />篮球
+        <input
+          type="checkbox"
+          name="hobby"
+          id="hobby3"
+          value="eat"
+          checked
+        />美食
+        <input
+          type="checkbox"
+          name="hobby"
+          id="hobby4"
+          value="sleep"
+        />睡觉<br />
+      </fieldset>
+    </form>
+  </body>
+  <form>
+    <fieldset>
+      <legend>关于 label 的使用</legend>
+      <label for="nickname">昵称：</label
+      ><input type="text" id="nickname" /><br />
+      <label for="sgender3">性别：</label
+      ><input type="radio" name="sgender" id="sgender1" /><label for="sgender1"
+        >男</label
+      >
+      <input type="radio" name="sgender" id="sgender2" /><label for="sgender2"
+        >女</label
+      >
+      <input type="radio" name="sgender" id="sgender3" checked /><label
+        for="sgender3"
+        >保密</label
+      >
+    </fieldset>
+  </form>
+</html>

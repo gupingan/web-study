@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div[class^=box] {
+        width: 800px;
+        background-color: rgb(232,233,234);
+        padding: 10px;
+      }
+
+      div[class^=box] div {
+        margin-top: 10px;
+      }
+
+      div[class^=box] div:first-child {
+        margin-top: 0;
+      }
+
+      .l1 {
+        width: 200px;
+        height: 100px;
+        background-color: #f06868;
+      }
+
+      .l2 {
+        width: 500px;
+        height: 200px;
+        background-color: #fab57a;
+      }
+
+      .l3 {
+        width: 400px;
+        height: 200px;
+        background-color: #eaf777;
+      }
+
+      .l4 {
+        width: 600px;
+        height: 50px;
+        background-color: #80d6ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="l1"></div>
+      <div class="l2"></div>
+      <div class="l3"></div>
+      <div class="l4"></div>
+    </div>
+  </body>
+</html>

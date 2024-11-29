@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 字符串类型可以是引号中的任意文本，其语法为：双引号或者单引号包裹，不能交叉包裹，只匹配成对相同类型的引号
+      var a = 'abcde'
+      var b = '发愤图强'
+      var c = '123'
+      var d = 'hehe'
+      var e = ''
+      // var f = hehe
+      // 未使用引号会报错，这里没有引号，hehe 就是个变量，而且是没有声明的未定义变量
+      console.log(typeof a)
+      console.log(typeof b)
+      console.log(typeof c)
+      console.log(typeof d)
+      console.log(typeof e)
+      // 输出 5 行 string
+      // 注意：
+      // 1. 单双引号不能混用 比如："我是个小兔子' 就是不符合语法的，不匹配
+      // 2. 同类型的引号，不能相互包裹，会造成歧义（不知道该匹配谁） 比如："我嘞个大"草"哟"，四个引号，谁匹配谁？？
+      // 3. 单引号中可包括双引号，不能深层次的交叉嵌套，同理，双引号可包裹单引号，也不能更深层次的 双包单 单再包双或单
+
+      // 转义字符
+      // 如果实在想要包裹同类的引号，需要转义字符帮助
+      // 举例 错误的: "我的"天"啊"  正确1：'我的"天"啊''  正确2: "我的\"天\"啊"
+      // 在字符串中我们可以使用\作为转义字符，当表示一些特殊符号时可以使用\进行转义
+      console.log('"') // 输出 "
+      console.log("'") // 输出 '
+      console.log('\\') // 输出 \ 因为 \ 也是转义字符的语法标识符号，直接用在字符串中也不行
+      console.log('123\r456') // 表示回车，回车不等于换行，回车代表输出位置重回开头，在浏览器终端不呈现效果
+      console.log('123\n456') // 表示换行，输出位置换到下一行
+      console.log('123\r\n456') // 表示 Windows 系统中常用的换行符 Enter 效果
+      console.log('123\t456') // 表示一个缩进位 Tab
+      console.log('123\b456') // 表示一个退格，在浏览器终端的效果是全角空格
+
+      // 获取字符串的长度
+      console.log('132'.length)
+      var str1 = '12345' // 变量此时存储的是字符串类型，可以调用字符串的方法，.length
+      console.log(str1.length)
+      var str2 = 'hi! 我是顾平安' // 总计9字
+      console.log(str2.length)
+      // 空格、中文、英文、数字都是一个字符
+      // 字符串拼接
+      var str3 = 'hello' + ' ' + 'world'
+      console.log(str3) // 直接组合三方的三个字符串 hello world
+      // 字符串可以跨类型拼接，最后的结果都是字符串类型的数据（这种悄无声息的拼接处理，我们称之为隐式转换）
+      var str4 = '1' + 2
+      var str5 = '1' + true
+      console.log(str4) // 不是 3 而是 12
+      console.log(str5) // 是 1true
+      var num1 = 1 + 2
+      console.log(num1) // 这是两个数值相加
+      // 字符串的不可变性
+      // 虽然看上去内容改变了,但起始变量所存储的数据在内存空间中的地址换了,早不是之前的字符串的地址了
+      var str6 = 'hello'
+      str6 = '你好'
+      // 注意 hello 这个字符串本身的所有字符、长度都没变，而是变量重新指向了一个新的字符串 你好
+
+      // 模版字符串 ES6 特性
+      var name = '顾平安'
+      var str8 = '你好，欢迎name'
+      console.log(str8) // 非预期的欢迎顾平安，你可以采取字符串拼接
+      var str9 = '你好，欢迎' + name
+      console.log(str9) // 预期的欢迎
+      // 如果拼接的变量过多，看起来非常的繁琐，不知道该字符串的含义最终是什么，需要自行推敲
+      // 比如  '喔喔'+ a + b + '嘻嘻' + c + b + a + '不嘻嘻'
+      // ES6 中引入了 模版字符串，类似 Python 中的 f 字符串
+      // 反引号代替字符串引号包裹，使用${}在反引号包裹中包裹变量名 `其他正常的字符串${变量名1}嘿嘿嘿${变量名2}`
+      var str10 = `你好，欢迎${name}`
+      console.log(str10)
+      // 注意：反引号 ``  变量占位符 ${}   占位符在 反引号中，更贴切人类的阅读习惯
+      var boolean1 = false
+      var str11 = `oh，布尔值是：${boolean1}`
+      console.log(str11) //打印 oh，布尔值是：false
+      // 占位符中的变量可以是任意类型的数据，包括数字、布尔值、对象、数组等
+
+      // 一个例子
+      const num3 = 5
+      const num4 = 10
+      console.log(
+        'this is ' + (num3 + num4) + ' and\nnot ' + (2 * num3 + num4) + '.'
+      )
+      /* 打印
+      this is 15 and
+      not 20.
+      */
+      // 使用模版字符串后，占位符中可使用表达式计算，不仅仅是变量，少写了很多的加号和引号
+      const num5 = 5
+      const num6 = 10
+      console.log(`this is ${num3 + num4} and\nnot ${2 * num3 + num4}.`)
+
+      // 模版字符串也是字符串，可以无需变量，并且支持换行，而不仅是使用 \n 转义字符
+      const str12 = `
+      你好，
+      欢迎
+      `
+      /* 打印：注意有换行和空格，都是实际的换行，并不像之前那些普通的字符串一样在一行
+      你好，
+      欢迎
+      */
+      console.log(str12)
+      // 普通字符串 单个 \ 能够让字符串在编辑器中断换行，但实际等价于 '      你好，      欢迎'
+      const str13 = '\
+      你好，\
+      欢迎\
+      '
+      console.log(str13)
+      // 除此以为，模版字符串中的占位符还能调用函数、可以在占位符中再使用模版字符串
+    </script>
+  </body>
+</html>

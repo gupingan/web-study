@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 整个弹窗组件 */
+      .component_popup {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+      }
+
+      /* 遮罩背景 */
+      .popup_mask {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      /* 弹窗区域（内容 + close）：严格居中 */
+      .popup_content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* 弹窗的内容部分 */
+      .content_box {
+        width: 15.45rem;
+        height: 19.32rem;
+        background: url(20191010_1500_red-packet.png) no-repeat;
+        background-size: 15.45rem 19.32rem;
+      }
+
+      /* 弹窗的close图标 */
+      .content_close {
+        width: 1.25em;
+        height: 1.25em;
+        background: url(./20191010_1500_close.png) no-repeat;
+        background-size: 1.25rem 1.25rem;
+        margin: 0 auto;
+        margin-top: 0.5rem;
+      }
+
+      .content {
+        /* 模拟高度，实验滚动穿透 */
+        height: 2000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      默认文档流中的页面主体
+      <button id="open-popup">打开模态弹窗</button>
+      <button id="open-popup2">打开非模态弹窗</button>
+    </div>
+
+    <div class="component_popup" modal>
+      <div class="popup_mask"></div>
+      <div class="popup_content">
+        <div class="content_box"></div>
+        <div class="content_close"></div>
+      </div>
+    </div>
+
+    <script>
+      // 防止滚动穿透的思路
+      // 在打开弹窗时，将 document.body.style.overflow 设置为 'hidden'，以禁用页面滚动。
+      // 在关闭弹窗时，恢复 document.body.style.overflow 的值。
+      
+      // 获取弹窗和按钮元素
+      const popup = document.querySelector('.component_popup')
+      const openPopupButton = document.getElementById('open-popup')
+      const openPopupButton2 = document.getElementById('open-popup2')
+      const closePopupButton = document.querySelector('.content_close')
+
+      // 判断 active 是否具备
+      if (popup.hasAttribute('active')) {
+        popup.style.display = 'block'
+        document.body.style.overflow = 'hidden' // 禁用页面滚动
+      } else {
+        popup.style.display = 'none'
+        document.body.style.overflow = '' // 恢复页面滚动
+      }
+
+      // 监听 active 属性变化
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (
+            mutation.type === 'attributes' &&
+            mutation.attributeName === 'active'
+          ) {
+            if (popup.hasAttribute('active')) {
+              popup.style.display = 'block' // 显示弹窗
+              document.body.style.overflow = 'hidden' // 禁用页面滚动
+            } else {
+              popup.style.display = 'none' // 隐藏弹窗
+              document.body.style.overflow = '' // 恢复页面滚动
+            }
+          }
+        })
+      })
+
+      observer.observe(popup, {
+        attributes: true, // 只观察属性变化
+      })
+
+      // 打开弹窗
+      function openPopup(isModal) {
+        popup.setAttribute('active', '')
+        if (isModal) {
+          popup.setAttribute('modal', '')
+        } else {
+          popup.removeAttribute('modal')
+        }
+      }
+
+      openPopupButton.addEventListener('click', () => openPopup(true))
+      openPopupButton2.addEventListener('click', () => openPopup(false))
+
+      // 关闭弹窗
+      closePopupButton.addEventListener('click', () => {
+        popup.removeAttribute('active')
+      })
+
+      // 点击遮罩层也可以关闭弹窗
+      const popupMask = document.querySelector('.popup_mask')
+      popupMask.addEventListener('click', () => {
+        if (popup.getAttribute('modal') !== null) return
+        popup.removeAttribute('active')
+      })
+    </script>
+  </body>
+</html>

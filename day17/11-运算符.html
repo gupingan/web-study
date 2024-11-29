@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 运算符：也叫操作符，是一种符号。通过运算符可以对一个或多个值进行运算，并获取运算结果。
+      // 表达式：数字、运算符、变量的组合（组成的式子）
+      // 表达式最终都会有一个运算结果，我们将这个结果称为表达式的返回值
+      // 算数运算符 + - * / %
+      // 假设用户输入 345，怎么分别得到 3、4、5 这三个数呢？
+      var num = '345'
+      var n1 = parseInt(num / 100)
+      var n2 = parseInt((num / 10) % 10) // 或者 num % 100 / 10 也行
+      var n3 = parseInt(num % 10)
+      console.log(n1, n2, n3)
+      // * / % 的优先级高于 + -
+      console.log(1 + 2 * 3) // 1 + 6 = 7
+      // + - * / % 都是左结合性（从左至右计算）
+      console.log(1 + (2 * 3) / 2) // 1 + 6 / 2 = 1 + 3 = 4
+      // 小括号( )：能够影响计算顺序，且可以嵌套。没有中括号、没有大括号，只有小括号。
+      console.log(((1 + 2) * 3) / 2) // 3 * 3 / 2 = 9 / 2 = 4.5
+
+      // 取模（取余）运算
+      // 余数 = m % n;
+      // 取余运算结果的正负性，取决于 m，而不是 n。比如：10 % -3的运算结果是 1。-10 % 3的运算结果是-1。
+      // 如果 n < 0，那就先把 n 取绝对值后，再计算。等价于 m % (-n)
+      // 如果 n 是 0，那么结果是 NaN
+      console.log(10 % 0) // NaN
+      // 在 n > 0 的情况下：
+      // 如果 m>=n，那就正常取余。
+      console.log(10 % 3) // 1
+      // 如果 m<n，那结果就是 m。
+      console.log(3 % 10) // 3
+      // 浮点数值的最高精度是 17 位小数，但在进行算术计算时，会丢失精度，导致计算不够准确。
+      console.log(0.1 + 0.2) // 运算结果不是 0.3，而是 0.30000000000000004
+      console.log(0.07 * 100) // 运算结果不是 7，而是 7.000000000000001
+      // 因此，不要直接判断两个浮点数是否相等
+      // + 可能是拼接也可能是计算，如果有一个值是字符串，则表达式结果为其他表达式计算后最终与字符串拼接的结果
+      console.log(1 + 2 + '3') // 3 + '3' = '33'
+      console.log('1' + 2 + 3) // '12' + 3 = '123'
+      // -、*、/、% 均将左右参与运算的值进行 Number() 转换，运算结果也是 Number 类型
+      console.log(1 + '2' + 3 * 2) // '12' + 6 = '126'
+      console.log(1 + '2' * 3 * 2) // 1 + 6 * 2 = 13
+      console.log(1 + '2' * true * 2) // 1 + 2 * 1 * 2 = 5
+      console.log(1 + '2' * parseInt(null) * 2) // 1 + 2 * NaN * 2 = NaN
+
+      // 自增/自减运算符
+      // 自增运算符 ++
+      let a1 = 1
+      let a2 = 2
+
+      a1++
+      const result1 = a1 + a2 // 2 + 2 = 4
+      console.log(result1)
+      // const result2 = (a1+a2)++; // 报错，没有这种写法
+      // console.log(result2)
+
+      // const a3 = 3
+      // console.log(a3++) // 报错，因为常量无法再自加
+
+      // 自增分成两种：a++和++a。共同点：
+      // （1）无论是 a++ 还是++a，自增都会使原变量的值加 1。
+      // （2）我们要注意的是：a是变量，而a++和++a是表达式。
+      // a++这个表达式的值等于原变量的值（a 自增前的值）。可以这样理解：先把 a 的值赋值给表达式，然后 a 再自增
+      let a4 = 1
+      console.log(a4++ + 3) // a4 未自增前的值是 1，因此是 1 + 3 = 4
+      // ++a这个表达式的值等于新值 （a 自增后的值）。 可以这样理解：a 先自增，然后把自增后的值赋值给表达式。
+      let a5 = 1
+      console.log(++a5 + 3) // a5 自增后的值是 2，因此是 2 + 3 = 5
+      // 自减运算符 --
+      // 作用：可以快速对一个变量进行减1操作。原理同自增运算符。前减与后减参考上方自增
+      // 自增和自减时，a的执行过程
+      // 先调用Number(a)函数，然后将Number(a)+1或者-1，再赋值给a。
+
+      // 一元运算符
+      // 一元运算符，只需要一个操作数
+      // typeof 获取变量的数据类型
+      // 写法1  typeof 变量
+      // 写法2  typeof 变量
+      // typeof 数字（含 typeof NaN） 返回 number
+      // typeof 字符串               返回 string
+      // typeof 布尔值               返回 boolean
+      // typeof null                返回 object
+      // typeof undefined           返回 undefined
+      // typeof 函数/方              返回 function
+      // typeof 对象                 返回 object
+      // typeof 无法区分数组，但 instanceof 可以
+      console.log([] instanceof Array) // true
+      console.log({} instanceof Object) // true
+      // 正负号
+      // 我们可以对其他的数据类型使用+，来将其转换为 number
+      // 负号可以对数字进行取反
+
+      // 三元运算符（条件运算符） 三目运算符
+      // 条件表达式 ? 语句1 : 语句2;
+      // 执行流程——条件运算符在执行时，首先对条件表达式进行求值：
+      // 如果该值为 true，则执行语句 1，并返回执行结果
+      // 如果该值为 false，则执行语句 2，并返回执行结果
+      true ? console.log('真') : console.log('假')
+
+      // 逻辑运算符
+      // &&：与（且）。两个都为真，结果才为真。特点：一假则假。
+      // ||：或。只要有一个是真，结果就是真。特点：特点: 一真则真。
+      // ! ：非。对一个布尔值进行取反。特点: 真变假, 假变真。
+      console.log(3 < 2 && 2 < 4) // false
+      console.log(3 < 2 || 2 < 4) // true
+      console.log(!0 <= 0) // 1 <= 0 false
+      console.log(!0) // true
+      // 双非转换布尔型
+      console.log(!!0 <= 0) // false <= 0 也就是 0 <= 0 true
+      console.log(2 < 3 && null) // null
+      console.log(2 < 3 && undefined) // undefined
+      console.log(2 < 3 && console.log('右边执行了')) // 打印右边执行了，随后打印undefined
+      console.log(3 < 2 && console.log('右边没执行')) // 打印返回的结果 false，未打印右边代码
+      // 非布尔值进行与或运算时，会先将其转换为布尔值，然后再运算，但返回结果是原值
+      console.log(5 && 6) // 6
+      // 1、两个非布尔值，做逻辑运算：
+      // 与运算的返回结果：
+      // 如果第一个值为 false，则只执行第一条语句，并直接返回第一个值；不会再往后执行。
+      // 如果第一个值为 true，则继续执行第二条语句，并返回第二个值（无论第二个值的结果如何）。
+      // 或运算的返回结果：
+      // 如果第一个值为 true，则只执行第一条语句，并直接返回第一个值；不会再往后执行。
+      // 如果第一个值为 false，则继续执行第二条语句，并返回第二个值（无论第二个值的结果如何）。
+      // 2、三个及以上的非布尔值，做逻辑运算：
+      // 与运算的返回结果：（value1 && value2 && value3）
+      // 从左到右依次计算操作数，找到第一个为 false 的值为止。
+      // 如果所有的值都为 true，则返回最后一个值。
+      // 或运算的返回结果：（value1 || value2 || value3）
+      // 从左到右依次计算操作数，找到第一个为 true 的值为止。
+      // 如果所有的值都为 false，则返回最后一个值。
+      // 根据上述的规则，可得到短路运算的技巧
+      // const a6 = 'false'
+      // // 第一个值为true，会继续执行后面的内容
+      // a6 && alert('看 a6 出不出来') // 可以弹出 alert 框
+      // const a7 = undefined
+      // // 第一个值为false，不会继续执行后面的内容
+      // a7 && alert('看 a7 出不出来') // 不会弹出 alert 框
+
+      // 短路或
+      // const result = { retCode: -1, msg: '' } // 请求接口时，后台返回的内容
+      // let errorMsg = '' // 前端的文案提示
+      // if (!result) {
+      //   // 接口挂掉时
+      //   errorMsg = '网络异常，请稍后再试'
+      // }
+
+      // if (result && result.retCode == 0) {
+      //   // 接口返回正常中奖时
+      //   errorMsg = '恭喜你中奖啦~'
+      // }
+
+      // if (result && result.retCode != 0) {
+      //   // 接口返回异常码时
+      //   errorMsg = result.msg || '活动太火爆，请稍后再试'
+      // }
+
+      // console.log(errorMsg)
+
+      // 当前端成功调用一个接口后，返回的数据为 result 对象。这个时候，我们用变量 a 来接收 result 里的图片资源
+      const result = { retCode: 0, msg: '' }
+      var a =
+        (result && result.data && result.data.imgUrl) ||
+        'http://img.smyhvae.com/20160401_01.jpg'
+      console.log(a)
+
+      // 赋值运算符
+      // = 直接赋值。比如 var a = 5。意思是，把 5 这个值，往 a 里面存一份。简称：把 5 赋值给 a。
+      // +=：比如 a += 5 等价于 a = a + 5。
+      // -=：比如 a -= 5 等价于 a = a - 5。
+      // *=：比如 a _ = 5 等价于 a = a -5。
+      // /=：比如 a /= 5 等价于 a = a / 5。
+      // %=：比如 a %= 5 等价于 a = a % 5。
+      // 注意：算数运算符的优先级高于赋值运算符
+      let result2 = 1 + 2 // 3
+      result2 += 1 + 2 // result2 += 3  -> result2 = result2 + 3 = 6
+      console.log(result2) // 6
+      // 赋值运算符的结合性是右结合性（从右至左的顺序计算）
+      let k1, k2
+      k1 = k2 = 3 // 先将 3 复制给 k2，再将 k2 的值赋值给 k1
+
+      // 比较运算符
+      // >	大于号
+      // <	小于号
+      // >= 	大于或等于
+      // <=  小于或等于
+      // == 	等于
+      // === 全等于
+      // !=	不等于
+      // !== 不全等于
+      // 比较运算符，得到的结果都是布尔值：要么是 true，要么是 false。如果关系成立，就返回true；如果关系不成立，就返回false
+      // 对于非数值进行比较时，会将其转换为数值类型（内部是调用Number()方法），再进行比较
+      // 特殊情况：如果参与比较的都是字符串，则不会将其转换为数字进行比较，比较的是字符串的 Unicode 编码
+      // 比较字符编码时，是一位一位进行比较，顺序从左到右。如果大一样，则继续比较下一位。
+      // 比如说，当你尝试去比较"123"和"56"这两个字符串时，你会发现，字符串"56"竟然比字符串"123"要大（因为 5 比 1 大）
+      console.log('123' > '56') // false
+      // 当我们想比较两个字符串型的数字时，一定一定要先转型再比较大小，比如 parseInt()
+      console.log(parseInt('123') > parseInt('56')) // true
+      // 任何值和 NaN 做任何比较都是 false，一 NaN 均假
+      console.log(1 > NaN, 1 < NaN, 1 === NaN, NaN === NaN, NaN == NaN)
+
+      // ==这个符号，它是判断是否等于，而不是赋值
+      // 可以验证字符串是否相同
+      console.log('我爱你中国' == '我爱你中国') // true
+      // 不严谨，会做隐式转换，将不同的数据类型，转为相同类型进行比较
+      console.log('6' == 6) // true。这里的字符串"6"会先转换为数字6，然后再进行比较
+      console.log(true == '1') // true
+      console.log(0 == -0) // true
+      console.log(null == 0) // false，null 只等于 undefined，而不等于任何其他值，包括 0 也不等于，它只有 Number 转换后是 0
+      console.log(undefined == 0) // false
+      console.log(undefined == null) // true，undefined 衍生于 null
+      // NaN 不和任何值相等，包括它本身
+      console.log(NaN == NaN) //false
+      console.log(NaN === NaN) //false
+      // 可以通过 isNaN()函数来判断一个值是否是 NaN 推荐还是 Number.isNaN()
+
+      // 全等在比较时，不会做类型转换。如果要保证完全等于（即：不仅要判断取值相等，还要判断数据类型相同），我们就要用三个等号===
+      console.log('6' === 6) //false
+      console.log(6 === 6) //true
+
+      console.log(3 != 8) // true
+      console.log(3 != '3') // false，因为3=="3"是true，所以反过来就是false。
+      console.log(3 !== '3') // true，应为3==="3"是false，所以反过来是true。
+
+      console.log(null < 0) // false  null 被转换为 0，所以比较变成 0 < 0，结果为 false
+      console.log(null == 0) // false  因为 null 只等于 undefined，不等于任何其他值
+      console.log(null > 0) // false  同样，null 被转换为 0，所以比较变成 0 > 0，结果为 false
+      console.log(null <= 0) // true  null 被转换为 0，所以比较变成 0 <= 0，结果为 true
+      console.log(null >= 0) // true  同样，null 被转换为 0，所以比较变成 0 >= 0，结果为 true
+      console.log(undefined < 0) // false undefined 被转换为 NaN，所以比较变成 NaN < 0，结果为 false
+      console.log(undefined == 0) // false 同上
+      console.log(undefined > 0) // false 同上
+      console.log(undefined <= 0) // false 同上
+      console.log(undefined >= 0) // false 同上
+
+      /* 
+      相等运算符（== 和 !=）提供非严格相等语义。这可以大致总结如下：
+
+      1.如果操作数具有相同的类型，则按如下方式进行比较：
+          对象（Object）：仅当两个操作数引用同一个对象时返回 true。
+          字符串（String）：仅当两个操作数具有相同的字符且顺序相同时返回 true。
+          数字（Number）：如果两个操作数的值相同，则返回 true。+0 和 -0 被视为相同的值。如果任何一个操作数是 NaN，返回 false；所以，NaN 永远不等于 NaN。
+          布尔值（Boolean）：仅当操作数都为 true 或都为 false 时返回 true。
+          大整型（BigInt）：仅当两个操作数的值相同时返回 true。
+          符号（Symbol）：仅当两个操作数引用相同的符号时返回 true。
+      2.如果其中一个操作数为 null 或 undefined，另一个操作数也必须为 null 或 undefined 以返回 true。否则返回 false。
+      3.如果其中一个操作数是对象，另一个是原始值，则将对象转换为原始值。
+      在这一步，两个操作数都被转换为原始值（字符串、数字、布尔值、符号和大整型中的一个）。剩余的转换将分情况完成。
+          如果是相同的类型，使用步骤 1 进行比较。
+          如果其中一个操作数是符号而另一个不是，返回 false。
+          如果其中一个操作数是布尔值而另一个不是，则将布尔值转换为数字：true 转换为 1，false 转换为 0。然后再次对两个操作数进行宽松比较。
+          数字与字符串：将字符串转换为数字。转换失败将导致 NaN，这将保证相等比较为 false。
+          数字与大整型：按数值进行比较。如果数字的值为 ±∞ 或 NaN，返回 false。
+          字符串与大整型：使用与 BigInt() 构造函数相同的算法将字符串转换为大整型数。如果转换失败，返回 false。
+      */
+
+      /* 
+      严格相等运算符（=== 和 !==）提供了严格相等判定语义。
+
+      1.如果操作数的类型不同，则返回 false。
+      2.如果两个操作数都是对象，只有当它们指向同一个对象时才返回 true。
+      3.如果两个操作数都为 null，或者两个操作数都为 undefined，返回 true。
+      4.如果两个操作数有任意一个为 NaN，返回 false。
+      否则，比较两个操作数的值：
+        数字类型必须拥有相同的数值。+0 和 -0 会被认为是相同的值。
+        字符串类型必须拥有相同顺序的相同字符。
+        布尔运算符必须同时为 true 或同时为 false。
+       */
+
+      //  与相等（==）运算符最显著的区别是，如果操作数的类型不同，== 运算符会在比较之前尝试将它们转换为相同的类型
+    </script>
+  </body>
+</html>

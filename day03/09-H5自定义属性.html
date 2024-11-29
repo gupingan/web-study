@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      class="box"
+      title="盒子"
+      data-my-name="gupingan"
+      data-content="div 是个沙雕"
+    >
+      DIV
+    </div>
+    <script>
+      var box = document.querySelector('.box')
+      console.log(box.dataset['myName'])
+      console.log(box.dataset['content'])
+
+      var num = 100
+      num.index = 10
+      box.index = 100
+      box.dataset['content'] = 'div 不是个沙雕'
+    </script>
+  </body>
+</html>

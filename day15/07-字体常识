@@ -1,0 +1,34 @@
+常见字体族
+  serif：衬线体。
+  sans-serif：无衬线体。
+  monospace：等宽字体。每一个字母所占的宽度是相同的。写代码的字体尽量用等宽字体。
+  cursive：手写字体。比如徐静蕾手写体。
+  fantasy：梦幻字体。比如一些艺术字。
+
+多字体 fallback 机制：当指定的字体找不到（或者某些文字不支持这个字体）时，那就接着往后找。比如：
+  .div1{
+      font-family: "PingFang SC", "Microsoft Yahei", monospace;
+  }
+写 CSS 代码时，字体族不需要带引号
+
+font-weight 属性：在设置字体是否加粗时，
+属性值既可以直接填写 100 至 900 这样的数字，
+也可以填写normal、bold这样的单词。
+normal的值相当于 400，bold的值相当于 700。如下：
+  font-weight: 100;
+  font-weight: 200;
+  font-weight: 300;
+  font-weight: 400;
+  font-weight: 500;
+  font-weight: 600;
+  font-weight: 700;
+  font-weight: 800;
+  font-weight: 900;
+
+  font-weight: normal; // 相当于 400
+  font-weight: bold;   // 相当于 700
+
+实际上，所有这些数值关键字浏览器都是支持的，之所以没有看到任何粗细的变化，是因为你所使用的字体不支持。
+拿“微软雅黑”来举例，它只支持 400 和 700 这两种粗细，所以当你在代码里写成500的时候，也会被认为是400。
+但是 Mac 上的“苹方”字体，就支持从100到900之间的各种粗细
+阿里巴巴开源的普惠字体，也是支持多种粗细

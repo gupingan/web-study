@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 14px;
+  font-family: 'Microsoft YaHei', 'SimSun';
+}
+
+header {
+  height: 58px;
+  background-color: #191d3a;
+}
+
+header a {
+  text-decoration: none;
+  transition: background-color 0.3s linear 0s;
+}
+
+header .inner_c {
+  position: relative;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+header .logo {
+  float: left;
+  width: 225px;
+}
+
+header .logo a {
+  display: block;
+  overflow: hidden;
+  width: 157px;
+  text-indent: -9999px;
+  background-image: url('https://www.boyaa.com/img_phone/brand.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 10px 0 0 20px;
+}
+
+header .nav li {
+  float: left;
+  list-style: none;
+  height: 58px;
+  width: 85px;
+  text-align: center;
+  line-height: 58px;
+  border-left: 1px solid #252947;
+  border-right: 1px solid #252947;
+  margin-right: -1px;
+}
+
+.nav li a {
+  color: #818496;
+  display: block;
+}
+
+.nav li a.current {
+  background-color: #252947;
+  color: #e2e4ed;
+}
+
+.nav li a:hover {
+  color: #e2e4ed;
+}
+
+header .jrwm {
+  display: block;
+  color: #fff;
+  float: left;
+  margin: 12px 0 0 10px;
+  text-align: center;
+  line-height: 32px;
+  width: 98px;
+  height: 32px;
+  border: 1px solid #3aca7a;
+  border-radius: 3px;
+  background-color: #38b774;
+}
+
+header .jrwm:hover {
+  background-color: #2ba364;
+}
+
+header .lang_box {
+  float: right;
+  line-height: 58px;
+}
+
+.lang_box a {
+  color: #444866;
+}
+
+.lang_box a:first-child {
+  margin-right: 10px;
+}
+
+.lang_box a.current {
+  color: #38b774;
+}
+
+.lang_box a:hover {
+  color: #38b774;
+}
+
+section .banner_container {
+  clear: both;
+}
+
+section .banner_c li {
+  list-style: none;
+  display: block;
+  width: 100%;
+  height: 460px;
+  background-image: url('https://www.boyaa.com/pic/banner20240827.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+section .indexmain_c {
+  padding: 50px 0 0 0;
+  margin: 0 auto;
+  width: 1000px;
+}
+
+section .indexmain_c li {
+  float: left;
+  width: 218px;
+  list-style: none;
+  margin-right: 42px;
+}
+
+section .indexmain_c li:last-child {
+  margin-right: 0px;
+}
+
+section .indexmain_c a {
+  display: block;
+  text-decoration: none;
+  color: #000;
+  text-align: center;
+  transition: background-color 0.5s linear 0s;
+}
+
+section .indexmain_c a:hover {
+  background-color: #38b774;
+  color: white;
+}
+
+.indexmain_c a:hover p,
+p::after {
+  color: white;
+}
+
+.indexmain_c a:hover img {
+  filter: brightness(105%);
+}
+
+.indexmain_c a img {
+  width: 100%;
+}
+
+.indexmain_c a h5 {
+  text-decoration: none;
+  font-size: 1em;
+  padding: 5px 0 10px 0;
+}
+
+.indexmain_c a p {
+  color: #38b774;
+  font-size: 12px;
+}
+
+.indexmain_c a p::after {
+  margin-left: 10px;
+  content: '▶';
+  font-size: 10px;
+}

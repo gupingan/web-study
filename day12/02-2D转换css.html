@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 960px;
+        padding-left: 20px;
+        margin: 100px auto;
+      }
+
+      .box div {
+        width: 300px;
+        height: 150px;
+        background-color: pink;
+        float: left;
+        margin-right: 20px;
+        color: white;
+        text-align: center;
+        font: 400 30px/150px “宋体”;
+        transition: all 1s;
+      }
+
+      .box .box2 {
+        background-color: green;
+      }
+      /* transform:  css3中用于做变换的属性
+                scale(x,y)：缩放 */
+      .box .box2:hover {
+        background-color: yellowgreen;
+        transform: scale(1.5, 0.5);
+      }
+
+      .box .box1:hover {
+        background-color: red;
+        /* translate(x,y)：平移 正值右下 负值左上 */
+        transform: translate(50%, -10%);
+      }
+
+      .box .box3:hover {
+        background-color: blue;
+        /* rotate(x)：旋转度数 正值 顺时针；负值：逆时针 */
+        transform: rotate(90deg);
+        /* transform-origin: 水平坐标 垂直坐标; */
+        transform-origin: bottom left;
+      }
+
+      .box4 {
+        width: 300px;
+        height: 150px;
+        margin: 0 auto;
+        background-color: pink;
+        color: white;
+        text-align: center;
+        font: 400 30px/150px “宋体”;
+        line-height: 150px;
+        position: absolute;
+        bottom: 100px;
+        /* translate 另一种使用 */
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="box1">1</div>
+      <div class="box2">2</div>
+      <div class="box3">3</div>
+    </div>
+    <div class="box4">4</div>
+  </body>
+</html>

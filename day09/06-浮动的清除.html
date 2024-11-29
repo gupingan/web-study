@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 高度坍塌问题 */
+      /* 方法1 如果一个元素要浮动，那么它的祖先元素一定要有高度。
+          有高度的盒子，才能关住浮动。实际使用不多，一般不操作高度*/
+      /* 为了兼容 IE6，如果容器 height < 12px，那么需要设置 _font-size: 0; */
+      /* div {
+        height: 30px;
+      } */
+
+      /* 方法2 clear: both */
+      /* 缺点：margin 失效 */
+      /* div {
+        clear: both;
+        margin: 15px;
+      } */
+
+      /* 方法3：隔墙法 外墙法 */
+      /* 方法3：隔墙法 内墙法 */
+      .cl {
+        clear: both;
+      }
+
+      .h16 {
+        /* 取代 margin 效果 */
+        height: 16px;
+      }
+
+      /* 方法4：overflow: hidden; */
+      /* 理论上生成了 BFC（布局上下文/块级格式化上下文）
+      块级格式化上下文，是CSS中渲染过程进行布局的盒子，独立的布局环境，内部浮动子元素与外部元素不会互相影响 */
+      .box1,
+      .box2 {
+        /* 兼容 IE6 */
+        _zoom: 1;
+        overflow: hidden;
+      }
+
+      li {
+        float: left;
+        width: 100px;
+        height: 30px;
+        background-color: pink;
+      }
+
+      .box3 {
+        clear: both;
+        background-color: green;
+      }
+
+      p {
+        margin: 0;
+        float: left;
+        width: 188px;
+        height: 188px;
+        background-color: red;
+      }
+      /* 浮动的元素，只能被有高度的盒子关住。 也就是说，如果盒子内部有浮动，这个盒子有高，那么妥妥的，浮动不会互相影响 */
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <ul>
+        <li>周杰伦</li>
+        <li>林俊杰</li>
+        <li>张学友</li>
+        <li>刘德华</li>
+      </ul>
+      <!-- 内墙法 -->
+      <!-- <div class="cl"></div> -->
+    </div>
+    <!-- 外墙法 -->
+    <!-- <div class="cl h16"></div> -->
+    <div class="box2">
+      <ul>
+        <li>周星驰</li>
+        <li>赵丽颖</li>
+        <li>王一博</li>
+        <li>成 龙</li>
+      </ul>
+    </div>
+
+    <div class="box3">
+      <p></p>
+      <div class="cl"></div>
+    </div>
+  </body>
+</html>

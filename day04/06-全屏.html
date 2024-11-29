@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <script>
+      var box = document.querySelector('.box')
+
+      box.onclick = function () {
+        if (box.requestFullscreen) {
+          // 貌似大多流行的浏览器都支持这个
+          console.log('w3c 浏览器')
+          box.requestFullscreen()
+        } else if (box.webkitRequestFullscreen) {
+          console.log('webkit 浏览器')
+          box.webkitRequestFullscreen()
+        } else if (box.mozRequestFullScreen) {
+          console.log('moz 浏览器')
+          box.mozRequestFullScreen()
+        } else if (box.msRequestFullscreen) {
+          console.log('ms 浏览器')
+          box.msRequestFullscreen()
+        }
+      }
+    </script>
+
+    <style>
+      .box {
+        width: 250px;
+        height: 250px;
+        margin: 100px auto;
+        border-radius: 50%;
+      }
+
+      .box:not(:fullscreen) {
+        background-color: aquamarine;
+      }
+      .box:fullscreen {
+        background-color: blue;
+      }
+    </style>
+  </body>
+</html>

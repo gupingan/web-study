@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      .parent {
+        width: 400px;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        float: left;
+        border: 1px solid rgb(144, 12, 63);
+        margin: 20px;
+        text-align: center;
+        line-height: 100px;
+        color: #fff;
+        font-size: 50px;
+        background-color: rgb(255, 141, 26);
+      }
+
+      /*画圆形的方式一*/
+      .box:nth-child(1) {
+        border-radius: 50px;
+      }
+
+      /*画圆形的方式二*/
+      .box:nth-child(2) {
+        border-radius: 50%;
+      }
+
+      .box:nth-child(3) {
+        border-radius: 100px 0 0 0;
+      }
+
+      .box:nth-child(4) {
+        border-radius: 100px/50px;
+      }
+
+      .box:nth-child(5) {
+        border-radius: 10%;
+      }
+
+      .box:nth-child(6) {
+        border-radius: 0 100px;
+      }
+
+      .box:nth-child(7) {
+        line-height: 50px;
+        height: 50px;
+        border-radius: 50px 50px 0 0;
+      }
+
+      .box:nth-child(8) {
+        border-radius: 50px/100px;
+      }
+
+      /* 边框阴影 */
+      .box:nth-child(9) {
+        /* box-shadow: 水平偏移 垂直偏移 模糊程度 阴影大小 阴影颜色 */
+        box-shadow: 10px 8px 20px -2px #666;
+      }
+
+      .box:nth-child(8) {
+        /* 最后加入 inset 表示 内阴影 */
+        box-shadow: 6px 6px 15px -2px #666 inset;
+      }
+
+      .box:nth-child(10) {
+        /* 边框图片的路径*/
+        border-image-source: url('08-border.png');
+        /* 图片边框的裁剪，裁剪线的边距*/
+        border-image-slice: 27;
+        /*图片边框的宽度*/
+        border-image-width: 27px;
+        /*边框图片的平铺*/
+        /* repeat :正常平铺 但是可能会显示不完整*/
+        /*round: 平铺 但是保证 图片完整*/
+        /*stretch: 拉伸显示*/
+        border-image-repeat: round;
+        background-color: white;
+        color: black;
+        box-shadow: 10px 8px 20px -2px #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+      <div class="box">4</div>
+      <div class="box">5</div>
+      <div class="box">6</div>
+      <div class="box">7</div>
+      <div class="box">8</div>
+      <div class="box">9</div>
+      <div class="box">10</div>
+    </div>
+  </body>
+</html>

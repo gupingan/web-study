@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+    />
+  </head>
+  <body>
+    <span>青出于蓝而胜于蓝</span>
+    <br />
+    <p class="test1">学而时习之，不亦乐乎</p>
+    <p class="test1">People 山 People 海</p>
+    <p class="line-h">
+      CSS中，所有的行，都有行高。盒子模型的padding，绝对不是直接作用在文字上的，而是作用在“行”上的。
+    </p>
+    <p class="font-full">
+      我们可以连写：（是否加粗、字号 font-size、行高 line-height、字体
+      font-family）
+    </p>
+    <style>
+      .test1 {
+        font-size: 50px; /* 字体大小 */
+        line-height: 30px; /* 行高 */
+        font-family: 幼圆, 黑体; /* 字体，如果没有幼圆就显示黑体 */
+        font-style: italic; /* 字体类型 italic 斜体  normal 正常 */
+        font-weight: bold; /* 字体粗细 粗体 */
+        font-variant: small-caps; /* 小写变大写 */
+      }
+
+      .line-h {
+        line-height: 50px;
+      }
+
+      .font-full {
+        /* 连写：字粗细 字号/行高 字体 */
+        font: 700 16px/26px '幼圆';
+      }
+    </style>
+  </body>
+</html>

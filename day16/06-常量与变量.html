@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 常量也称之为“字面量”，是固定值，不可改变。看见什么，它就是什么
+      /* 常量有下面这几种：
+            数字常量（数值常量）
+            字符串常量
+            布尔常量
+            自定义常量
+            数字常量
+      */
+      // 数字常量
+      // 整数
+      console.log(996)
+      // 浮点数
+      console.log(3.14)
+
+      // 字符串常量：单引号或双引号括起来的内容
+      console.log('996')
+      console.log('你好，世界')
+      // 提示：996 是数字，'996'是字符串
+
+      // 布尔常量：true 或 false 表达真或者假 允许/拒绝 等含义
+      console.log(true)
+      console.log(false)
+      if (true) {
+        console.log('如果为真，就走这里面的代码')
+      } else {
+        console.log('如果为假，就走这里面的代码')
+      }
+
+      // 自定义常量：ES6 新增
+      // const 常量名称 = 常量取值;
+      // 定义常量 name 指向的值为 顾平安
+      const name = '顾平安'
+      // 使用常量 name，将打印指向的值
+      console.log(name)
+      // 常量一旦定义，就不能再修改指向的值
+      // name = '张三'
+      // 将会报错Uncaught TypeError: Assignment to constant variable.
+      // console.log(name)
+
+      // 一般不会直接使用常量，否则会导致代码冗余、不易维护。
+      // 如果多个地方要用到同一个常量，那就建议事先定义一个变量，用来保存这个常量；
+      // 然后在需要的地方去引用这个变量
+
+      // 变量表示可以被修改的数据。我们通过「变量名」获取数据，甚至修改变量指向什么数据或者数据本身
+      // 变量还可以用来保存常量
+      // 本质：变量是程序在内存中申请的一块用来存放数据的空间
+      // ES5 变量的定义/声明
+      // 定义一个名为 name 的变量。name是变量名
+      var newName
+      // ES6 变量的定义/声明
+      // 第一次给变量赋值，称之为“变量的初始化”
+      // const ourName; // 常量，常量必须初始化值，此处错误示例
+      let age // 变量可不用初始化值，可先定义
+
+      // 变量的赋值
+      age = 12
+      console.log(age)
+
+      // 梳理一遍 变量声明 -> 赋值 -> 使用
+      // 先定义，后赋值
+      let num1
+      num1 = 12
+      console.log(num1)
+
+      // 可简化:定义的同时并赋值
+      let num2 = 12
+      console.log(num2)
+
+      // 再复杂一些
+      var a = 100
+      let b = 200
+      console.log(a, b) // 可以输出多个
+      let temp = a // 将 a 的 值存储
+      a = b // 将 b 的值赋给 a，a 原有的值被覆盖
+      b = temp // 将 a 的原有的值赋给 b
+      console.log(a, b) // 利用中间变量完成交换
+
+      // 定义变量：var/let/const 就是一个关键字，用来定义变量。所谓关键字，就是有特殊功能的单词。
+      // 变量赋值：等号表示赋值，将等号右边的值，赋给左边的变量。
+      // 变量名：我们可以给变量起个名字
+      // 一个变量被重新复赋值后，它原有的值就会被覆盖，变量值将以最后一次赋的值为准
+      var a = 100
+      a = 110
+
+      console.log(a) // 打印结果：110。因为 110 覆盖了 100
+
+      // 同时定义多个变量
+      // var num3, num4
+      // 定义多个变量的同时，进行初始化
+      // var num3 = 10, num4 = 20;
+
+      // var num3, num4
+      // num3 = num4 = 10
+      // 等价 var num1, num2 = 10;
+
+      // 变量之间可以相互赋值
+      var num5, num6
+      num5 = 10
+      num6 = num5 // 把 num5 的值拷贝一份，赋值给 num6
+      console.log(num6) // 10
+
+      // 在ES5中，如果用 var 定义了同名变量，那么，后定义的变量，会覆盖先定义的变量
+      var name1 = '许嵩'
+      var name1 = '周杰伦' // 这里会重新定义一个新的变量 name1
+
+      console.log(name1) // 周杰伦
+      // 如果是 let 则会报错
+
+      // 打印一个只声明的变量
+      let name2
+      console.log(name2)  // undefined
+
+      // 打印一个未声明的变量
+      // console.log(name3)
+      // 报错：Uncaught ReferenceError: name3 is not defined
+    </script>
+  </body>
+</html>

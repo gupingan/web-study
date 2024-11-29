@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #de8910;
+      }
+
+      .rocket {
+        position: absolute;
+        left: 30%;
+        top: 520px;
+        transform: translate(-50%, 0);
+        height: 120px;
+        transition: all 1s ease-in;
+        /* 添加阴影 */
+        filter: drop-shadow(0 20px 5px rgba(0, 0, 0, 0.5))
+      }
+
+      body:hover .rocket {
+        /* 空格分隔多个动作 */
+        transform: translate(550%, -1000px) rotate(45deg);
+        /* 阴影动画细节 */
+        filter: drop-shadow(20px 0 5px rgba(0, 0, 0, 0.5))
+      }
+
+      html,
+      body {
+        height: 90%;
+      }
+
+      .desc {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 80px;
+        color: #de8910;
+        text-shadow: -1px -1px 3px #fff;
+        text-shadow: 1px 1px 3px #000;
+        letter-spacing: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <span class="desc">鼠标进入屏幕发射</span>
+    <img src="./images/rocket.png" alt="小火箭" class="rocket" />
+  </body>
+</html>

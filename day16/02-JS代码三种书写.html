@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="alert('行内式：Hello world')">行内式</button>
+  <button id="btn2">内联式</button>
+  <button id="btn3">外链式</button>
+  <script>
+    // 学习阶段使用这种方式
+    var btn = document.getElementById('btn2')
+    btn.onclick = function () {
+      alert('内联式：Hello world')
+    }
+  </script>
+  <!-- 实战开发基于该方式 -->
+  <script src="02.js"></script>
+</body>
+</html>

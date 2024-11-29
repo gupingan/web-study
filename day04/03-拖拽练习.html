@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .one,
+      .two {
+        min-height: 110px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+      .one {
+        border: 1px solid red;
+      }
+
+      .two {
+        border: 1px solid green;
+      }
+
+      .one > div,
+      .two div {
+        width: 100px;
+        height: 100px;
+        margin: 5px;
+        align-content: center;
+        text-align: center;
+        color: white;
+        font-size: 12pt;
+        background-color: brown;
+      }
+    </style>
+  </head>
+  <body>
+    <p>盒子1</p>
+    <div class="one">
+      <div draggable="true">1</div>
+      <div draggable="true">2</div>
+      <div draggable="true">3</div>
+      <div draggable="true">4</div>
+      <div draggable="true">5</div>
+      <div draggable="true">6</div>
+      <div draggable="true">7</div>
+      <div draggable="true">8</div>
+    </div>
+    <br />
+    <p>盒子2</p>
+    <div class="two"></div>
+
+    <script>
+      var one = document.querySelector('.one')
+      var two = document.querySelector('.two')
+      var tempElem = null
+      ;(function () {
+        for (var i = 0; i < one.childElementCount; i++) {
+          var elem = one.children[i]
+          elem.ondragstart = function () {
+            tempElem = this
+          }
+        }
+      })()
+
+      one.ondragover = function (e) {
+        e.preventDefault()
+      }
+
+      one.ondrop = function () {
+        if (!tempElem) return
+        this.appendChild(tempElem)
+        tempElem = null
+      }
+
+      two.ondragover = one.ondragover
+      two.ondrop = one.ondrop
+    </script>
+  </body>
+</html>

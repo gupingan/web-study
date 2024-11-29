@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <style>
+
+      p {
+        width: 120px;
+        line-height: 40px;
+        height: 40px;
+        display: inline-block;
+        background-color: red;
+        position: relative;
+        margin: 0;
+      }
+
+      p:hover::after {
+        content: '我是后置元素';
+        display: inline-block;
+        position: absolute;
+        top: -50%;
+        left: 0px;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <p>悬浮我</p>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 弹窗语句
+      // alert（英文翻译为“警报”）的用途：弹出“警告框”。它会在弹窗中显示一条信息，并等待用户按下 “OK”。
+      // alert('欢迎来到 JavaScript 世界')
+      // confirm 弹窗上有“确认”和“取消”两个按钮，点击“确定”返回 true，点击“取消”返回 false。
+      // var result = confirm('你确定要离开吗？')
+      // if (result) {
+      //   alert('好的，欢迎下次再来')
+      // } else {
+      //   alert('欢迎留在这里')
+      // }
+      // console.log(result);
+      // prompt()就是专门弹出能够让用户输入的对话框。用得少，测试的时候偶尔会用到。
+      // var name = prompt('请问你的名字是？')
+      // alert('欢迎' + name)
+      // 网页内容区域输出：document.write()语句
+      document.write('<h1>欢迎' + '学习前端' + '</h1>')
+      // console.log()表示在控制台中输出。console 表示“控制台”，log 表示“输出”。括号里可以写字符串、数字、变量。
+      // 在 Chrome 浏览器中，按 F12 即可打开控制台，选择「console」栏，即可看到打印的内容。
+      console.log('欢迎学习前端')
+      // console 语句可以设置不同的打印等级：
+      console.debug('欢迎学习前端') //调试打印
+      console.info('欢迎学习前端') //信息打印
+      console.warn('欢迎学习前端') //警告打印
+      console.error('欢迎学习前端') //错误打印
+      // 通常还是 log 最常用些
+      // 小结：
+      // alert 用于显示消息弹窗给用户
+      // confirm 用于询问用户是否继续/确认
+      // prompt 可用于获取用户的输入
+      // document.write 用于在网页中写内容
+      // console.log 用于控制台输出信息（常用）
+      // console 分为多个级别，info 用于提示，debug 用于调试，warn 用于警告，error 用于错误
+    </script>
+  </body>
+</html>

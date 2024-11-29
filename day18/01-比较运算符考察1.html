@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1 true
+      console.log(0 == '0')
+
+      // 2 true
+      console.log(1 == true)
+
+      // 3  true
+      console.log('' == false)
+
+      // 4  false null 至于 undefined 相等
+      console.log(null == false)
+
+      // 5 true
+      console.log(undefined == null)
+
+      // 6 false 有 NaN false
+      console.log(NaN == NaN)
+
+      // 7 true
+      console.log([1, 2] == '1,2')
+
+      // 8 false
+      console.log([1, 2] == [1, 2])
+
+      // 9 true
+      console.log('5' > 3)
+
+      // 10 true
+      console.log(5 < '6')
+
+      // 11 true
+      console.log('10' == 10)
+
+      // 12 true
+      console.log(0 == '')
+
+      // 13 true
+      console.log(null < 1)
+
+      // 14 true
+      console.log(1 < 2 < 3)
+
+      // 15 false
+      console.log(5 === '5')
+
+      // 16 true
+      console.log([1] == true)
+
+      // 17 true
+      console.log([1, 2, 3] == '1,2,3')
+
+      // 18 true
+      console.log('abc' == new String('abc'))
+
+      // 19 true
+      console.log((1 == '1') == true)
+
+      // 20 false
+      console.log(Object.is(-0, +0))
+    </script>
+  </body>
+</html>

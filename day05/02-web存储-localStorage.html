@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <button>localStorage存储</button>
+    <button>localStorage获取</button>
+    <button>localStorage更新</button>
+    <button>localStorage删除</button>
+    <button>localStorage清除</button>
+    <script>
+      // 20MB存储 多窗口共享 可能在硬盘上也有可能在内存中
+      var txt = document.querySelector('input')
+      var btns = document.querySelectorAll('button')
+
+      btns[0].onclick = function () {
+        window.localStorage.setItem('username', txt.value)
+        window.localStorage.setItem('password', '123456')
+        window.localStorage.setItem('age', 18)
+      }
+
+      btns[1].onclick = function () {
+        txt.value = window.localStorage.getItem('username')
+      }
+
+      btns[2].onclick = function () {
+        window.localStorage.setItem('username', txt.value)
+      }
+
+      btns[3].onclick = function () {
+        window.localStorage.removeItem('username')
+      }
+
+      btns[4].onclick = function () {
+        window.localStorage.clear()
+      }
+    </script>
+  </body>
+</html>

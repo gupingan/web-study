@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: grey;
+      }
+
+      .box {
+        background-color: white;
+        width: 330px;
+        height: 328px;
+        font-size: 15px;
+        padding: 10px;
+      }
+
+      .box .commodity {
+        position: relative;
+        border: 1px solid #ff7e00;
+        width: 100%;
+        height: 100%;
+      }
+
+      .box .dtc {
+        display: block;
+        z-index: 999;
+        position: absolute;
+        left: 10px;
+        top: -7px;
+        width: 52px;
+        height: 28px;
+        background-image: url('./03-ui.png');
+        background-position: -108px 0;
+      }
+
+      .box .image {
+        position: relative;
+      }
+
+      .box img {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .box .address {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        line-height: 42px;
+        height: 42px;
+        width: 100%;
+        color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(0, 0, 0, 0.9);
+        text-indent: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .box .info {
+        padding: 10px;
+      }
+
+      .box .info .title {
+        margin: 0;
+        font-size: 16px;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .box .info .desc {
+        margin: 5px 0;
+        color: #3d3d3d;
+      }
+
+      .box .info .bottom {
+        position: relative;
+        height: 40px;
+      }
+
+      .box .info .n-price {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        color: #ff7e00;
+        font-size: 24px;
+      }
+
+      .box .info .n-price::before {
+        content: '￥';
+        font-size: 20px;
+      }
+
+      .box .info .o-price {
+        position: absolute;
+        left: 62px;
+        bottom: 0;
+        text-decoration: line-through;
+        color: #b4b4b7;
+        font-size: 13px;
+      }
+
+      .box .info .sale {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        color: #ed3852;
+      }
+
+      .box .info .sale::before {
+        content: '已售';
+        color: #b4b4b7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="commodity">
+        <span class="dtc"></span>
+        <div class="image">
+          <img src="03-bg.png" alt="暂无图片" />
+          <span class="address">广东深圳宝安区建安一路海雅缤纷城4楼</span>
+        </div>
+        <div class="info">
+          <p class="title">【海雅缤纷城】万达影城（深圳海雅广场三楼）</p>
+          <p class="desc">&nbsp;单人电影票，可观看2D</p>
+          <div class="bottom">
+            <span class="n-price">35</span>
+            <span class="o-price">￥80</span>
+            <span class="sale">255</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

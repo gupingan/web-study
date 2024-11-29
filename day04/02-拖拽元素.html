@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box1">不可拖拽</div>
+    <hr />
+    <div class="box2" draggable="true">可拖拽</div>
+    <p>提示信息</p>
+    <script>
+      // ondragstart当拖拽开始时调用
+      // ondragleave 当鼠标离开拖拽元素时调用
+      // ondragend 当拖拽结束时调用
+      // ondrag 整个拖拽过程都会调用
+      var box1 = document.querySelector('.box1')
+      var box2 = document.querySelector('.box2')
+      var p = document.querySelector('p')
+
+      box2.ondragstart = function (e) {
+        console.log('开始拖拽')
+        p.innerHTML = '开始拖拽'
+        e.dataTransfer.setData('text/plain', this.className)
+      }
+
+      box2.ondragleave = function () {
+        console.log('鼠标离开拖拽')
+        p.innerHTML = '鼠标离开拖拽'
+      }
+
+      box2.ondragend = function () {
+        console.log('结束拖拽')
+        p.innerHTML = '结束拖拽'
+      }
+
+      box2.ondrag = function () {
+        console.log('拖拽中')
+        p.innerHTML = '拖拽中'
+      }
+
+      // 目标元素的事件监听：（应用于目标元素）
+      // ondragenter 当拖拽元素进入时调用
+      // ondragover 当拖拽元素停留在目标元素上时，就会连续一直触发（不管拖拽元素此时是移动还是不动的状态）
+      // ondrop 当在目标元素上松开鼠标时调用
+      // ondragleave 当鼠标离开目标元素时调用
+      box1.ondragenter = function (e) {
+        console.log('进入目标元素', e)
+      }
+
+      box1.ondragover = function (e) {
+        e.preventDefault()
+      }
+
+      box1.ondrop = function (e) {
+        console.log('松开鼠标', e)
+        var data = e.dataTransfer.getData('text/plain')
+        console.log('拖拽元素的类名：', data)
+        this.innerHTML = `接收到了 ${data}`
+      }
+
+      box1.ondragleave = function (e) {
+        console.log('离开目标元素', e)
+      }
+
+
+    </script>
+
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+      }
+      .box1 {
+        background-color: greenyellow;
+      }
+      .box2 {
+        background-color: burlywood;
+      }
+    </style>
+  </body>
+</html>

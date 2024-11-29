@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="01.css" type="text/css" /> -->
+  </head>
+  <body>
+    <div class="div1" style="background-color: blue">行内样式</div>
+    <div class="div2">外链样式</div>
+    <p>div 的宽高、字体为内联样式</p>
+    <style>
+      @import url('01.css');
+
+      p {
+        text-align: center;
+        line-height: 120px;
+      }
+
+      div {
+        text-align: center;
+        line-height: 120px;
+        color: white;
+        width: 120px;
+        height: 120px;
+        margin-left: 10px;
+        float: left;
+      }
+
+      div:last-child {
+        margin-left: 0;
+      }
+    </style>
+  </body>
+</html>

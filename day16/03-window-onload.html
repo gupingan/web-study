@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 可在网页控制台发现报错，因为元素还没有渲染出来
+      var btn = document.getElementById('btn1')
+      btn.onclick = function () {
+        alert('点击了按钮1')
+      }
+    </script>
+    <script>
+      // window.onload：先加载，最后执行
+      // 浏览器默认会从上至下解析网页（这句话很重要）。
+      // 当你需要通过 JS 来操作界面上的标签元素的时候，假如将 JS 代码、<script>标签写到<head>标签中，
+      // 或者写在页面标签元素的前面，那么这样的 JS 是无效的，因为标签元素在此时都还没来得及加载，自然无法操作这个元素
+      window.onload = () => {
+        var btn = document.getElementById('btn2')
+        btn.onclick = function () {
+          alert('点击了按钮2')
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn1">点击我试一下</button>
+    <button id="btn2">再点击我试一下</button>
+  </body>
+</html>

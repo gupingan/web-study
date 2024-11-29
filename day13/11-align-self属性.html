@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      body {
+        background-color: #eee;
+        font-family: 'Microsoft Yahei';
+      }
+      section {
+        width: 1000px;
+        margin: 50px auto;
+      }
+      section h3 {
+        font-size: 22px;
+        font-weight: normal;
+      }
+
+      section ul li:nth-child(2) {
+        height: 100px;
+      }
+
+      ul {
+        height: 800px;
+        border: 1px solid #999;
+        background-color: #fff;
+        display: flex;
+      }
+
+      ul li {
+        width: 200px;
+        height: 200px;
+        background: pink;
+        margin: 10px;
+      }
+
+      /* align-self 规定弹性容器内所选项目的对齐方式。 */
+
+      section:nth-child(1) ul {
+        align-items: flex-start;
+      }
+
+      section:nth-child(1) ul li:nth-child(2) {
+        /* 指定子元素在主轴中间 */
+        align-self: center;
+        color: white;
+        background-color: blue;
+      }
+
+      section:nth-child(2) ul {
+        align-items: flex-end;
+      }
+
+      section:nth-child(2) ul li:nth-child(3) {
+        /* 指定子元素在主轴起始 */
+        align-self: flex-start;
+        color: white;
+        background-color: blue;
+      }
+
+      section:nth-child(3) ul {
+        align-items: center;
+      }
+
+      section:nth-child(3) ul li:nth-child(1) {
+        /* 指定子元素在主轴结束 */
+        align-self: flex-end;
+        color: white;
+        background-color: blue;
+      }
+
+      section:nth-child(4) ul {
+        align-items: baseline;
+      }
+
+      section:nth-child(4) ul li:nth-child(3) {
+        /* 协同下方的 stretch 可拉伸高度到父容器的高度 */
+        height: initial;
+        /* 元素被拉伸以适应容器 */
+        align-self: stretch;
+        color: white;
+        background-color: blue;
+      }
+
+      section:nth-child(5) ul li {
+        /* 协同下方的 stretch 可拉伸高度到父容器的高度 */
+        height: initial;
+      }
+
+      section:nth-child(5) ul {
+        height: 400px;
+        align-items: stretch;
+      }
+
+      section:nth-child(5) ul li:nth-child(2) {
+        /* 默认，继承父容器的 align-items: stretch */
+        align-self: auto;
+        color: white;
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h3>侧轴的对齐方式：items:flex-start self: center</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>侧轴的对齐方式：items:flex-end self: flex-start</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>侧轴的对齐方式：items:center self: flex-end</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>侧轴的对齐方式：items:baseline self: stretch</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>侧轴的对齐方式：itmes: stretch self: auto</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- table 由每行 tr 组成，tr 由 td 列组成 -->
+    <!-- 属性 border width height align cellpadding cellspacing bgcolor background dir -->
+    <table
+      border="1"
+      width="50%"
+      bordercolor="red"
+      align="center"
+      cellpadding="20px"
+      bgcolor="yellow"
+    >
+      <caption>
+        学员表
+      </caption>
+      <tr>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>爱好</th>
+      </tr>
+      <tr>
+        <td>小明</td>
+        <td>男</td>
+        <td>17</td>
+        <td>羽毛球</td>
+      </tr>
+      <!-- 属性 align height width dir -->
+      <tr align="center" height="120px">
+        <!-- 属性 valign align colspan rowspan -->
+        <td valign="bottom">小花</td>
+        <td>女</td>
+        <td>18</td>
+        <td rowspan="2">化妆</td>
+      </tr>
+      <tr>
+        <td>小童</td>
+        <td>男</td>
+        <td>17</td>
+      </tr>
+      <tr>
+        <td>小肥</td>
+        <td>男</td>
+        <td colspan="2">17</td>
+      </tr>
+    </table>
+    <!-- 总结：table(tr -> td/ th   caption) -->
+    <!-- thead、tbody、tfoot -->
+    <!-- 三个标签写了，这在表格代码中的顺序可任意，否则浏览器依序解析 -->
+    <!-- 当表格数据比较大时，可考虑使用 tbody、thead、tfoot，可以边从服务器获取数据，边渲染表格 -->
+    <table border="1">
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>位置</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>生命壹号</td>
+          <td>23</td>
+          <td>男</td>
+          <td>黄冈</td>
+        </tr>
+        <tr>
+          <td>许嵩</td>
+          <td>29</td>
+          <td>男</td>
+          <td>安徽</td>
+        </tr>
+        <tr>
+          <td>邓紫棋</td>
+          <td>23</td>
+          <td>女</td>
+          <td>香港</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <td>统计</td>
+        <td colspan="3">2男1女</td>
+      </tfoot>
+    </table>
+    <a href="../day01/02-head.html" target="test">点我更改右侧 frame</a>
+  </body>
+  <style>
+    /* 合并边框 */
+    table {
+      border-collapse: collapse;
+    }
+  </style>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p class="haha" id="heihei">猜猜我是什么颜色</p>
+    <div class="hezi1" id="box1">
+      <div class="hezi2" id="box2">
+        <div class="hezi3" id="box3">
+          <p class="pp">猜猜我是什么颜色</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hezi">
+      <ul>
+        <li class="first">文字</li>
+        <li>文字</li>
+        <li>文字</li>
+        <li>文字</li>
+        <li>文字</li>
+      </ul>
+    </div>
+
+    <style>
+      /* 层叠性：计算权重，就是css处理冲突的能力，CSS像艺术家一样优雅，像工程师一样严谨 */
+      /* 相同选择器：按样式表排序：行内样式 > 内联样式 > 外链样式（ID大于上一级标签） */
+      /* 相同类型的样式表：按选择器排序：ID > 类、属性、伪类 > 标签、伪元素 */
+      /* 外链样式的 ID 选择器 > 内联样式中的标签选择器 */
+      /* 就近选择。ID 选择器优先级最大 */
+
+      p {
+        color: red;
+      }
+
+      #heihei {
+        color: blue;
+      }
+
+      .haha {
+        color: green;
+      }
+
+      /* 当多个选择器有冲突时，谁的权重大，谁生效，谁的权重小，谁不生效 */
+      /* ID */
+      /* 类、属性、伪类 */
+      /* 标签、伪元素 */
+
+      /* 1ID 1类 1标签  权重最高*/
+      #box1 .hezi2 p {
+        color: red;
+      }
+
+      /* 1ID     3标签 */
+      div div #box p {
+        color: green;
+      }
+
+      /*     3类 4标签 */
+      div.hezi1 div.hezi2 div.hezi3 p {
+        color: blue;
+      }
+
+      /* 1ID 1类 1标签  权重虽然与最高相同，但是顺序在后所以生效 */
+      #box2 div .pp {
+        color: purple;
+      }
+
+      /* 针对 p 标签的权重为 0，非直接作用, #box3 离 p更远一些，相比上方的权重最低 */
+      #box1 #box2 #box3 {
+        color: chocolate;
+      }
+
+      /* 实现第一个红色，其他为蓝色 */
+      /* 序选择器 */
+      /* ul>li:first-child {
+        color: red;
+      }
+
+      ul>li:not(:first-child) {
+        color: blue;
+      } */
+
+      /* 错误示例 */
+      /* 0ID 1类 2标签*/
+      /* .hezi ul li {
+        color: blue;
+      } */
+
+      /* 0ID 1类 0标签 */
+      /* .first {
+        color: red;
+      } */
+
+      /* 0ID 1类 2标签 */
+      .hezi ul li {
+        color: blue;
+      }
+
+      /* 0ID 2类 0标签 */
+      .hezi .first {
+        color: red;
+      }
+    </style>
+  </body>
+</html>

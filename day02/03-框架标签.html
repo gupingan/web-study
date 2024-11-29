@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- 一个网页中显示多个页面 -->
+  <!-- frame 不能放于 body 中，需要放置在 frameset 框架集中，但是两者在 web 标准中已被删除，使用 iframe 代替-->
+  <frameset rows="28%,*">
+    <frame src="01-列表标签.html"> </frame>
+    <frameset cols="500px,*,10%">
+      <!--  frameborder="0" 隐藏边框 -->
+      <!-- noresize 禁止调整大小 -->
+      <frame src="../day01/06-图片标签.html" noresize frameborder="0"></frame>
+      <frame src="02-表格标签.html"  frameborder="0"> </frame>
+      <!-- scrolling="no" 禁止滚动条 -->
+      <frame src="02.html" scrolling="no" name="test"> </frame>
+    </frameset>
+  </frameset>
+</html>

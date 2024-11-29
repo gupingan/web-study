@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+      }
+
+      .tabs {
+        width: 400px;
+        margin: 30px auto;
+        background-color: #fff;
+        border: 1px solid #c0dcc0;
+        box-sizing: border-box;
+      }
+
+      .tabs nav {
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        overflow: hidden;
+        background-color: #c0dcc0;
+        display: flex;
+      }
+
+      nav a {
+        display: block;
+        width: 100px;
+        border-right: 1px solid #fff;
+        color: #000;
+        text-decoration: none;
+      }
+
+      nav a:last-child {
+        border-right: 0 none;
+      }
+
+      nav a.active {
+        background-color: #9baf9b;
+      }
+
+      .cont {
+        overflow: hidden;
+        display: none;
+      }
+
+      .cont ol {
+        line-height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <nav>
+        <a href="javascript:;" data-cont="local">国内新闻</a>
+        <a href="javascript:;" data-cont="global">国际新闻</a>
+        <a href="javascript:;" data-cont="sports">体育新闻</a>
+        <a href="javascript:;" data-cont="funny">娱乐新闻</a>
+      </nav>
+      <section class="cont" id="local">
+        <ol>
+          <li>国内新闻1</li>
+          <li>国内新闻2</li>
+          <li>国内新闻3</li>
+          <li>国内新闻4</li>
+          <li>国内新闻5</li>
+          <li>国内新闻6</li>
+          <li>国内新闻7</li>
+        </ol>
+      </section>
+      <section class="cont" id="global">
+        <ol>
+          <li>国际新闻1</li>
+          <li>国际新闻2</li>
+          <li>国际新闻3</li>
+          <li>国际新闻4</li>
+          <li>国际新闻5</li>
+          <li>国际新闻6</li>
+          <li>国际新闻7</li>
+        </ol>
+      </section>
+      <section class="cont" id="sports">
+        <ol>
+          <li>体育新闻1</li>
+          <li>体育新闻2</li>
+          <li>体育新闻3</li>
+          <li>体育新闻4</li>
+          <li>体育新闻5</li>
+          <li>体育新闻6</li>
+          <li>体育新闻7</li>
+        </ol>
+      </section>
+      <section class="cont" id="funny">
+        <ol>
+          <li>娱乐新闻1</li>
+          <li>娱乐新闻2</li>
+          <li>娱乐新闻3</li>
+          <li>娱乐新闻4</li>
+          <li>娱乐新闻5</li>
+          <li>娱乐新闻6</li>
+          <li>娱乐新闻7</li>
+        </ol>
+      </section>
+    </div>
+    <script>
+      // 目标：默认显示一个导航指向的内容（比如第一个）
+      // 当点击导航链接，切换对应的内容
+      // key 表示的当前显示的第 key + 1 个
+      ;(function (key) {
+        // 获取所有导航链接
+        var navs = document.querySelectorAll('nav a')
+        // 遍历所有导航链接
+        for (let i = 0; i < navs.length; i++) {
+          // 如果当前遍历的导航链接是默认显示的内容
+          if (key === i) {
+            // 为当前导航链接添加 active 类
+            navs[i].classList.add('active')
+            // 获取当前导航链接对应的内容的 ID
+            var secId = navs[i].dataset['cont']
+            // 显示当前导航链接对应的内容
+            document.querySelector(`#${secId}`).style.display = 'block'
+          }
+
+          // 为当前导航链接添加点击事件
+          navs[i].onclick = function () {
+            // 获取当前激活的导航链接
+            var currentNav = document.querySelector('.active')
+            // 如果当前点击的导航链接已经是激活状态，则不执行后续代码
+            if (currentNav === this) return
+            // 获取当前激活的导航链接对应的内容的 ID
+            var currentNavId = currentNav.dataset['cont']
+            // 移除当前激活的导航链接的 active 类
+            currentNav.classList.remove('active')
+            // 隐藏当前激活的导航链接对应的内容
+            document.querySelector(`#${currentNavId}`).style.display = 'none'
+            // 为当前点击的导航链接添加 active 类
+            this.classList.add('active')
+            // 获取当前点击的导航链接对应的内容的 ID
+            var myId = this.dataset['cont']
+            // 显示当前点击的导航链接对应的内容
+            document.querySelector(`#${myId}`).style.display = 'block'
+          }
+        }
+      })(0)
+    </script>
+  </body>
+</html>

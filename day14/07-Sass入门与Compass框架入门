@@ -1,0 +1,72 @@
+1. 安装 Ruby
+    ruby -v
+2. gem install sass
+  	gem sources --remove https://rubygems.org/
+	  gem sources -a https://ruby.taobao.org/
+    sass -v
+    sass main.scss main.css
+    ; 真正的项目开发中，我们不一定是直接使用 sass 命令，而是使用 Compass
+3. gem install compass
+    compass -v
+
+compass 创建工程目录
+    cd workspace
+    compass create CompassDemo
+
+    compass watch
+    ; 通过 copass watch 监听sass文件的变化
+
+
+
+Sass两种后缀名
+    ; .sass：对空格敏感。不使用大括号和分号，所以每个属性之间是通过换行来分隔
+    h1
+        color: #000
+        background: #fff
+    ; .scss：是css语法的超集，可以使用大括号和分号。
+    h1 {
+        color: #000;
+        background: #fff;
+    }
+    ; 一个项目中可以混合使用两种语法，但是一个文件中不能同时使用两种语法
+
+; 格式转换
+sass-convert main.scss main.sass
+
+
+
+
+; Sass 是通过$符号来声明变量
+
+; 声明两个字体变量 variables.scss
+    $font1: Braggadocio, Arial, Verdana, Helvetica, sans-serif;
+    $font2: Arial, Verdana, Helvetica, sans-serif;
+
+; 
+    @import "variables";    // 引入变量文件
+
+; 引入变量文件并使用 main.scss
+    .div1{
+        font-family: $font1;
+    }
+
+    .div2{
+        font-family: $font2;
+    }
+
+
+
+; 基于 Sass 的既定规则：
+; 没有文件后缀名时，Sass 会自动添加 .scss 或者 .sass 的后缀（具体要看已经存在哪个后缀的文件）。
+; 同一目录下，局部文件和非局部文件不能重名。
+
+
+
+; //我是单行注释
+
+; /*
+; 	我是块级注释
+; 	哈哈
+; */
+
+; 二者的区别是：单行注释不会出现在自动生成的css文件中

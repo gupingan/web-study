@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .shark {
+        width: 509px;
+        height: 270px;
+        background: url(images/shark2.png) left 0;
+        animation: shake 1s steps(8) infinite;
+      }
+
+      @keyframes shake {
+        0% {
+        }
+
+        100% {
+          background-position: left -2160px;
+        }
+      }
+
+      .shark-box {
+        width: 509px;
+        height: 270px;
+        animation: shakeRun 10s linear infinite;
+      }
+
+      @keyframes shakeRun {
+        0% {
+          transform: translateX(-600px);
+        }
+
+        100% {
+          transform: translateX(1400px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shark-box">
+      <div class="shark"></div>
+    </div>
+  </body>
+</html>

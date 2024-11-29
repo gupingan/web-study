@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div[class^='box'] {
+        width: 0px;
+        height: 0px;
+      }
+
+      .box1 {
+        border: 10px solid transparent;
+        border-top: 10px solid red;
+      }
+
+      .box2 {
+        border: 10px solid transparent;
+        border-right: 10px solid red;
+      }
+
+      .box3 {
+        border: 10px solid transparent;
+        border-left: 10px solid red;
+      }
+
+      .box4 {
+        border: 10px solid transparent;
+        border-bottom: 10px solid red;
+      }
+
+      .box5 {
+        border: 10px solid transparent;
+        border-bottom: 20px solid red;
+      }
+
+      .box5 {
+        border: 10px solid transparent;
+        border-bottom: 100px solid red;
+      }
+
+      .box6 {
+        border: 50px solid transparent;
+        border-bottom: 86.6px solid red;
+      }
+
+      .box7 {
+        border: 100px solid transparent;
+        border-bottom: 100px solid red;
+      }
+
+      .new8 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      }
+
+      .new9 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        clip-path: polygon(50% 0%, 0% 50%, 50% 100%, 100% 50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+    <div class="box6"></div>
+    <div class="box7"></div>
+    <div class="new8"></div>
+    <div class="new9"></div>
+  </body>
+</html>

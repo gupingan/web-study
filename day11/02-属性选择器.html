@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 属性选择器的标志性符号是 [] */
+      /* E[title] 选中页面的E元素，并且E存在 title 属性即可。 */
+      /* E[title="abc"]选中页面的E元素，并且E需要带有title属性，且属性值完全等于abc。 */
+      /* E[attr~=val] 选择具有 att 属性且属性值为：用空格分隔的字词列表，其中一个等于 val 的E元素。 */
+      /* E[attr|=val] 表示要么是一个单独的属性值，要么这个属性值是以“-”分隔的。 */
+      /* E[title^="abc"] 选中页面的E元素，并且E需要带有 title 属性,属性值以 abc 开头。 */
+      /* E[title$="abc"] 选中页面的E元素，并且E需要带有 title 属性,属性值以 abc 结尾。 */
+      /* E[title*="abc"] 选中页面的E元素，并且E需要带有 title 属性,属性值任意位置包含abc。 */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: '微软雅黑';
+        background-color: #f7f7f7;
+      }
+      .wrapper {
+        width: 1024px;
+        margin: 0 auto;
+      }
+      .wrapper > section {
+        min-height: 300px;
+        margin-bottom: 30px;
+        box-shadow: 1px 1px 4px #ddd;
+        background-color: #fff;
+      }
+      .wrapper > header {
+        text-align: center;
+        line-height: 1;
+        padding: 20px;
+        margin-bottom: 10px;
+        font-size: 30px;
+      }
+
+      .wrapper section > header {
+        line-height: 1;
+        padding: 10px;
+        font-size: 22px;
+        color: #333;
+        background-color: #eee;
+      }
+
+      .wrapper .wrap-box {
+        padding: 20px;
+      }
+
+      form {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+      }
+
+      form input[type='text'],
+      input[type='password'] {
+        width: 200px;
+        height: 30px;
+      }
+
+      .attr1 a[no-noraml] {
+        color: yellowgreen;
+      }
+
+      .attr1 a[href='./a.rmvb'] {
+        color: yellowgreen;
+      }
+
+      .attr2 a[class~='download-movie'] {
+        color: yellowgreen;
+      }
+
+      .attr3 a[class|='download'] {
+        color: yellowgreen;
+      }
+
+      .attr4 a[class*='movie'] {
+        color: yellowgreen;
+      }
+
+      .attr5 a[class^='movie'] {
+        color: yellowgreen;
+      }
+
+      .attr6 a[class$='music'] {
+        color: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header></header>
+      <section>
+        <header>简介</header>
+        <div class="wrap-box">
+          <form action="">
+            <ul>
+              <li>
+                <label for=""
+                  >姓名：<input type="text" name="name" id=""
+                /></label>
+              </li>
+              <li>
+                <label for=""
+                  >密码：<input type="password" name="password" id=""
+                /></label>
+              </li>
+              <li>
+                <label for=""
+                  >性别：<label for="male"
+                    ><input type="radio" name="gender" id="male" />男</label
+                  ><label for="female"
+                    ><input type="radio" name="gender" id="female" />女</label
+                  ></label
+                >
+              </li>
+              <li>
+                <label for=""
+                  >兴趣：<input type="checkbox" name="" id="" />写代码</label
+                >
+              </li>
+              <li><input type="submit" value="提交" /></li>
+            </ul>
+          </form>
+        </div>
+      </section>
+      <section class="attr1">
+        <header>E[attr]</header>
+        <div class="wrap-box">
+          <a href="./a.rmvb" class="download download-movie">下载</a>
+          <a href="./b.rmvb" class="download download-movie" no-noraml>下载</a>
+          <a href="./a.mp3" class="download download-music">下载</a>
+        </div>
+      </section>
+      <section class="attr2">
+        <header>E[attr~=attr]</header>
+        <div class="wrap-box">
+          <a href="./a.rmvb" class="download download-movie">下载</a>
+          <a href="./b.rmvb" class="download download-movie">下载</a>
+          <a href="./a.mp3" class="download download-music">下载</a>
+        </div>
+      </section>
+      <section class="attr3">
+        <header>E[attr|=attr]</header>
+        <div class="wrap-box">
+          <a href="./a.rmvb" class="download">下载</a>
+          <a href="./b.rmvb" class="download-movie">下载</a>
+          <a href="./a.mp3" class="download-music">下载</a>
+        </div>
+      </section>
+      <section class="attr4">
+        <header>E[attr*=val]</header>
+        <div class="wrap-box">
+          <a href="./a.rmvb" class="download">下载</a>
+          <a href="./b.rmvb" class="moviedownload">下载</a>
+          <a href="./a.mp3" class="download-music">下载</a>
+        </div>
+      </section>
+      <section class="attr5">
+        <header>E[attr^=val]</header>
+        <div class="wrap-box">
+          <a href="./a.rmvb" class="download">下载</a>
+          <a href="./b.rmvb" class="moviedownload">下载</a>
+          <a href="./a.mp3" class="downloadmusic">下载</a>
+        </div>
+      </section>
+      <section class="attr6">
+        <header>E[attr$=val]</header>
+        <div class="wrap-box">
+          <a href="./a.rmvb" class="download">下载</a>
+          <a href="./b.rmvb" class="moviedownload">下载</a>
+          <a href="./a.mp3" class="downloadmusic">下载</a>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

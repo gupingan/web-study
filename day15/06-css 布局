@@ -1,0 +1,13 @@
+常见的布局属性
+  display: block | inline | inline-block | flex
+  float: left | right
+  clear: both
+  overflow: hidden
+  position: absolute | relative | fixed | static
+
+常见的布局方法：
+  table 早期的布局，如今用的非常的少
+  float + margin 需要考虑清除浮动以及触发 BFC
+  inline-block 需要考虑元素之间的间隔
+  flex 兼容性差些，IE9及其以下不得行
+  响应式布局：暂时不知道

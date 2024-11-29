@@ -1,0 +1,42 @@
+方式1：绝对定位 + margin
+  position: aboslute;
+  top: 50%;
+  left: 50%;
+  margin-top: -height/2;
+  margin-left: -width/2;
+
+方式2：绝对定位 + translate
+  position: aboslute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+方式3：绝对定位 + top,left,bottom,right = 0 + margin: auto
+  position: aboslute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+
+方式4：flex 布局
+  父: 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  子:
+    无
+或者：
+  父:
+    display: flex;
+  子:
+    align-self: center;
+    margin: 0 auto;
+
+
+方式5：flex 布局 + margin: auto
+  父:
+    display: flex;
+
+  子:
+    margin: auto;

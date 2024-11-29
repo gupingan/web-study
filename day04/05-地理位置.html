@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
+    } else {
+      alert('浏览器不支持定位')
+    }
+
+    function successCallback(position) {
+      var wd = position.coords.latitude
+      var jd = position.coords.longitude
+      alert('你的位置是：' + wd + ',' + jd)
+    }
+
+    function errorCallback(error) {
+      alert('定位失败')
+      console.log(error)
+    }
+  </script>
+</body>
+</html>

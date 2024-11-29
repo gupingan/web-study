@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 
+1、flex 布局的子元素不会脱离文档流，很好地遵从了“流的特性”。
+但你如果用 float 来做布局，float 属性的元素会脱离文档流，而且会涉及到各种 BFC、清除浮动的问题。浮动相关的问题，比较麻烦，所以也成了面试必问的经典题目。但有了 flex 布局之后，这些问题都不存在的。
+2、flex 是一种现代的布局方式，是 W3C 第一次提供真正用于布局的 CSS 规范。 flex 非常提供了丰富的属性，非常灵活，让布局的实现更佳多样化，且方便易用。
+flex 唯一的缺点就在于，它不支持低版本的 IE 浏览器
+      */
+      div[class^=box] {
+        width: 100%;
+        background-color: rgb(232,233,234);
+        padding: 10px;
+        display: flex;
+      }
+
+      div[class^=box] div {
+        margin-left: 10px;
+      }
+
+      div[class^=box] div:first-child {
+        margin-left: 0;
+      }
+
+      .l1 {
+        width: 200px;
+        height: 100px;
+        background-color: #f06868;
+      }
+
+      .l2 {
+        width: 500px;
+        height: 200px;
+        background-color: #fab57a;
+      }
+
+      .l3 {
+        width: 400px;
+        height: 200px;
+        background-color: #eaf777;
+      }
+
+      .l4 {
+        width: 600px;
+        height: 50px;
+        background-color: #80d6ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="l1"></div>
+      <div class="l2"></div>
+      <div class="l3"></div>
+      <div class="l4"></div>
+    </div>
+  </body>
+</html>

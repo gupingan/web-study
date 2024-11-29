@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 16进制：以 0x 开头，比如：0xff，0xaa，0x01
+    // 8进制：以 0o 开头，比如：07，08，09
+    // 2进制：以 0b 开头，比如：0b1010，0b1111(不是所有的浏览器都支持：chrome 和火狐支持，IE 不支持)
+    // 10进制：直接写数字，比如：10，20，30
+    var a = '0o70'
+    console.log(Number(a))  // 56
+    console.log(Number('0xa123')) // 41251
+    // 下方写法也可以的(更兼容的写法吧)
+    console.log(parseInt('70', 8))  // 56
+    console.log(parseInt('a123', 16)) // 41251
+    // 输出为对应的进制，转换回去，十进制转为指定进制
+    console.log(56..toString(8))  // '70'
+    console.log(41251..toString(16))  // 'a123'
+  </script>
+</body>
+</html>

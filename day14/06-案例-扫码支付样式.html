@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #fff;
+      }
+
+      @font-face {
+        font-family: 'pay icon';
+        src: url(pay-font/iconfont.ttf) format(truetype);
+      }
+
+      .pay-p::before {
+        font-family: 'pay icon' !important;
+        font-style: normal;
+        color: orange;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: '\e621';
+        margin-right: 6px;
+      }
+
+      .pay-p {
+        width: 120px;
+        height: 50px;
+        border: 1px solid orange;
+        background-color: #fff;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 10px;
+        font-size: 18px;
+        transition: background-color 0.3s;
+        user-select: none;
+      }
+
+      .pay-p:hover {
+        background-color: #ddd;
+      }
+
+      .pay-p:active {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="pay-p">扫码支付</p>
+  </body>
+</html>

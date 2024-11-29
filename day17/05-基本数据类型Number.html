@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 在 JS 中所有的数值都是 Number 类型，包括整数和浮点数（小数）
+      var a = 100 // 定义一个变量 a，并且赋值整数100
+      console.log(typeof a) // 输出变量 a 的类型
+
+      var b = 12.3 // 定义一个变量 b，并且赋值浮点数 12.3
+      console.log(typeof b)
+
+      // 上述均打印 number
+      // 在 JS 中，只要是数，就是 Number 数值型的。无论整浮、浮点数（即小数）、无论大小、无论正负，都是 Number 类型的。
+
+      // 数值范围
+      // 由于内存的限制，ECMAScript 并不能保存世界上所有的数值
+      // 最大值：Number.MAX_VALUE，这个值为： 1.7976931348623157e+308
+      console.log(Number.MAX_VALUE)
+      // 最小值：Number.MIN_VALUE，这个值为： 5e-324
+      console.log(Number.MIN_VALUE)
+      // 如果使用 Number 表示的变量远远超过了最大值，则会返回 Infinity（无穷）
+      console.log(Number.MAX_VALUE ** 2) // 最大值的平方会非常的大
+      // Infinity（无穷）分为正无穷和负无穷
+      console.log(1 / 0) // 将趋于正无穷
+      console.log(-1 / 0) // 将趋于负无穷
+
+      // 如果使用 Number 表示的变量远远低于最小值，则会返回 0(无穷小)
+      console.log(Number.MIN_VALUE ** 2) // 最小值的平方会更加的小
+      console.log(typeof Infinity) // 输出 number
+
+      // NaN 也是个特殊的数字，表示 Not a Number（不是数值），如果计算的过程得不到正确的结果，那就是 NaN
+      console.log(typeof NaN)
+      // 比如：
+      console.log(1 / 'abc')
+      console.log('abc' / 12)
+      console.log('abc' * 10)
+
+      // isNaN() 函数：来确定一个值是否为 NaN，若有必要，则首先将值转换为数字
+      console.log(isNaN(NaN)) // true
+      console.log(isNaN(123)) // false
+      console.log(isNaN('abc' / 2)) // true
+      console.log(Number.isNaN(NaN)) // true
+      console.log(Number.isNaN(123)) // false
+      // 区别大差不差，只是比全局 isNaN 更加鉴权，不会在内部将参数强制转为数字
+      console.log(isNaN(undefined)) // true，因为 undefined 被转为 NaN，然后就是 真 了
+      console.log(Number.isNaN(undefined)) // false，内部无转换，类似下方这样的比较
+      console.log(!(undefined !== NaN))
+
+      // 键盘上的+可能是连字符，也可能是数字的加号，也可能无意义就是单纯的符号
+      // 如果加号两边都是 Number 类型，此时是数字相加
+      // 如果加号两边不是 Number 类型，此时是字符串拼接
+      // 如果加号位于字符串中，它仅仅只是一个加号
+      console.log('我' + '爱' + '你') //连字符，把三个独立的汉字，连接在一起了
+      console.log('我+爱+你') //原样输出
+      console.log(1 + 2 + 3) //输出6
+
+      // 于是我们明白了，在变量中加入字符串进行拼接，可以被同化为字符串
+      var a = 1
+      var b = 2
+      console.log('a' + b) // 输出 a2
+      var a = '4' - 3
+      console.log(a) // 1 数值
+      // 上述是计算机自动识别帮我们进行了转换（隐式转换）
+
+      // 在 JS 中，整数的运算基本可以保证精确；
+      // 但是小数的运算，可能会得到一个不精确的结果。所以，千万不要使用 JS 进行对精确度要求比较高的运算
+      var a = 0.1 + 0.2
+      console.log(a)
+      // 打印结果并不是 0.3，而是 0.30000000000000004
+      // 因为，计算机在做运算时，所有的运算都要转换成二进制去计算。
+      // 然而，有些数字转换成二进制之后，无法精确表示。
+      // 比如说，0.1 和 0.2 转换成二进制之后，是无穷的，因此存在浮点数的计算不精确的问题
+
+      // 如果只是一些简单的精度问题，可以使用 toFix() 方法进行小数的截取
+      var a = 0.1 + 0.2
+      console.log(a.toFixed(2)) // 0.30  截取到2位
+
+      // 市面上有很多针对数学运算的开源库
+      // Math.js：属于很全面的运算库，文件很大，压缩后的文件就有 500kb。如果你的项目涉及到大型的复杂运算，可以使用 Math.js。
+      // decimal.js：属于轻量的运算库，压缩后的文件只有 32kb。大多数项目的数学运算，使用 decimal.js 足够了。
+
+      // 一道小题：变量交叉计算（捋清楚即可）
+      var a = 1
+      var b = 2
+      var c = 3
+      a = b + c // 5
+      b = c - a // 3 - 5 = -2
+      c = a * b // 5 * (-2) = -10
+      console.log(a) // 5
+      console.log(b) // -2
+      console.log(c) // -10
+
+      // 题2
+      var a = 1
+      var b = 2
+      var c = 3
+      a = a + b // 3
+      b = b + a // 2 + 3 = 5
+      c = c + b // 3 + 5 = 8
+      console.log(a) // 3
+      console.log(b) // 5
+      console.log(c) // 8
+
+      // 题3
+      var a = '1'
+      var b = 2
+      a = a + b // '12'
+      b = b + a // 2 + '12' = '212'
+      console.log(a) // '12'
+      console.log(b) // '212'
+
+      // 题4
+      var a = '1'
+      var b = 2
+      a = b + a // 2 + '1' = '21'
+      b = b + a // 2 + '21' = '221'
+      console.log(a) // '21'
+      console.log(b) // '221'
+
+      // 题5
+      var a = '3'
+      var b = 2
+      console.log(a - b) // '3' - 2 = 3 - 2 = 1
+    </script>
+  </body>
+</html>

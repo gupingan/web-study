@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 音频 -->
+    <!-- preload(通常设置 metadata) 预加载 同时设置 autoplay 时，此属性将失效。 -->
+    <!-- <audio src="../day02/半岛铁盒.mp3" controls loop autoplay></audio> -->
+    <!-- 兼容多浏览器 -->
+    <audio controls loop style="width: 100%">
+      <source src="../day02/半岛铁盒.mp3" />
+      <!-- ... wav ogg 等 -->
+      抱歉，你的浏览器暂不支持此音频格式
+    </audio>
+    <!-- 视频 -->
+    <!-- <video width="100%" src="../day02/将 PyQt 项目打包成单个程序.mp4" controls controlslist="nodownload"></video> -->
+    <!-- 兼容多浏览器 -->
+    <video width="100%" controls>
+      <source src="../day02/将 PyQt 项目打包成单个程序.mp4" />
+      <!-- ... webm ogg 等 -->
+      抱歉，你的浏览器暂不支持此视频格式
+    </video>
+    <script>
+    </script>
+  </body>
+</html>

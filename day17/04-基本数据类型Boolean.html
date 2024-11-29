@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 布尔型有两个值：true 和 false。主要用来做逻辑判断： true 表示真，false 表示假
+      // 布尔值直接使用就可以了，千万不要加引号，加了引号就成字符串了
+      // 布尔值通常用于判断选择、循环等流程控制中
+      var a = true
+      console.log(typeof a) // 输出boolean
+      // 布尔型如果有数字含义，那么 true 按1来算，false 按0来算
+      // 比如：
+      var b = 99
+      var c = a + b  // 非字符串拼接，而是数值相加
+      console.log(c)  // 输出：100  理解：true + 99 = 1 + 99 = 100
+      var d = b - false
+      console.log(d)  // 输出：99  理解：99 - false = 99 - 0 = 99
+    </script>
+  </body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>多媒体视频播放器</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      /*多媒体标题*/
+      figcaption {
+        text-align: center;
+        line-height: 120px;
+        font-family: 'Microsoft Yahei';
+        font-size: 24px;
+      }
+
+      /* 播放器*/
+      .palyer {
+        width: 70%;
+        height: 420px;
+        margin: 10px auto;
+        border: 1px solid #000;
+        background: url(images/loading.gif) center no-repeat #000;
+        background-size: auto 100%;
+        position: relative;
+        border-radius: 20px;
+      }
+
+      .palyer video {
+        border-radius: 20px;
+        height: calc(100% - 20px);
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+      }
+
+      /* 控制条*/
+      .controls {
+        width: calc(100% - 20px);
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.3);
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        border-radius: 10px;
+        transition: opacity 0.3s;
+        opacity: 0;
+      }
+
+      /*开关*/
+      .switch {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        left: 10px;
+        top: 10px;
+        text-align: center;
+        line-height: 20px;
+        color: #0075ff;
+      }
+      /*进度条*/
+      .progress {
+        width: 55%;
+        height: 10px;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 1);
+        left: 40px;
+        top: 15px;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      /* 当前进度*/
+      .curr-progress {
+        width: 0;
+        height: 10px;
+        background-color: #0075ff;
+      }
+      /* 时间模块*/
+      .time {
+        width: 120px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        color: #fff;
+        position: absolute;
+        left: 60%;
+        top: 10px;
+        font-size: 12px;
+      }
+      /* 音量控制 */
+      .volume-control > * {
+        width: 16%;
+        height: 20px;
+        position: absolute;
+        left: 76%;
+        top: 10px;
+        align-items: center;
+      }
+
+      /*全屏*/
+      .extend {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: 20px;
+        top: 10px;
+        text-align: center;
+        line-height: 20px;
+        color: #0075ff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 多媒体 -->
+    <figure>
+      <!-- 多媒体标题 -->
+      <figcaption>HTML5视频播放器</figcaption>
+      <div class="palyer">
+        <video
+          src="videos/561902ae6ac6e6649.mp4"
+          preload="none"
+          controlslist="nodownload"
+        ></video>
+        <!-- 控制条 -->
+        <div class="controls">
+          <!-- 播放暂停 -->
+          <a href="#" class="switch icon-play"></a>
+          <!-- 进度条 -->
+          <div class="progress">
+            <div class="curr-progress"></div>
+          </div>
+          <!-- 时间 -->
+          <div class="time">
+            <span class="curr-time">00:00:00</span>/<span class="total-time"
+              >00:00:00</span
+            >
+          </div>
+          <!-- 音量控制 -->
+          <div class="volume-control">
+            <input
+              type="range"
+              class="volume-slider"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1"
+            />
+          </div>
+          <!-- 全屏 -->
+          <a href="#" class="extend icon-resize-full"></a>
+        </div>
+      </div>
+    </figure>
+
+    <script>
+      //  获取需要的标签
+      var palyer = document.querySelector('.palyer')
+      var controls = document.querySelector('.controls')
+      var video = document.querySelector('video')
+      var playBtn = document.querySelector('.switch')
+      var curProgress = document.querySelector('.curr-progress')
+      var curTime = document.querySelector('.curr-time')
+      var totalTime = document.querySelector('.total-time')
+      var volumeSlider = document.querySelector('.volume-slider')
+      var extendBtn = document.querySelector('.extend')
+
+      // 播放暂停
+      playBtn.onclick = function () {
+        var playMethod = ['pause', 'play']
+        video[playMethod[Number(video.paused)]]()
+      }
+
+      video.onclick = function () {
+        if (document.fullscreenElement) return
+        playBtn.onclick()
+      }
+
+      // 视频播放时
+      video.onplaying = function () {
+        playBtn.classList.remove('icon-play')
+        playBtn.classList.add('icon-pause')
+      }
+
+      // 视频暂停时
+      video.onpause = function () {
+        playBtn.classList.remove('icon-pause')
+        playBtn.classList.add('icon-play')
+      }
+
+      // 辅助函数：补全数字
+      function pad(num) {
+        return num < 10 ? '0' + num : num
+      }
+
+      // 辅助函数：总秒数转换为时分秒格式
+      function formatTime(seconds) {
+        var h = Math.floor(seconds / 3600)
+        var m = Math.floor((seconds % 3600) / 60)
+        var s = Math.floor(seconds % 60)
+        return `${pad(h)}:${pad(m)}:${pad(s)}`
+      }
+
+      // 计算总时长并显示
+      video.oncanplay = function () {
+        var videoDuration = this.duration
+        totalTime.innerHTML = formatTime(videoDuration)
+      }
+
+      // 进度条同步
+      video.ontimeupdate = function () {
+        var currentSeconds = this.currentTime
+        curTime.innerHTML = formatTime(currentSeconds)
+        var percent = currentSeconds / this.duration
+        curProgress.style.width = percent * 100 + '%'
+      }
+
+      // 视频结束
+      video.onended = function () {
+        curTime.innerHTML = '00:00:00'
+        curProgress.style.width = '0%'
+        playBtn.classList.remove('icon-pause')
+        playBtn.classList.add('icon-play')
+      }
+
+      // 右键视频菜单失效
+      video.oncontextmenu = function () {
+        return false
+      }
+
+      // 音量控制
+      volumeSlider.oninput = function () {
+        console.log(video.volume)
+        video.volume = this.value
+      }
+
+      // 控制条显示与隐藏
+      palyer.onmouseenter = function () {
+        controls.style.opacity = '1'
+      }
+
+      palyer.onmouseleave = function () {
+        controls.style.opacity = '0'
+      }
+
+      // 全屏播放
+      extendBtn.onclick = function () {
+        video.webkitRequestFullScreen()
+      }
+
+      video.ondblclick = extendBtn.onclick
+    </script>
+  </body>
+</html>

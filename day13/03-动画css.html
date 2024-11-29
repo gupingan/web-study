@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 定义动画的步骤 */
+      /* 定义动画：
+        @keyframes 动画名{
+            from{ 初始状态 }
+            to{ 结束状态 }
+        }
+
+      调用：
+      animation: 动画名称 持续时间 执行次数 是否反向(alternate) 运动曲线 延迟执行。(infinite 表示无限次)； */
+      /* （1）通过@keyframes定义动画； */
+      @keyframes move1 {
+        from {
+          transform: translateX(0px) rotate(0deg);
+        }
+        to {
+          transform: translateX(680px) rotate(680deg);
+        }
+      }
+      /* （2）将这段动画通过百分比，分割成多个节点；然后各节点中分别定义各属性； */
+      @keyframes move2 {
+        0% {
+          transform: translateX(0px) translateY(0px) rotate(-360deg);
+        }
+
+        25% {
+          transform: translateX(500px) translateY(0px);
+        }
+
+        50% {
+          transform: translateX(500px) translateY(500px) rotate(360deg);
+          border-radius: 20%;
+        }
+
+        75% {
+          transform: translateX(0px) translateY(500px);
+        }
+
+        100% {
+          transform: translateX(0px) translateY(0px) rotate(-360deg);
+          border-radius: 50%;
+        }
+      }
+      /* （3）在指定元素里，通过 animation 属性调用动画。 */
+      .box {
+        width: 100px;
+        height: 100px;
+        background-image: linear-gradient(45deg, #f00, #0f0, #00f);
+        border-radius: 50%;
+        /* animation: move1 2s infinite ease-in-out 1s; */
+        /* animation: move2 8s infinite ease-in 1s; */
+        animation: move2 8s infinite alternate steps(3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>

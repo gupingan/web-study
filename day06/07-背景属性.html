@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="div1">单词</div>
+    <div class="div2">RGB</div>
+    <div class="div3">十六进制</div>
+    <div class="div4">RGBA</div>
+    <div class="div5">HLSA</div>
+    <div class="div6">opacity</div>
+    <div class="div7">position</div>
+    <div class="box">背景原点</div>
+    <div class="div8">clip</div>
+    <div class="div9">线性渐变</div>
+    <div class="div10">径向渐变</div>
+    <div class="div11"></div>
+    <div class="div12"></div>
+    <p>&nbsp;</p>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+    <p>6</p>
+    <p>7</p>
+    <p>8</p>
+    <p>9</p>
+    <p>10</p>
+    <p>11</p>
+    <p>12</p>
+    <style>
+      div {
+        float: left;
+        text-align: center;
+        line-height: 60px;
+        color: aqua;
+        margin: 5px;
+        width: 100px;
+        height: 60px;
+      }
+
+      .div1 {
+        background-color: blue;
+      }
+
+      .div2 {
+        background-color: rgb(120, 130, 40);
+      }
+
+      .div3 {
+        background-color: #1f4320;
+      }
+
+      .div4 {
+        background-color: rgba(120, 130, 40, 0.5);
+      }
+
+      .div5 {
+        background-color: hsla(33, 34%, 50%, 0.3);
+      }
+
+      .div6 {
+        background-color: hsl(33, 34%, 50%);
+        opacity: 0.3;
+      }
+
+      body {
+        background-image: url('./07.png');
+        background-repeat: repeat-y;
+        background-attachment: scroll;
+        background-size: cover;
+        /* 
+        cover：图片始终填充满容器，且保证长宽比不变。图片如果有超出部分，则超出部分会被隐藏。
+        contain：将图片完整地显示在容器中，且保证长宽比不变。可能会导致容器的部分区域留白。
+        */
+      }
+
+      .div7 {
+        /* background-color: blueviolet;
+        background-image: url('./07.png');
+        background-repeat: no-repeat;
+        background-position: 50px center; */
+        background: blueviolet url('./07.png') no-repeat 50px center; /*可设置多个图片*/
+        background-size: 30%;
+      }
+
+      p {
+        line-height: 120px;
+      }
+
+      .box {
+        border: transparent 20px solid;
+        line-height: 120px;
+        padding: 20px;
+        height: 120px;
+        background-image: url('./07.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+      }
+
+      .div8 {
+        border: transparent 20px solid;
+        line-height: 120px;
+        padding: 20px;
+        height: 120px;
+        background-image: url('./07.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-origin: border-box;
+        background-clip: content-box;
+        /* 背景图片从边框部分开始加载，但是超出内容区域的部分将被裁减掉 */
+      }
+
+      .div9 {
+        background-image: linear-gradient(90deg, #7f7fd5 20%, #86a8e7, #91eae4);
+      }
+
+      .div10 {
+        background-image: radial-gradient(
+          50px 25px at center,
+          #c31432,
+          #240b36
+        );
+      }
+
+      .div11 {
+        width: 320px;
+        height: 320px;
+        border: 1px solid red;
+        background: url(http://img.smyhvae.com/20191006_1410.png) no-repeat;
+        background-size: cover;
+
+        /* 裁剪出圆形区域 */
+        clip-path: circle(60px at 49% 49%);
+        transition: clip-path 0.4s;
+      }
+
+      .div11:hover {
+        clip-path: circle(160px at 49% 49%);
+      }
+
+      .div12 {
+        border-radius: 8%;
+        background-image: url('./07.png');
+        width: 200px;
+        height: 320px;
+        background-size: cover;
+        clip-path: polygon(30% 18%, 70% 18%, 70% 46%, 30% 46%);
+        transition: clip-path 0.5s;
+      }
+
+      .div12:hover {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      }
+    </style>
+  </body>
+</html>

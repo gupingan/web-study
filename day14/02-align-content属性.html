@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      body {
+        background-color: #eee;
+        font-family: 'Microsoft Yahei';
+      }
+
+      section {
+        width: 1000px;
+        margin: 50px auto;
+      }
+      section h3 {
+        font-size: 22px;
+        font-weight: normal;
+      }
+
+      ul {
+        border: 1px solid #999;
+        background-color: #fff;
+        display: flex;
+        /* 提供一点高度，保证对齐效果 */
+        height: 800px;
+        /* 保证换行才能体现效果 */
+        flex-wrap: wrap;
+      }
+
+      ul li {
+        width: 200px;
+        height: 200px;
+        background: pink;
+        margin: 10px;
+      }
+
+      section:nth-child(2) ul {
+        /* 弹性容器多行在交错轴上的对齐，会压缩元素 */
+        align-content: flex-start;
+      }
+
+      section:nth-child(3) ul {
+        align-content: flex-end;
+      }
+
+      section:nth-child(4) ul {
+        align-content: center;
+      }
+
+      section:nth-child(5) ul {
+        align-content: space-around;
+      }
+
+      section:nth-child(6) ul {
+        align-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h3>正常情况换行</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>align-content: flex-start</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>align-content: flex-end</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>align-content: center</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>align-content: space-around</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>align-content: space-between</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+      </ul>
+    </section>
+  </body>
+</html>
