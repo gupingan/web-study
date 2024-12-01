@@ -211,3 +211,4 @@ console.log({}.toString())  // 桀桀桀 undefined
 // 1.使用 Object.create(null)， 方法创建一个原型为 null 的新对象，这样无论对 原型做怎样的扩展都不会生效
 // 2.使用 Object.freeze(obj) 冻结指定对象，使之不能被修改属性，成为不可扩展对象
 // 3.建立 JSON schema ，在解析用户输入内容时，通过 JSON schema 过滤敏感键名
+// 4.规避不安全的递归性合并。这一点类似 lodash 修复手段，完善了合并操作的安全性，对敏感键名跳过处理
