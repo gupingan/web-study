@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    事件：就是文档或浏览器窗口中发生的一些特定的交互瞬间<br />
+    比如：点击某个元素、鼠标悬浮在某个元素之上、关闭弹窗、拖拽某个元素等等<br />
+    <br />
+    Javascript 是以事件驱动为核心的一门语言。它与 HTML
+    之间的交互通过事件实现<br />
+    <br />
+    事件的三要素<br />
+    事件源：引发后续事件的 html 标签（谁发生）<br />
+    事件：定义的 JS 行为，比如点击、双击等（怎样发生）<br />
+    事件驱动程序：对样式和 HTML 的操作，DOM（发生啥）<br />
+    比如：网页上弹出广告，点击右上角的 x，广告关闭了。事件源是 x，事件是
+    onclick，事件驱动程序是：广告关闭<br />
+    <br />
+    事件代码书写<br />
+    1. 获取事件源 document 上获取元素<br />
+    2. 绑定事件 事件源.事件 = function () {事件驱动程序} 通常就是函数，可以是匿名的也可以是已定义的<br />
+    3. 编写事件驱动程序 关于 DOM 的一些操作<br />
+    <button id="btn1">展示弹窗</button>
+    <br />
+    常见的事件如下：
+    <table border="1">
+      <tr>
+        <th>事件名</th>
+        <th width="520px">描述</th>
+      </tr>
+      <tr>
+        <td>onclick</td>
+        <td>鼠标点击</td>
+      </tr>
+      <tr>
+        <td>ondbclick</td>
+        <td>鼠标双击</td>
+      </tr>
+      <tr>
+        <td>onkeyup</td>
+        <td>按下并释放键盘上的一个键时触发</td>
+      </tr>
+      <tr>
+        <td>onchange</td>
+        <td>文本内容或下拉菜单中的选项发生改变时</td>
+      </tr>
+      <tr>
+        <td>onfocus</td>
+        <td>获得焦点，表示文本框等获得鼠标光标</td>
+      </tr>
+      <tr>
+        <td>onblur</td>
+        <td>失去焦点，表示文本框等失去鼠标光标</td>
+      </tr>
+      <tr>
+        <td>onmouseover</td>
+        <td>鼠标悬停，即鼠标停留在图片等的上方</td>
+      </tr>
+      <tr>
+        <td>onmouseout</td>
+        <td>鼠标移除，即离开图片等所在的区域</td>
+      </tr>
+      <tr>
+        <td>onload</td>
+        <td>网页文档加载事件</td>
+      </tr>
+      <tr>
+        <td>onunload</td>
+        <td>关闭网页时</td>
+      </tr>
+      <tr>
+        <td>onsubmit</td>
+        <td>表单提交事件</td>
+      </tr>
+      <tr>
+        <td>onreset</td>
+        <td>表单重置事件</td>
+      </tr>
+    </table>
+    <script>
+      // 1. 获取事件源
+      const btn1 = document.getElementById('btn1')
+      // 2. 绑定事件
+      btn1.onclick = function () {
+        // 3. 编写事件驱动程序
+        alert('点击了按钮')
+      }
+    </script>
+    </script>
+  </body>
+</html>
