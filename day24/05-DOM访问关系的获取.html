@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        border: 2px solid green;
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      #father {
+        height: 400px;
+        position: relative;
+        background-color: yellow;
+      }
+
+      #son1 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 120px;
+        transform: translate(-50%, -110%);
+        background-color: red;
+      }
+
+      #son1-1 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 60px;
+        transform: translate(-50%, -50%);
+        background-color: pink;
+      }
+
+      #son2 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 120px;
+        transform: translate(-50%, 0);
+        background-color: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="father" class="box" content="爸爸">
+      父
+      <div id="son1" class="box">
+        儿子1
+        <div id="son1-1" class="box">儿子1的儿子</div>
+      </div>
+      <div id="son2" class="box">儿子2</div>
+    </div>
+    <script>
+      // DOM的节点并不是孤立的，因此可以通过DOM节点之间的相对关系对它们进行访问
+      // 以父为基准
+      // 所有子节点（儿子1的儿子们） childNodes, children
+      // 第一个子节点（儿子1） firstElementChild || firstChild
+      // 最后一个子节点（儿子2） lastElementChild || lastChild
+      let father = document.getElementById("father")
+      console.log(father.childNodes)  // 标准，含文本节点、元素节点
+      console.log(father.children) // ie6/7/8会识别注释标签
+      console.log(father.firstElementChild)  // 仅元素节点
+      console.log(father.firstChild) // 仅节点
+      console.log(father.lastElementChild) // 仅元素节点
+      console.log(father.lastChild) // 仅节点
+      // 在IE678中用firstChild，在火狐谷歌IE9+以后用firstElementChild
+      console.log(father.firstElementChild || father.firstChild)
+      console.log(father.lastElementChild || father.lastChild)
+
+      // 以儿子1的儿子为基准
+      // 父节点（儿子1） parentElement || parentNode
+      let son1child = document.getElementById("son1-1")
+      console.log(son1child.parentElement) // 仅元素节点
+      console.log(son1child.parentNode) // 仅节点
+
+      // 以儿子1为基准
+      // 下个兄弟节点（儿子2） nextElementSibling || nextSibling
+      let son1 = document.getElementById('son1')
+      console.log(son1.nextElementSibling) // 仅元素节点
+      console.log(son1.nextSibling) // 仅节点
+      console.log(son1.nextElementSibling || son1.nextSibling)
+
+      // 以儿子2为基准
+      // 前个兄弟节点（儿子1） previousElementSibling || previousSibling
+      let son2 = document.getElementById('son2')
+      console.log(son2.previousElementSibling) // 仅元素节点
+      console.log(son2.previousSibling) // 仅节点
+      console.log(son2.previousElementSibling || son2.previousSibling)
+    </script>
+  </body>
+</html>

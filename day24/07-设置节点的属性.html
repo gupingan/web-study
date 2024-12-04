@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      src="images/1.jpg"
+      alt="图片"
+      title="绿色壁纸"
+      class="image-box"
+      id="img1"
+    />
+    <input type="text" value="默认输入值">
+    <div id="box1">box1:嘻嘻
+      <div id="box2">禁止狗叫</div>
+    </div>
+    <script>
+      // 1. 获取节点的属性值
+      // 元素节点.属性名
+      // 元素节点[属性名]
+      let img = document.getElementById('img1')
+      console.log('src:', img.src)
+      console.log('title:', img['title'])
+      console.log('class:', img.className)
+      // 元素节点.getAttribute("属性名称");
+      console.log('src:', img.getAttribute('src'))
+      console.log('title:', img.getAttribute('title'))
+      console.log('class:', img.getAttribute('class'))
+      // src 不同：因为解析 HTML 时，会将相对路径转为绝对路径，直接获取就是绝对路径
+      // 通过 getAttribute() 获取的最原始的相对路径
+
+      // 2. 设置节点的属性值
+      // 元素节点.属性名 = "新值"
+      // 元素节点[属性名] = "新值"
+      // 元素节点.setAttribute("属性名称", "新值")
+      img.title = '绿绿的银杏树叶'
+      img.nice = '绿绿的银杏树叶' // 不会出现在原始属性中，也就是标签中没有这个属性
+      console.log('nice:', img.getAttribute('nice')) // null
+      console.log('nice:', img.nice) // 
+      img.setAttribute('img-type', '植物壁纸') // 标签中有 img-type = "植物壁纸
+      console.log('img-type:', img['img-type'])  // null
+
+      // 3. 删除节点的属性
+      // 元素节点.removeAttribute(属性名)
+      // img.removeAttribute('title')
+      img.removeAttribute('id')
+      console.log('img1:', document.getElementById('img1'))
+
+      // 元素节点.属性 或者 元素节点[属性名] 操作的是对象的属性
+      // get/set/remove Attribute() 操作的是标签上的属性
+      // 对于原始属性，节点对象上和标签上都有，是一致的
+      // 对于自定义属性，两种方式不能交叉使用
+
+      // innerHTML和innerText的区别
+      // value：标签的value属性
+      // innerHTML：双闭合标签里面的内容（包含标签）
+      // innerText：双闭合标签里面的内容（不包含标签）。（老版本的火狐用textContent）
+      console.log('value:', document.querySelector('input[value]').value)
+      console.log('innerHTML:', document.querySelector('#box1').innerHTML)
+      console.log('innerText:', document.querySelector('#box1').innerText)
+      // document.querySelector('#box1').innerHTML = 'box1:\n<h2>嘻嘻</h2>'
+      // document.querySelector('#box1').innerText = 'box1:\n<h2>嘻嘻</h2>'
+
+      // nodeType属性
+      // 为1 表示元素节点（标签）
+      // 为2 表示属性节点
+      // 为3 表示文本节点
+      let box2 = document.querySelector('#box2')
+      let box2Attr = box2.getAttributeNode('id')
+      let box2Text = box2.firstChild
+      let box2AttrVal = box2.getAttribute('id')
+      console.log('------------------------')
+      console.log('box2:', box2.nodeType)
+      console.log('box2Attr:', box2Attr.nodeType)
+      console.log('box2Text:', box2Text.nodeType)
+      console.log('box2AttrVal:', box2AttrVal.nodeType)
+      console.log('------------------------')
+      console.log('box2 nodeName:', box2.nodeName)
+      console.log('box2Attr nodeName:', box2Attr.nodeName)
+      console.log('box2Text nodeName:', box2Text.nodeName)
+      console.log('box2AttrVal nodeName:', box2AttrVal.nodeName)
+      console.log('------------------------')
+      console.log('box2 nodeValue:', box2.nodeValue)
+      console.log('box2Attr nodeValue:', box2Attr.nodeValue)
+      console.log('box2Text nodeValue:', box2Text.nodeValue)
+      console.log('box2AttrVal nodeValue:', box2AttrVal.nodeValue)
+    </script>
+  </body>
+</html>

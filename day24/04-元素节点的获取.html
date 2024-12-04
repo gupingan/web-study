@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box1" class="box">盒子一</div>
+  <script>
+    // 通过ID获取
+    let box1ByID = document.getElementById('box1')
+    console.log(box1ByID)
+    // 通过标签获取 获取的是数组，通常用于遍历
+    let boxsByTagName = document.getElementsByTagName('div')
+    console.log(boxsByTagName)
+    console.log(boxsByTagName[0])
+    // 通过类名获取 获取的是数组，通常用于遍历
+    let boxsByClassName = document.getElementsByClassName('box')
+    console.log(boxsByClassName)
+    console.log(boxsByClassName[0])
+  </script>
+
+</body>
+</html>

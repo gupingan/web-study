@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      // 通过 元素.style.样式名 的方式只能获取行内样式
+      // 获取元素当前正在显示的样式
+      // w3c：window.getComputedStyle("要获取样式的元素", "伪元素"或null)
+      let box = document.querySelector('.box')
+      let style = window.getComputedStyle(box)
+      console.log(style) // CSSStyleDeclaration
+      console.log(style.width)
+      console.log(style.backgroundColor)
+      // ie和opera：element.currentStyle["样式名"]
+      console.log(box.currentStyle) // undefined
+      // console.log(box.currentStyle.width)
+      /*
+       * 兼容方法，获取元素当前正在显示的样式。
+       * 参数：
+       *      obj     要获取样式的元素
+       *.     name    要获取的样式名
+       */
+      function getStyle(ele, attr) {
+        if (window.getComputedStyle) {
+          return window.getComputedStyle(ele, null)[attr]
+        }
+        return ele.currentStyle[attr]
+      }
+      console.log(getStyle(box, 'width')) // 100px
+    </script>
+  </body>
+</html>

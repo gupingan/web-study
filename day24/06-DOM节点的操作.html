@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="box2"></div>
+    </div>
+    <script>
+      // DOM 节点的访问关系都是属性，而节点的操作都是方法
+      // 创建节点
+      // 新的标签(元素节点) = document.createElement("标签名");
+      let a1 = document.createElement('li')
+      // 如果用户代理无法识别 tagName，则会生成一个未知 HTML 元素 HTMLUnknownElement
+      let a2 = document.createElement('adbc')
+      console.log(a1)
+      console.log(a2)
+      console.log(typeof a1, typeof a2)
+
+      // 插入节点
+      // 父节点.appendChild(新的子节点)  将一个节点附加到指定父节点的子节点列表的末尾处
+      // 父节点.insertBefore(新的子节点, 作为参考的子节点)  在参考节点前插入一个新的节点
+      // 如果参考节点为null，那么他将在父节点里面的最后插入一个子节点
+      let box1 = document.querySelector('.box1')
+      console.log(box1.appendChild(a1)) // 返回插入的节点
+      console.log(box1.insertBefore(a2, a1)) // 返回插入的节点
+      // 两个方法不是复制插入的关系，而是移动插入到指定位置
+      console.log(box1.children) // HTMLCollection(3) [div.box2, adbc, li]
+      box1.appendChild(a2)
+      console.log(box1.children) // HTMLCollection(3) [div.box2, li, adbc]
+
+      // 删除节点
+      // 父节点.removeChild(子节点);
+      // 想删除自己这个节点，可以这么做：node1.parentNode.removeChild(node1)
+      box1.removeChild(a2)
+      console.log(box1.children) // HTMLCollection(2) [div.box2, li]
+
+      // 复制节点（克隆）
+      // 要复制的节点.cloneNode(deep); deep是否进行深度克隆，默认false
+      let a2_1 = a2.cloneNode(true)
+      box1.insertBefore(a2_1, a1)
+      console.log(box1.children) // HTMLCollection(3) [div.box2, adbc, li]
+    </script>
+  </body>
+</html>

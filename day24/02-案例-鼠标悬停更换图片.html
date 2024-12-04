@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: auto;
+        width: 500px;
+        border: 3px dashed pink;
+      }
+
+      .box img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="box">
+      <img src="./images/2.png" alt="" id="box-img" />
+    </div>
+    <script>
+      let boxImg = document.getElementById('box-img')
+      boxImg.onmouseover = function () {
+        boxImg.src = './images/3.png'
+      }
+      boxImg.onmouseleave = function () {
+        boxImg.src = './images/2.png'
+      }
+    </script>
+  </body>
+</html>
