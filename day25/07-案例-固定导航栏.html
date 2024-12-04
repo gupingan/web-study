@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <style>
+      img {
+        display: block;
+      }
+
+      .fixed-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top" id="top">
+      <img src="images/top.png" alt="" />
+    </div>
+    <div id="Q-nav1">
+      <img src="images/nav.png" alt="" />
+    </div>
+    <div class="main" id="main">
+      <img src="images/main.png" alt="" />
+    </div>
+    <script src="js/tools.js"></script>
+    <script>
+      //需求1：当我们滚动界面的时候，被卷曲的头部如果超过第二个盒子距离顶部的位置，那么直接给第二个盒子加类名.fixed
+      //需求2：当我们滚动界面的时候，被卷曲的头部如果小于第二个盒子距离顶部的位置，那么直接给第二个盒子取消类名.fixed
+      let topContainer = document.getElementById('top')
+      let navContainer = document.getElementById('Q-nav1')
+      let navTop = topContainer.scrollHeight
+      window.addEventListener('scroll', fixedNav)
+      function fixedNav() {
+        if (scroll().top >= navTop) {
+          navContainer.classList.add('fixed-nav')
+        } else {
+          navContainer.classList.remove('fixed-nav')
+        }
+      }
+      fixedNav()
+
+      // 体育央视网注入
+      // 获取元素
+      /*  
+const navFixedStyle = document.createElement('style');
+navFixedStyle.type = 'text/css';
+navFixedStyle.innerHTML = `.fixed-nav { position: fixed !important; top: 0; left: 0; right: 0; }`;
+document.head.appendChild(navFixedStyle);
+let topContainer = document.querySelector('.nav_wrapper_bg')
+let navContainer = document.querySelector('.sports18885_navigation_bg')
+let navTop = topContainer.scrollHeight
+window.addEventListener('scroll', fixedNav)
+function fixedNav() {
+  if (scroll().top >= navTop) {
+    navContainer.classList.add('fixed-nav')
+  } else {
+    navContainer.classList.remove('fixed-nav')
+  }
+}
+function scroll() {
+  return {
+    top:
+      window.pageYOffset ||
+      document.body.scrollTop ||
+      document.documentElement.scrollTop,
+    left:
+      window.pageXOffset ||
+      document.body.scrollLeft ||
+      document.documentElement.scrollLeft,
+  }
+}
+fixedNav()
+*/
+    </script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 100vh;
+      }
+
+      .box1 {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        margin: 3px;
+        border: 8px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      静，能寒窗苦守；动，能点石成金。 静，能寒窗苦守；动，能点石成金。
+      静，能寒窗苦守；动，能点石成金。 静，能寒窗苦守；动，能点石成金。
+      静，能寒窗苦守；动，能点石成金。 静，能寒窗苦守；动，能点石成金。
+    </div>
+    <script>
+      window.onscroll = function () {
+        console.log('火狐/谷歌/ie9+', window.pageYOffset)
+        console.log('无DTD chrome', document.body.scrollTop)
+        console.log('有DTD ie6/7/8', document.documentElement.scrollTop)
+        console.log('------------------------')
+      }
+      // scrollWidth 和 scrollHeight：获取元素整个滚动区域的宽、高。包括 width 和 padding，不包括 border和margin
+      let box1 = document.querySelector('.box1')
+      console.log(box1.scrollWidth)
+      console.log(box1.scrollHeight)
+      // scrollLeft：获取水平滚动条滚动的距离
+      // scrollTop：获取垂直滚动条滚动的距离
+      // 当某个元素满足 scrollHeight - scrollTop == clientHeight 时，说明垂直滚动条滚动到底了
+      // 当某个元素满足 scrollWidth - scrollLeft == clientWidth 时，说明水平滚动条滚动到底了
+      // scrollTop 的兼容性
+      // （1）如果文档没有 DTD 声明，写法为 chrome浏览器才能认出来
+      // document.body.scrollTop
+      // （2）如果文档有 DTD 声明，写法为  IE6、7、8才能认出来
+      // document.documentElement.scrollTop
+      // 兼容性的写法
+      // document.body.scrollTop || document.documentElement.scrollTop //方式一
+      // document.body.scrollTop + document.documentElement.scrollTop  //方式二
+      // window.pageYOffset 或者 window.pageXOffset
+      // window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop
+
+      // 判断是否已经 DTD 声明
+      // document.compatMode === "CSS1Compat"  // 已声明  标准模式
+      // document.compatMode === "BackCompat"  // 未声明  怪异模式
+      console.log(document.compatMode)
+      if (document.compatMode === 'CSS1Compat') {
+        console.log('已声明')
+      } else {
+        console.log('未声明')
+      }
+
+      //函数封装（简单封装，实际工作使用）
+      function scroll() {
+        return {
+          top:
+            window.pageYOffset ||
+            document.body.scrollTop ||
+            document.documentElement.scrollTop,
+          left:
+            window.pageXOffset ||
+            document.body.scrollLeft ||
+            document.documentElement.scrollLeft,
+        }
+      }
+
+      // 获取 html 文档的方法
+      // document.title 文档标题
+      // document.head 文档的头标签
+      // document.body 文档的body标签
+      // document.documentElement 重要  文档的html标签
+    </script>
+  </body>
+</html>

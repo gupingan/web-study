@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="number" name="target" id="target-input" value="500" placeholder="请输入移动多少距离"/>
+    <button>点击移动</button>
+
+    <div class="box" style="left: 0px"></div>
+    <script>
+      // 闪现（基本不用）
+      // 匀速（本文重点）
+      // 缓动（后续重点）
+      let btn = document.querySelector('button')
+      let box = document.querySelector('.box')
+      let target = document.getElementById('target-input')
+      // 1.闪动
+      // btn.onclick = function () {
+      //   box.style.left = (target.value || 500) + 'px'
+      // }
+      // 2.匀速
+      btn.onclick = function () {
+        box.style.left = '0px'
+        let targetValue = parseInt(target.value) || 500
+        let timer = setInterval(() => {
+          // 盒子未来的位置 = 盒子现在的位置 + 步长
+          // method1
+          box.style.left = box.offsetLeft + 1 + 'px'
+          if (box.offsetLeft >= targetValue) {
+            clearInterval(timer)
+          }
+          // method2 必须先设置 行内样式 left
+          // box.style.left = parseInt(box.style.left) + 100 + 'px'
+        }, 1)
+      }
+    </script>
+  </body>
+</html>

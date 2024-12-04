@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box1, .box2 {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        border: 10px solid #000;
+        margin: 100px;
+        background-color: pink;
+      }
+
+      .box5 {
+        width: 300px;
+        height: 300px;
+        padding: 100px;
+        margin: 100px;
+        position: relative;
+        left: 50%;
+        border: 100px solid #000;
+        background-color: pink;
+      }
+
+      .box6 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        left: 10px;
+        top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+    <div class="box2" style="position: absolute">
+      <div class="box3" style="position: fixed">
+        <div class="box4"></div>
+      </div>
+    </div>
+    <div class="box5">
+      <div class="box6"></div>
+    </div>
+    <script>
+      // offset的中文是：偏移，补偿，位移。
+      // 获取元素尺寸的办法——offset家族
+      // offsetWidth：元素的宽度，包含padding和border，不包含margin
+      // offsetHeight：元素的高度，包含padding和border，不包含margin
+      // 两个属性绑定了所有的节点元素上
+      let box1 = document.querySelector('.box1')
+      console.log(box1.offsetWidth)
+      console.log(box1.offsetHeight)
+      // offsetParent：返回一个指向最近的（指包含层级上的最近）包含该元素的定位元素或者最近的 table, td, th, body 元素
+      // 当元素的 style.display 设置为 "none" 时，offsetParent 返回 null
+      let box2 = document.querySelector('.box2')
+      console.log(box2.offsetParent) // body
+      let box3 = document.querySelector('.box3')
+      console.log(box3.offsetParent) // null
+      console.log(box3.offsetTop) // 继承上层元素的offsetTop
+      let box4 = document.querySelector('.box4')
+      console.log(box4.offsetParent) // div.box3 元素
+
+      // offsetLeft：返回当前元素左上角相对于 HTMLElement.offsetParent 节点的左边界偏移的像素值
+      // offsetTop：返回当前元素顶边相对于 HTMLElement.offsetParent 元素的顶部内边距的距离
+      let box6 = document.querySelector('.box6')
+      console.log(box6.offsetLeft)
+      console.log(box6.offsetTop)
+
+      // elem.style.left 与 elem.offsetLeft 区别
+      // elem.style.left：元素行内样式的left属性，如果父元素未设置定位，则返回的是 ''，并且返回值类型是字符串，参与计算可能得到 NaN
+      // elem.offsetLeft：只读属性，元素左边界到offsetParent的左边界内侧的距离，就算父元素没定位，参考的是 body，返回的是number类型
+    </script>
+  </body>
+</html>
