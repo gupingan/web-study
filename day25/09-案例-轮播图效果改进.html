@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      html {
+        height: 98vh;
+        background-color: #ccc;
+      }
+
+      h2 {
+        text-align: center;
+        position: absolute;
+        top: 26%;
+        left: 50%;
+        font-family: '微软雅黑 light';
+        letter-spacing: 3px;
+        transform: translate(-50%, 0);
+        user-select: none;
+      }
+
+      .imgplayer {
+        width: 562px;
+        height: 304px;
+        /* border: 1px dashed blue; */
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .imgplayer .imgs {
+        margin: 0;
+        padding: 0;
+        width: max-content;
+        position: absolute;
+        left: 0;
+        top: 0;
+        /* transition: left 0.5s; */
+        user-select: none;
+      }
+
+      .imgplayer .imgs img {
+        width: 562px;
+        height: 304px;
+        object-fit: cover;
+      }
+
+      .imgplayer .controls {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translate(0, -50%);
+      }
+
+      .imgplayer .controls .prev,
+      .imgplayer .controls .next {
+        position: relative;
+        height: 44px;
+        width: 44px;
+        border-radius: 50%;
+        background-color: transparent;
+        transition: background-color 0.3s;
+      }
+
+      .imgplayer .controls .prev {
+        float: left;
+        left: 10px;
+      }
+
+      .imgplayer .controls .next {
+        float: right;
+        right: 10px;
+      }
+
+      .imgplayer .controls .prev::before,
+      .imgplayer .controls .prev::after,
+      .imgplayer .controls .next::before,
+      .imgplayer .controls .next::after {
+        content: '';
+        position: absolute;
+        width: 3px;
+        height: 22px;
+        background-color: #fff;
+        transition: all 0.5s;
+      }
+
+      .imgplayer .controls .prev::before {
+        left: 25%;
+        transform-origin: 0 100%;
+        transform: rotate(30deg) translate(-50%, 0);
+      }
+
+      .imgplayer .controls .prev::after {
+        left: 25%;
+        top: 50%;
+        transform-origin: 0 0;
+        transform: rotate(-30deg) translate(-50%, 0);
+      }
+
+      .imgplayer .controls .next::before {
+        right: 25%;
+        transform-origin: 100% 100%;
+        transform: rotate(-30deg) translate(50%, 0);
+      }
+
+      .imgplayer .controls .next::after {
+        right: 25%;
+        top: 50%;
+        transform-origin: 100% 0;
+        transform: rotate(30deg) translate(50%, 0);
+      }
+
+      .imgplayer .controls .prev:hover,
+      .imgplayer .controls .next:hover {
+        background-color: white;
+      }
+
+      .imgplayer .controls .prev:hover::before,
+      .imgplayer .controls .prev:hover::after,
+      .imgplayer .controls .next:hover::before,
+      .imgplayer .controls .next:hover::after {
+        background-color: #cc0000;
+      }
+
+      .imgplayer .controls .prev:hover::before,
+      .imgplayer .controls .next:hover::after {
+        transform: rotate(45deg);
+      }
+
+      .imgplayer .controls .prev:hover::after,
+      .imgplayer .controls .next:hover::before {
+        transform: rotate(-45deg);
+      }
+
+      .imgplayer .bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 66px;
+        background-image: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.6) 0%,
+          rgba(0, 0, 0, 0) 60%
+        );
+      }
+
+      .imgplayer .bottom .title {
+        color: #fff;
+        font-weight: bold;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 70%;
+      }
+
+      .imgplayer .bottom .dot {
+        list-style: none;
+        position: absolute;
+        bottom: 15px;
+        right: 24px;
+        margin: 0;
+      }
+
+      .imgplayer .bottom li {
+        background-color: #939caa;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        float: left;
+        margin-left: 5px;
+        transition: all 0.3s;
+      }
+
+      .imgplayer .bottom li:hover {
+        background-color: #4372c1;
+      }
+
+      .imgplayer .bottom .dot .current {
+        background-color: #4372c1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>案例-滚动轮播图</h2>
+    <div class="imgplayer">
+      <div class="imgs"></div>
+      <div class="controls">
+        <span class="prev"></span>
+        <span class="next"></span>
+      </div>
+      <div class="bottom">
+        <span class="title"></span>
+        <ul class="dot"></ul>
+      </div>
+    </div>
+
+    <script src="js/tools.js"></script>
+    <script>
+      // 轮播图数据
+      const data = [
+        {
+          src: 'images/1.jpeg',
+          href: 'https://photo.cctv.com/2024/12/04/PHOAtyFffoCePOmbp7EM3f2D241204.shtml?spm=C35449.P80754075394.S41437.29#Y63dmTfust7m241204_1',
+          title: '四川海螺沟迎来最佳赏雪季 琼枝玉树雪峰巍峨',
+        },
+        {
+          src: 'images/2.png',
+          href: 'https://photo.cctv.com/2024/12/03/PHOAh1Xc1MnGbsTyoN3k2cZE241203.shtml?spm=C35449.P80754075394.S41437.47#TrHxzHGqVF65241203_1',
+          title: '越过冬天，在这颗蓝色星球的最南端',
+        },
+        {
+          src: 'images/3.jpeg',
+          href: 'https://photo.cctv.com/2024/12/03/PHOANQI6RPvMx1nVApvQUsAy241203.shtml?spm=C35449.P80754075394.S41437.4#KnfjaUalWIEy241203_1',
+          title: '青岛港全自动化码头第十一次刷新装卸效率世界纪录',
+        },
+        {
+          src: 'images/4.jpeg',
+          href: 'https://photo.cctv.com/2024/12/03/PHOABUVdBX5N8qHoyVWq2ArT241203.shtml?spm=C35449.P80754075394.S41437.18#dWGiqhQdGMnD241203_1',
+          title: '千岛湖云雾缥缈美如画',
+        },
+        {
+          src: 'images/5.png',
+          href: 'https://photo.cctv.com/2024/12/03/PHOA0GOHaegKylllYiqbfyJ1241203.shtml?spm=C35449.P80754075394.S41437.12#2Ne2kjv4gBDH241203_1',
+          title: '福建霞浦：山海相拥 滩岛相映',
+        },
+      ]
+
+      // 获取 DOM 元素
+      const imgsContainer = document.querySelector('.imgplayer .imgs')
+      const controlsContainer = document.querySelector('.imgplayer .controls')
+      const dotsContainer = document.querySelector('.imgplayer .dot')
+      const titleElement = document.querySelector('.imgplayer .bottom .title')
+      const prevButton = document.querySelector('.imgplayer .controls .prev')
+      const nextButton = document.querySelector('.imgplayer .controls .next')
+      const bottomContainer = document.querySelector('.imgplayer .bottom')
+      let isRunning = true
+
+      // 初始化轮播图
+      function initCarousel() {
+        data.forEach((item, index) => {
+          const img = createElement('img', item, index)
+          const dot = createElement('li', item, index)
+          imgsContainer.appendChild(img)
+          dotsContainer.appendChild(dot)
+
+          if (index === 0) {
+            img.classList.add('current')
+            dot.classList.add('current')
+            titleElement.innerHTML = item.title
+          }
+
+          if (index === data.length - 1) {
+            let lastImg = imgsContainer.firstElementChild.cloneNode(true)
+            lastImg.index = imgsContainer.children.length
+            lastImg.classList.add('last')
+            imgsContainer.appendChild(lastImg)
+          }
+        })
+      }
+
+      // 创建元素
+      function createElement(tag, item, index) {
+        const element = document.createElement(tag)
+        element.src = item.src
+        element.href = item.href
+        element.title = item.title
+        element.index = index
+        return element
+      }
+
+      // 切换当前元素和下一个元素
+      function toggleCurrent(currentElement, nextElement) {
+        currentElement.classList.remove('current')
+        nextElement.classList.add('current')
+        titleElement.innerHTML = nextElement.title
+      }
+
+      // 滑动图片
+      function slideImgs(left) {
+        newMoveAnimate(imgsContainer, left, 5)
+        // imgsContainer.style.left = left + 'px'
+      }
+
+      // 切换图片
+      function switchImg(direction) {
+        // 确保动画不会叠加，算是防抖措施
+        if (imgsContainer.isAnimating) return
+
+        const currentImg = imgsContainer.querySelector('.current')
+        let nextImg
+        let nextIndex
+
+        if (direction === 'next') {
+          nextImg =
+            currentImg.nextElementSibling || imgsContainer.firstElementChild
+          console.log(currentImg, nextImg)
+          if (currentImg.classList.contains('last')) {
+            imgsContainer.style.left = '0px'
+            toggleCurrent(currentImg, nextImg)
+            switchImg(direction)
+            return
+          }
+        } else if (direction === 'prev') {
+          nextImg =
+            currentImg.previousElementSibling || imgsContainer.lastElementChild
+          if (nextImg.classList.contains('last')) {
+            imgsContainer.style.left =
+              -(nextImg.index * nextImg.offsetWidth) + 'px'
+            toggleCurrent(currentImg, nextImg)
+            switchImg(direction)
+            return
+          }
+        }
+
+        const currentIndex = parseInt(currentImg.index)
+        nextIndex = parseInt(nextImg.index)
+        toggleCurrent(currentImg, nextImg)
+        slideImgs(-(nextImg.offsetWidth * nextIndex))
+        toggleCurrent(
+          dotsContainer.children[currentIndex % data.length],
+          dotsContainer.children[nextIndex % data.length]
+        )
+      }
+
+      // 点击圆点切换图片
+      function handleDotClick() {
+        // 确保动画不会叠加，算是防抖措施
+        if (imgsContainer.isAnimating) return
+        const currentDot = dotsContainer.querySelector('.current')
+        const currentIndex = parseInt(currentDot.index)
+        const targetIndex = parseInt(this.index)
+
+        if (currentIndex === targetIndex) return
+
+        const currentImg = imgsContainer.querySelector('.current')
+        const targetImg = imgsContainer.children[targetIndex]
+
+        toggleCurrent(currentDot, this)
+        toggleCurrent(currentImg, targetImg)
+        slideImgs(-(targetImg.offsetWidth * targetIndex))
+      }
+
+      // 打开当前图片链接
+      function openCurrentUrl() {
+        const currentImg = imgsContainer.querySelector('.current')
+        window.open(currentImg.href)
+      }
+
+      // 初始化轮播图
+      initCarousel()
+
+      // 自动播放
+      setInterval(() => {
+        if (isRunning) {
+          switchImg('next')
+        }
+      }, 5000)
+
+      // 绑定事件
+      prevButton.onclick = () => switchImg('prev')
+      nextButton.onclick = () => switchImg('next')
+      dotsContainer
+        .querySelectorAll('li')
+        .forEach((dot) => (dot.onclick = handleDotClick))
+      imgsContainer.onclick = openCurrentUrl
+      bottomContainer.onclick = (e) => {
+        if (e.target.tagName === 'LI') return
+        openCurrentUrl()
+      }
+      imgsContainer.onmouseover =
+        bottomContainer.onmouseover =
+        controlsContainer.onmouseover =
+          () => (isRunning = false)
+      imgsContainer.onmouseout =
+        bottomContainer.onmouseout =
+        controlsContainer.onmouseout =
+          () => (isRunning = true)
+    </script>
+  </body>
+</html>

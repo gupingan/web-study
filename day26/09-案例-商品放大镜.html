@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>商品放大镜 - 案例复现</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        width: 350px;
+        height: 350px;
+        border: 1px solid #ccc;
+        position: relative;
+      }
+
+      .small {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        cursor: move;
+      }
+
+      .small .mask {
+        background-color: rgb(0, 0, 200, 0.4);
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: none;
+      }
+
+      .small img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .big {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 360px;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        display: none;
+      }
+
+      .big img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="small">
+        <img src="./imgaes/1.webp" alt="无图片" />
+        <div class="mask"></div>
+      </div>
+      <div class="big"><img src="./imgaes/1.webp" alt="无图片" /></div>
+    </div>
+    <script>
+      let box = document.querySelector('.box')
+      let small = document.querySelector('.small')
+      let mask = document.querySelector('.mask')
+      let big = document.querySelector('.big')
+      let smallImg = small.querySelector('img')
+      let bigImg = big.querySelector('img')
+
+      function scroll() {
+        return {
+          left:
+            window.pageXOffset ||
+            document.body.offsetLeft ||
+            document.documentElement.scrollLeft,
+          top:
+            window.pageYOffset ||
+            document.body.offsetTop ||
+            document.documentElement.scrollTop,
+        }
+      }
+
+      small.onmouseover = function () {
+        mask.style.display = 'block'
+        big.style.display = 'block'
+        let scaleX = smallImg.offsetWidth / mask.offsetWidth
+        let scaleY = smallImg.offsetHeight / mask.offsetHeight
+        bigImg.style.width = big.offsetWidth * scaleX + 'px'
+        bigImg.style.height = big.offsetWidth * scaleY + 'px'
+      }
+
+      small.onmouseout = function () {
+        mask.style.display = 'none'
+        big.style.display = 'none'
+      }
+
+      small.onmousemove = function (e) {
+        e = e || window.event
+        let x =
+          scroll().left + e.clientX - this.offsetLeft - mask.offsetWidth / 2
+        let y =
+          scroll().top + e.clientY - this.offsetTop - mask.offsetHeight / 2
+        // 处理 x,y 边界
+        if (x <= 0) {
+          x = 0
+        } else if (x >= this.offsetWidth - mask.offsetWidth) {
+          x = this.offsetWidth - mask.offsetWidth
+        }
+        if (y <= 0) {
+          y = 0
+        } else if (y >= this.offsetHeight - mask.offsetHeight) {
+          y = this.offsetHeight - mask.offsetHeight
+        }
+        mask.style.left = x + 'px'
+        mask.style.top = y + 'px'
+        let scaleX = bigImg.offsetWidth / this.offsetWidth
+        let scaleY = bigImg.offsetHeight / this.offsetHeight
+        bigImg.style.left = -x * scaleX + 'px'
+        bigImg.style.top = -y * scaleY + 'px'
+        console.log(bigImg.style.left, bigImg.style.top)
+      }
+    </script>
+  </body>
+</html>

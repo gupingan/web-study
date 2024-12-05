@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .box1 {
+        margin-top: 20px;
+        border: 5px solid red;
+        background-color: pink;
+        width: 120px;
+        height: 120px;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn-reset">运动位置复位</button>
+    <button id="btn-to-400">运动到 left = 400px 位置</button>
+    <button id="btn-to-400-nf">运动到 left = 400px 位置(不干扰)</button>
+    <button id="btn-to-1000">运动到 left = 1000px 位置</button>
+    <div class="box1"></div>
+    <script>
+      // 三个数学函数
+      // Math.ceil() 向上取整
+      // Math.floor() 向下取整
+      // Math.round() 四舍五入
+
+      // 缓动动画的原理：移动的过程中，步长越来越小
+      // 设置步长为目标位置与盒子位置的 1/10
+      // 盒子位置 = 盒子本身位置 + (目标位置 - 盒子本身位置) / 10
+
+      let btnReset = document.getElementById('btn-reset')
+      let btnTo400 = document.getElementById('btn-to-400')
+      let btnTo400Nf = document.getElementById('btn-to-400-nf')
+      let btnTo1000 = document.getElementById('btn-to-1000')
+      let box1 = document.querySelector('.box1')
+
+      btnTo400.onclick = function () {
+        // 缺陷：动画重叠
+        // let targetLeft = 400
+        // box1.timer = setInterval(() => {
+        //   let step = (targetLeft - box1.offsetLeft) / 10
+        //   // 处理小数点问题
+        //   step = step > 0 ? Math.ceil(step) : Math.floor(step)
+        //   box1.style.left = box1.offsetLeft + step + 'px'
+        //   if (Math.abs(targetLeft - box1.offsetLeft) < Math.abs(step)) {
+        //     box1.style.left = targetLeft + 'px'
+        //     clearInterval(box1.timer)
+        //     box1.timer = null
+        //   }
+        // }, 30)
+        easeAnimateMove(box1, 400)
+      }
+
+      btnReset.onclick = function () {
+        easeAnimateMove(box1, 0)
+      }
+
+      btnTo400Nf.onclick = function () {
+        easeAnimateMove(box1, 400, 10, true)
+      }
+
+      btnTo1000.onclick = function () {
+        easeAnimateMove(box1, 1000, 8)
+      }
+
+      // 封装：缓动动画移动函数(基于setInterval)
+      function easeAnimateMove(element, targetLeft, perStep, noInterfere) {
+        if (noInterfere && element.easeAnimateMoving) return
+        element.easeAnimateMoving = true
+
+        if (element.easeAnimateMoveTimer)
+          clearInterval(element.easeAnimateMoveTimer)
+
+        if (targetLeft === undefined) return
+
+        perStep = perStep > 0 ? perStep : 10
+
+        element.easeAnimateMoveTimer = setInterval(function () {
+          let step = (targetLeft - element.offsetLeft) / perStep
+          step = step > 0 ? Math.ceil(step) : Math.floor(step)
+          element.style.left = element.offsetLeft + step + 'px'
+
+          if (Math.abs(targetLeft - element.offsetLeft) <= Math.abs(step)) {
+            element.style.left = targetLeft + 'px'
+            clearInterval(element.easeAnimateMoveTimer)
+            element.easeAnimateMoveTimer = null
+            element.easeAnimateMoving = false
+          }
+        }, 30)
+      }
+    </script>
+  </body>
+</html>

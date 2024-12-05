@@ -71,8 +71,8 @@
       console.log(box6.offsetTop)
 
       // elem.style.left 与 elem.offsetLeft 区别
-      // elem.style.left：元素行内样式的left属性，如果父元素未设置定位，则返回的是 ''，并且返回值类型是字符串，参与计算可能得到 NaN
-      // elem.offsetLeft：只读属性，元素左边界到offsetParent的左边界内侧的距离，就算父元素没定位，参考的是 body，返回的是number类型
+      // elem.style.left：元素行内样式的left属性，如果父元素未设置定位，则返回的是 ''，并且返回值类型是字符串，参与计算可能得到 NaN，但是会更精准
+      // elem.offsetLeft：只读属性，元素左边界到offsetParent的左边界内侧的距离，就算父元素没定位，参考的是 body，返回的是number类型，有四舍五入现象
     </script>
   </body>
 </html>

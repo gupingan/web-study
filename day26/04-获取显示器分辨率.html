@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screen API 属性</title>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      document.querySelector('div').innerHTML = `
+可用宽度：${screen.availWidth}<br />
+可用高度：${screen.availHeight}<br />
+颜色深度：${screen.colorDepth}<br />
+屏幕宽度：${screen.width}<br />
+屏幕高度：${screen.height}<br />
+是否可扩展：${screen.isExtended}<br />
+屏幕方向：${screen.orientation.type}<br />
+位深度/色彩深度：${screen.pixelDepth}<br />
+屏幕缩放比例：${getRatio()}<br />
+分辨率宽：${(screen.width * getRatio()) / 100}<br />
+分辨率高：${(screen.height * getRatio()) / 100}<br />`
+
+      //获取屏幕缩放比例
+      function getRatio() {
+        var ratio = 0
+        var screen = window.screen
+        var ua = navigator.userAgent.toLowerCase()
+
+        if (window.devicePixelRatio !== undefined) {
+          ratio = window.devicePixelRatio
+        } else if (~ua.indexOf('msie')) {
+          if (screen.deviceXDPI && screen.logicalXDPI) {
+            ratio = screen.deviceXDPI / screen.logicalXDPI
+          }
+        } else if (
+          window.outerWidth !== undefined &&
+          window.innerWidth !== undefined
+        ) {
+          ratio = window.outerWidth / window.innerWidth
+        }
+
+        if (ratio) {
+          ratio = Math.round(ratio * 100)
+        }
+        return ratio
+      }
+    </script>
+  </body>
+</html>

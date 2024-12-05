@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .follow {
+        width: 50px;
+        height: 50px;
+        background-color: pink;
+        border: 2px solid red;
+        border-radius: 50%;
+        position: relative;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="follow"></div>
+    <script>
+      let followObj = document.querySelector('.follow')
+      document.onmousemove = function (e) {
+        e = e || window.event
+        let x = e.pageX || scroll().left + e.clientX
+        let y = e.pageY || scroll().top + e.clientY
+        followObj.style.left = x + 'px'
+        followObj.style.top = y + 'px'
+      }
+
+      function scroll() {
+        return {
+          left:
+            window.pageXOffset ||
+            document.body.offsetLeft ||
+            document.documentElement.scrollLeft,
+          top:
+            window.pageYOffset ||
+            document.body.offsetTop ||
+            document.documentElement.scrollTop,
+        }
+      }
+    </script>
+  </body>
+</html>

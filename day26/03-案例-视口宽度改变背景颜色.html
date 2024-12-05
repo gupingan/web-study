@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/tools.js"></script>
+    <style>
+      body {
+        transition: background-color .5s;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 需求：浏览器每次更改大小，判断是否符合某一标准然后给背景上色。
+      // >960红色，大于640小于等于960蓝色，小于640绿色。
+      function colorSwitch() {
+        let w = viewport().width
+        if (w > 960) {
+          document.body.style.backgroundColor = 'red'
+        } else if (w > 640) {
+          document.body.style.backgroundColor = 'blue'
+        } else {
+          document.body.style.backgroundColor = 'green'
+        }
+      }
+
+      colorSwitch()
+      window.onresize = colorSwitch
+    </script>
+  </body>
+</html>

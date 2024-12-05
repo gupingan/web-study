@@ -1,0 +1,20 @@
+offset / scroll / client
+
+宽高
+offsetWidth: 元素宽度（包含 border padding）
+offsetHeight: 元素高度（包含 border padding）
+scrollWidth: 元素宽度（包含 padding、伪元素宽度、以及水平溢出内容的宽度）
+scrollHeight: 元素高度（包含 padding、伪元素高度、以及垂直溢出内容的高度）
+clientWidth: 元素宽度（包含 padding），元素可视区域宽度，在根元素上表现的则是浏览器视口宽度
+clientHeight: 元素高度（包含 padding），元素可视区域高度，在根元素上表现的则是浏览器视口高度
+
+上左
+offsetTop: 元素到 offsetParent 元素顶部内边距的距离，如果无参考，则以 body 为参考
+offsetLeft: 元素到 offsetParent 元素左侧内边距的距离，如果无参考，则以 body 为参考
+scrollTop: 垂直滚动条向下滚动的距离
+scrollLeft: 水平滚动条向右滚动的距离
+clientTop: 元素上border宽度
+clientLeft: 元素左侧border宽度
+clientX: 鼠标相对于可视区域的 X 坐标(左边距)
+clientY: 鼠标相对于可视区域的 Y 坐标（上边距）
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        margin: 0 10px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">勇敢牛牛不怕困难</div>
+    <div class="box2">勇敢牛牛不怕困难</div>
+    <script src="js/tools.js"></script>
+    <script>
+      // 当事件的响应函数被触发时，会产生一个事件对象event。浏览器每次都会将这个事件event作为实参传进之前的响应函数。
+      // 这个对象中包含了与当前事件相关的一切信息
+      // 所有浏览器都支持event对象，但支持的方式不同
+      let box1 = document.querySelector('.box1')
+      box1.onclick = function (event) {
+        console.log('触发事件的元素:', event.target)
+        console.log('事件绑定的元素:', event.currentTarget)
+        console.log('事件类型:', event.type)
+        console.log('事件触发的时间', event.timeStamp)
+      }
+
+      // ie678
+      box1.onmouseover = function () {
+        console.log(event)
+        console.log(window.event)
+      }
+
+      // 兼容性写法
+      function bindEvent(element, event, callback, options) {
+        if (element.addEventListener) {
+          element.addEventListener(event, callback, options)
+        } else if (element.attachEvent) {
+          element.attachEvent('on' + event, callback)
+        } else {
+          element['on' + event] = callback
+        }
+      }
+
+      let box2 = document.querySelector('.box2')
+      bindEvent(box2, 'click', function (event) {
+        event = event || window.event
+        console.log(event)
+        console.log(event.timeStamp)
+        console.log(event.bubbles)
+        console.log(event.button)
+        console.log(event.pageX)
+        console.log(event.pageY)
+        // 由于pageX 和 pageY的兼容性不好
+        // 鼠标在页面的位置 = 滚动条距离 + 可视区域坐标
+        console.log(event.clientX + scroll().left)
+        console.log(event.clientY + scroll().top)
+        console.log(event.screenX)
+        console.log(event.screenY)
+        console.log(event.target)
+        console.log(event.type)
+        console.log(event.clientX)
+        console.log(event.clientY)
+      })
+    </script>
+  </body>
+</html>

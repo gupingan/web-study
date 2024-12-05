@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn1">按钮1</button>
+    <button id="btn2">按钮2</button>
+    <script>
+      let btn1 = document.getElementById('btn1')
+      let btn2 = document.getElementById('btn2')
+      // DOM对象.onxxxx = 响应函数
+      // 多个函数会导致覆盖
+      btn1.onclick = function () {
+        console.log(this, 'btn1')
+      }
+
+      // DOM对象.addEventListener  高版本浏览器
+      // 可绑定多个响应函数
+      // 参数1：事件名 没有on前缀
+      // 参数2：回调函数，事件触发式执行的内容
+      // 参数3：true 表示捕捉阶段触发，false 表示冒泡阶段触发（默认）。不写默认 false【☆】
+      btn2.addEventListener('click', function () {
+        console.log(this, 'btn2-1')
+      })
+      btn2.addEventListener('click', function () {
+        console.log(this, 'btn2-2')
+      })
+      // addEventListener() 不支持 IE8 及以下的浏览器。在 IE8 中可以使用 attachEvent 来绑定事件
+      // btn2.attachEvent('onclick', function () {
+      //   console.log(this, 'btn2-3')
+      // })
+
+      // 兼容性写法
+      function bindEvent(element, event, callback, options) {
+        if (element.addEventListener) {
+          element.addEventListener(event, callback, options)
+        } else if (element.attachEvent) {
+          element.attachEvent('on' + event, callback)
+        } else {
+          element['on' + event] = callback
+        }
+      }
+    </script>
+  </body>
+</html>

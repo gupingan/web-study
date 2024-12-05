@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 300px;
+        height: 200px;
+        padding-top: 100px;
+        background-color: pink;
+        margin: 100px;
+        text-align: center;
+        font: 18px/30px 'simsun';
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      // 需求：鼠标进入盒子之后只要移动，哪怕1像素，随时显示鼠标在盒子中的坐标
+      let box = document.querySelector('.box')
+      box.onmousemove = function (e) {
+        e = e || window.event
+        // let x = e.offsetX
+        // let y = e.offsetY
+        let x = e.offsetX || scroll().left + e.clientX - this.offsetLeft
+        let y = e.offsetY || scroll().top + e.clientY - this.offsetTop
+
+        this.innerHTML = "鼠标在盒子中的X坐标为：" + x + "px;<br>鼠标在盒子中的Y坐标为：" + y + "px;"
+      }
+
+
+      function scroll() {
+        return {
+          left:
+            window.pageXOffset ||
+            document.body.offsetLeft ||
+            document.documentElement.scrollLeft,
+          top:
+            window.pageYOffset ||
+            document.body.offsetTop ||
+            document.documentElement.scrollTop,
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -44,10 +44,13 @@
       // document.body.scrollTop
       // （2）如果文档有 DTD 声明，写法为  IE6、7、8才能认出来
       // document.documentElement.scrollTop
+
       // 兼容性的写法
       // document.body.scrollTop || document.documentElement.scrollTop //方式一
       // document.body.scrollTop + document.documentElement.scrollTop  //方式二
+
       // window.pageYOffset 或者 window.pageXOffset
+      // 这种写法支持的浏览器版本是：火狐/谷歌/ie9+
       // window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop
 
       // 判断是否已经 DTD 声明

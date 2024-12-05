@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box1{
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      padding: 10px;
+      border: 10px solid red;
+      border-left: 20px solid green;
+      margin: 10px;
+      position: relative;
+      left: 0;
+      top: 0
+    }
+
+    .box1::after {
+      display: block;
+      content: '';
+      width: 150px;
+      height: 10px;
+      background-color: blue;
+    }
+
+    .box2 {
+      width: 80%;
+      height: 60%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      border: 2px dashed blue;
+      background-color: rgb(0, 0, 245, 0.1);
+    }
+
+    .box2:hover {
+      cursor: crosshair;
+    }
+
+    #xy {
+      height: 40px;
+      position: absolute;
+      top: -45px;
+      left: 0px
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">你真牛逼你真牛逼你真牛逼你真牛逼你真牛逼你真牛逼你真牛逼你真牛逼你真牛逼你真牛逼你真牛逼你真牛逼你真牛逼</div>
+  <div class="box2">
+    <p id="xy">当前鼠标坐标：<span class="content">(?, ?)</span></p>
+  </div>
+  <script>
+    let box1 = document.querySelector('.box1')
+    // clientWidth 和 clientHeight
+    // 元素调用时：
+    // clientWidth：获取元素的可见宽度(width + padding)
+    // clientHeight：获取元素的可见高度(height + padding)
+    console.log('box1 可视宽度：', box1.clientWidth)
+    console.log('box1 可视高度：',box1.clientHeight)
+    // body/html调用时：
+    // clientWidth：获取网页可视区域宽度
+    // clientHeight：获取网页可视区域高度
+    // 两者都是只读的，不带 px，返回的是 number，可直接参与计算，四舍五入为一个整数
+    if (document.compatMode === 'CSS1Compat') {
+      console.log('标准模式')
+      console.log(document.documentElement.clientWidth)
+      console.log(document.documentElement.clientHeight)
+    } else {
+      console.log('怪异模式')
+      console.log(document.body.clientWidth)
+      console.log(document.body.clientHeight)
+    }
+
+    let box2 = document.querySelector('.box2')
+    let xy = box2.querySelector('#xy .content')
+    // clientX 和 clientY
+    // event调用：
+    // clientX：鼠标距离当前可视区域的左侧距离  浮点值
+    // clientY：鼠标距离当前可视区域的上侧距离  浮点值
+    box2.onmousemove = function (e) {
+      xy.innerHTML = `(${e.clientX}, ${e.clientY})`
+    }
+    // clientTop 和 clientLeft
+    // clientTop：盒子的上 border 的宽度
+    // clientLeft：盒子的左 border 的宽度
+    console.log('box1 上 border 的宽度：',box1.clientTop)
+    console.log('box1 左 border 的宽度：',box1.clientLeft)
+  </script>
+</body>
+</html>
