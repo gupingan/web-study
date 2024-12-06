@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="go-baidu">跳转到百度</button>
+    <button id="refresh">刷新</button>
+    <button id="replace">替换进入百度</button>
+    <button class="forward">前进</button>
+    <button class="back">回退</button>
+    <script>
+      // Location 对象：封装了浏览器地址栏的 URL 信息
+      // location.href 获取当前页面的 url 路径（或者设置 url 路径）/ 或者跳转到指定路径
+      console.log(location.href)
+      let goBaidu = document.querySelector('#go-baidu')
+      goBaidu.onclick = function () {
+        location.href = 'https://www.baidu.com'
+        /* 
+       window.location.href的赋值，并不会中断Javascript的执行立即进行页面跳转。
+       因为 LocationChange 行为在浏览器内核中是起定时器异步执行的。
+       异步执行的好处是为了防止代码调用过深，导致栈溢出，另外也是为了防止递归进入加载逻辑，
+       导致状态紊乱，保证导航请求是顺序执行的
+       */
+      }
+
+      // location.assign(str) 用来跳转到其他的页面，作用和直接修改location.href一样
+      goBaidu.onclick = function () {
+        location.assign('https://www.baidu.com')
+      }
+
+      // location.reload() 用于重新加载当前页面，作用和刷新按钮一样
+      // location.reload(true) 可以强制清空缓存刷新页面，默认 false
+      let refreshBtn = document.querySelector('#refresh')
+      refreshBtn.onclick = function () {
+        location.reload()
+      }
+
+      // location.replace() 用来替换当前页面，不会留下历史记录，相当于 location.href，但是不会记录历史记录，不能使用后退回到之前的页面
+      let replaceBtn = document.querySelector('#replace')
+      replaceBtn.onclick = function () {
+        location.replace('https://www.baidu.com')
+      }
+
+      let forwardBtn = document.querySelector('.forward')
+      let backBtn = document.querySelector('.back')
+      forwardBtn.onclick = function () {
+        history.forward()
+      }
+      backBtn.onclick = function () {
+        history.back()
+      }
+    </script>
+  </body>
+</html>

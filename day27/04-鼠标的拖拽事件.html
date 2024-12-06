@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #draggable,
+      #test1,
+      #test2 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        cursor: move;
+        user-select: none;
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        opacity: 0.8;
+      }
+
+      #test1 {
+        background-color: blue;
+      }
+
+      #test2 {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="draggable">请用力拖拽我</div>
+    <div id="test1">Test 1</div>
+    <div id="test2">Test 2</div>
+    <script>
+      // 一般是 drag API 完成，传入数据可使用 dataTransfer 对象
+      // 鼠标拖拽事件流程
+      // onmousedown：当鼠标在被拖拽元素上按下时开始拖拽
+      // onmousemove：当鼠标移动时被拖拽元素跟随鼠标移动
+      // onmouseup：当鼠标松开时，被拖拽元素固定在当前位置
+      let box = document.querySelector('#draggable')
+      let test1 = document.querySelector('#test1')
+      let test2 = document.querySelector('#test2')
+
+      function scroll() {
+        return {
+          left:
+            window.pageXOffset ||
+            document.body.offsetLeft ||
+            document.documentElement.scrollLeft,
+          top:
+            window.pageYOffset ||
+            document.body.offsetTop ||
+            document.documentElement.scrollTop,
+        }
+      }
+
+      function stopPropagation(e) {
+        if (e && e.stopPropagation) {
+          event.stopPropagation()
+        } else if (event.hasOwnProperty('cancelable')) {
+          event.cancelable = true
+        }
+      }
+
+      function setDragable(elem) {
+        // 按下时开始拖拽
+        elem.addEventListener('mousedown', function (e) {
+          e = e || window.event
+          this.isDragging = true
+          this.downLeft =
+            (e.pageX || scroll().left + e.clientX) - this.offsetLeft
+          this.downTop = (e.pageY || scroll().top + e.clientY) - this.offsetTop
+          this.style.zIndex = '999'
+        })
+
+        // 移动时跟随鼠标移动
+        document.addEventListener('mousemove', function (e) {
+          if (elem.isDragging) {
+            e = e || window.event
+            let left = (e.pageX || scroll().left + e.clientX) - elem.downLeft
+            let top = (e.pageY || scroll().top + e.clientY) - elem.downTop
+            elem.style.left = left + 'px'
+            elem.style.top = top + 'px'
+          }
+        })
+
+        // 释放时停止拖拽
+        elem.addEventListener('mouseup', function (e) {
+          this.isDragging = false
+          this.style.zIndex = '1'
+        })
+      }
+
+      setDragable(box)
+      setDragable(test1)
+      setDragable(test2)
+    </script>
+  </body>
+</html>

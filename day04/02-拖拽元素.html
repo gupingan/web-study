@@ -25,6 +25,11 @@
         e.dataTransfer.setData('text/plain', this.className)
       }
 
+      box2.ondragenter = function () {
+        console.log('鼠标进入拖拽')
+        p.innerHTML = '鼠标进入拖拽'
+      }
+
       box2.ondragleave = function () {
         console.log('鼠标离开拖拽')
         p.innerHTML = '鼠标离开拖拽'
@@ -63,8 +68,6 @@
       box1.ondragleave = function (e) {
         console.log('离开目标元素', e)
       }
-
-
     </script>
 
     <style>

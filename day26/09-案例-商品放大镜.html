@@ -27,11 +27,9 @@
 
       .small .mask {
         background-color: rgb(0, 0, 200, 0.4);
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 150px;
         position: absolute;
-        left: 0;
-        top: 0;
         display: none;
       }
 
@@ -41,8 +39,8 @@
       }
 
       .big {
-        width: 100%;
-        height: 100%;
+        width: 120%;
+        height: 120%;
         position: absolute;
         top: 0;
         left: 360px;
@@ -53,21 +51,39 @@
 
       .big img {
         position: absolute;
-        top: 0;
-        left: 0;
-        object-fit: cover;
+        object-fit: fill;
       }
     </style>
   </head>
   <body>
-    <div class="box">
+    <div class="box" style="float: left;">
       <div class="small">
         <img src="./imgaes/1.webp" alt="无图片" />
         <div class="mask"></div>
       </div>
       <div class="big"><img src="./imgaes/1.webp" alt="无图片" /></div>
     </div>
+    <span>商品价格：………………</span>
     <script>
+      // 开发点总结：
+      // 1.HTML 结构布局：小容器 和 大容器（初始不可见）
+      // 小容器中包含图片和鼠标跟随的遮罩层（初始不可见）
+      // 大容器中包含图片，通常建议大容器的定位最好脱离文档流，避免影响其它布局
+      // 2.等比例思想
+      // 小容器 / 遮罩 == 大容器中的图片 / 大容器
+      // 遮罩在小容器中移动，大容器的图片在大容器这个小范围中移动
+      // 移动的比例就是：鼠标在小容器移动的距离 / 大容器图片移动距离 = 遮罩 / 大容器 = 小容器 / 大容器图片
+      // 核心思想：遮罩层在小容器中做放大镜，大容器在大容器的大图片中做放大镜
+      // 3.鼠标在小容器中移动，需要考虑边界
+      // 4.注意：大容器的尺寸不一定和大容器的图片尺寸相等，小容器中的图片和小容器的尺寸一定相等，遮罩层大小自定义
+      // 核心代码公式化：
+      // 假设大容器的尺寸为 bw bh，小容器的尺寸为 sw sh，遮罩层为 mw mh，遮罩层在小容器中移动的距离为 x y，其他未知
+      // 鼠标进入小容器的瞬间，计算大容器中的图片应有的尺寸 iw ih
+      // iw = (sw / mw) * bw
+      // ih = (sh / mh) * bh
+      // 鼠标在小容器中移动时，计算大容器图片该移动多少 bx by
+      // bx = (iw / sw) * x = (bw / mw) * x
+      // by = (ih / sh) * y = (bh / mh) * x
       let box = document.querySelector('.box')
       let small = document.querySelector('.small')
       let mask = document.querySelector('.mask')
@@ -94,7 +110,7 @@
         let scaleX = smallImg.offsetWidth / mask.offsetWidth
         let scaleY = smallImg.offsetHeight / mask.offsetHeight
         bigImg.style.width = big.offsetWidth * scaleX + 'px'
-        bigImg.style.height = big.offsetWidth * scaleY + 'px'
+        bigImg.style.height = big.offsetHeight * scaleY + 'px'
       }
 
       small.onmouseout = function () {
@@ -121,8 +137,11 @@
         }
         mask.style.left = x + 'px'
         mask.style.top = y + 'px'
-        let scaleX = bigImg.offsetWidth / this.offsetWidth
-        let scaleY = bigImg.offsetHeight / this.offsetHeight
+        // 协同移动
+        // let scaleX = bigImg.offsetWidth / this.offsetWidth
+        // let scaleY = bigImg.offsetHeight / this.offsetHeight
+        let scaleX = big.offsetWidth / mask.offsetWidth
+        let scaleY = big.offsetHeight / mask.offsetHeight
         bigImg.style.left = -x * scaleX + 'px'
         bigImg.style.top = -y * scaleY + 'px'
         console.log(bigImg.style.left, bigImg.style.top)

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2 class="name"></h2>
+    <p class="ua"></p>
+    <script>
+      // 目前 Navigator 对象中的大部分属性已经不能帮助识别浏览器，一般只用 navigator.userAgent
+      // userAgent 的值是一个字符串，简称 UA，这个字符串中包含了描述浏览器的信息，不同的浏览器的 UA 不一样
+      let ua = navigator.userAgent
+      console.log('当前浏览器 UA：', ua)
+      let name = '未知'
+      if (/firefox/i.test(ua)) {
+        name = 'Firefox'
+      } else if (/wechat/i.test(ua)) {
+        name = '微信内置'
+      } else if (/edg/i.test(ua)) {
+        name = 'Edge'
+      } else if (/safari/i.test(ua) && /mac/i.test(ua)) {
+        name = 'Safari'
+      } else if (/chrome/i.test(ua)) {
+        name = 'Chrome'
+      } else if (/msie/i.test(ua)) {
+        name = 'IE'
+      } else if ('ActiveXObject' in window) {
+        name = 'IE11'
+      }
+
+      if (/android/i.test(ua)) {
+        name += ' 安卓'
+      } else if (/iphone/i.test(ua)) {
+        name += ' 苹果'
+      }
+
+
+      let div = document.querySelector('.name')
+      let uaContainer = document.querySelector('.ua')
+      div.innerHTML = `浏览器: ${name}`
+      uaContainer.innerHTML = ua
+    </script>
+  </body>
+</html>

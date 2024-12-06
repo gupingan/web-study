@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #aaa;
+        height: 90vh;
+      }
+
+      .color-board {
+        width: 400px;
+        list-style: none;
+        background-color: white;
+        position: relative;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .color-board::before {
+        content: '点击空白区域 更换颜色';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        color: #999;
+        font: 18px/40px 'Microsoft YaHei';
+      }
+
+      .color-board li {
+        cursor: pointer;
+        width: 100px;
+        height: 100px;
+        box-sizing: border-box;
+        float: left;
+        transition: all 0.8s;
+      }
+
+      .color-board li:hover {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="color-board">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <script>
+      let colorBoard = document.querySelector('.color-board')
+
+      function randomColor() {
+        // let r = Math.floor(Math.random() * 256)
+        // let g = Math.floor(Math.random() * 256)
+        // let b = Math.floor(Math.random() * 256)
+        // let a = parseFloat(Math.random().toFixed(2))
+        // return `rgba(${r}, ${g}, ${b}, ${a})`
+        return '#' + Math.random().toString(16).slice(2, 8)
+      }
+
+      function setElemBgColor(elem, color) {
+        console.log(`设置颜色：${color} | 元素:`, elem)
+        elem.style.backgroundColor = color
+      }
+
+      // 可以通过 for 遍历子元素设置点击事件更换颜色，但是这样消耗资源和性能，并且新增的元素也无法设置事件
+      // 因此利用子元素点击触发冒泡，完成事件委托，将该事件交给父元素统一处理
+      colorBoard.addEventListener('click', function (e) {
+        e = e || window.event
+        if (e.target.tagName !== 'LI') return
+        setElemBgColor(e.target, randomColor())
+      })
+    </script>
+  </body>
+</html>

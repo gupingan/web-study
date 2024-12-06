@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .move-box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <input id="dis-number" type="text" />
+    <div class="move-box"></div>
+    <script>
+      // onkeydown：按键被按下
+      // onkeyup：按键被松开
+      // 如果一直按着某一个按键不松手，那么，onkeydown事件会一直触发。此时，松开键盘，onkeyup事件会执行一次
+      // 当onkeydown连续触发时，第一次和第二次之间会间隔稍微长一点，后续的间隔会非常快。这种设计是为了防止误操作的发生
+      // document.onkeydown = function (event) {
+      //   event = event || window.event
+      //   console.log('键盘按下了', event)
+      // }
+      // document.onkeyup = function (event) {
+      //   event = event || window.event
+      //   console.log('键盘松开了', event)
+      // }
+
+      // event 中包含有 altKey、ctrlKey、shiftKey 属性，用于判断是否按下了 alt、ctrl、shift 键
+      // keyCode 属性，用于获取键盘上被按下的键的 ASCII 码值(不分大小写)
+      // key 属性，用于获取键盘上被按下的键的字符串表示(区分大小写)
+      // document.onkeydown = function (event) {
+      //   event = event || window.event
+      //   // console.log(event)
+      //   if (event.ctrlKey && event.key === 'a') {
+      //     alert('按下了 Ctrl + a')
+      //   } else if (event.ctrlKey && event.key === 'A') {
+      //     alert('按下了 Ctrl + A')
+      //   }
+      // }
+
+      // 举例：input输入框禁止输入数字
+      function stopPropagation(e) {
+        if (e && e.stopPropagation) {
+          e.stopPropagation()
+        } else {
+          e.cancelBubble = true
+        }
+      }
+
+      let input1 = document.querySelector('#dis-number')
+      input1.onkeydown = function (event) {
+        event = event || window.event
+        stopPropagation(event)
+        if (event.keyCode >= 48 && event.keyCode <= 57) {
+          event.preventDefault()
+        }
+      }
+      // 粘贴事件
+      input1.onpaste = function (event) {
+        event = event || window.event
+        stopPropagation(event)
+        let pasteData = event.clipboardData.getData('text')
+        if (/\d/.test(pasteData)) {
+          event.preventDefault()
+        }
+      }
+
+      // 举例：方向键移动盒子
+      let moveBox = document.querySelector('.move-box')
+
+      function easeAnimateMoveLeft(element, targetLeft, perStep, noInterfere) {
+        if (noInterfere && element.easeAnimateMoving) return
+        element.easeAnimateMoving = true
+
+        if (element.easeAnimateMoveTimer)
+          clearInterval(element.easeAnimateMoveTimer)
+
+        if (targetLeft === undefined) return
+
+        perStep = perStep > 0 ? perStep : 10
+
+        element.easeAnimateMoveTimer = setInterval(function () {
+          let step = (targetLeft - element.offsetLeft) / perStep
+          step = step > 0 ? Math.ceil(step) : Math.floor(step)
+          element.style.left = element.offsetLeft + step + 'px'
+
+          if (Math.abs(targetLeft - element.offsetLeft) <= Math.abs(step)) {
+            element.style.left = targetLeft + 'px'
+            clearInterval(element.easeAnimateMoveTimer)
+            element.easeAnimateMoveTimer = null
+            element.easeAnimateMoving = false
+          }
+        }, 1)
+      }
+
+      function easeAnimateMoveTop(element, targetTop, perStep, noInterfere) {
+        if (noInterfere && element.easeAnimateMoving) return
+        element.easeAnimateMoving = true
+
+        if (element.easeAnimateMoveTimer)
+          clearInterval(element.easeAnimateMoveTimer)
+
+        if (targetTop === undefined) return
+
+        perStep = perStep > 0 ? perStep : 10
+
+        element.easeAnimateMoveTimer = setInterval(function () {
+          let step = (targetTop - element.offsetTop) / perStep
+          step = step > 0 ? Math.ceil(step) : Math.floor(step)
+          element.style.top = element.offsetTop + step + 'px'
+
+          if (Math.abs(targetTop - element.offsetTop) <= Math.abs(step)) {
+            element.style.top = targetTop + 'px'
+            clearInterval(element.easeAnimateMoveTimer)
+            element.easeAnimateMoveTimer = null
+            element.easeAnimateMoving = false
+          }
+        }, 1)
+      }
+
+      // 上述两个函数其实可以提取公共部分，这边懒了，之前的缓动动画改动的函数
+
+      document.addEventListener('keydown', function (event) {
+        event = event || window.event
+        let step = 10
+        if (event.shiftKey) step = 50
+        switch (event.key) {
+          case 'ArrowUp':
+            easeAnimateMoveTop(moveBox, moveBox.offsetTop - step)
+            // moveBox.style.top = moveBox.offsetTop - step + 'px'
+            break
+          case 'ArrowRight':
+            easeAnimateMoveLeft(moveBox, moveBox.offsetLeft + step)
+            break
+          case 'ArrowDown':
+            easeAnimateMoveTop(moveBox, moveBox.offsetTop + step)
+            // moveBox.style.top = moveBox.offsetTop + step + 'px'
+            break
+          case 'ArrowLeft':
+            easeAnimateMoveLeft(moveBox, moveBox.offsetLeft - step)
+            // moveBox.style.left = moveBox.offsetLeft - step + 'px'
+            break
+          case ' ':
+            moveBox.style.left = '50%'
+            moveBox.style.top = '50%'
+            break
+          default:
+            break
+        }
+      })
+    </script>
+  </body>
+</html>

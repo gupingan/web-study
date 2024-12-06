@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box1 {
+        width: 300px;
+        height: 300px;
+        background-color: red;
+      }
+
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: rgb(125, 0, 0);
+      }
+
+      .box3 {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        text-align: center;
+        line-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="box2">
+        <div class="box3">
+          <a href="https://www.baidu.com" target="_blank">超链接</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      // 事件传播的三个阶段是：事件捕获、事件冒泡和目标
+      // 事件捕获阶段：
+      // 事件从祖先元素往子元素查找（DOM树结构），直到捕获到事件目标 target。
+      // 在这个过程中，默认情况下，事件相应的监听函数是不会被触发的
+
+      // 事件目标：当到达目标元素之后，执行目标元素该事件相应的处理函数。如果没有绑定监听函数，那就不执行
+
+      // 事件冒泡阶段：事件从事件目标 target 开始，从子元素往冒泡祖先元素冒泡，直到页面的最上一级标签
+
+      let box1 = document.querySelector('.box1')
+      let box2 = document.querySelector('.box2')
+      let box3 = document.querySelector('.box3')
+      let a = document.querySelector('a')
+
+      // a.onclick = function (e) {
+      //   // e = e || window.event
+      //   // e.preventDefault() // 阻止默认行为，超链接
+      //   alert('我被点击了')
+      // }
+
+      // box1.addEventListener('click', function (e) {
+      //   alert('box1')
+      // })
+
+      // box2.addEventListener('click', function (e) {
+      //   alert('box2')
+      // })
+
+      // box3.addEventListener('click', function (e) {
+      //   alert('box3')
+      // })
+
+      // 为什么 a 超链接总是最后出发呢？
+      // 1. a 绑定了监听函数，所以会触发冒泡阶段
+      // 2. box3 绑定了监听函数，会触发冒泡阶段
+      // 3. box2 绑定了监听函数，会触发冒泡阶段
+      // 4. box1 绑定了监听函数，会触发冒泡阶段
+      // 5. alert()阻塞js执行，alert()所有的执行完毕后，a 超链接的默认行为触发
+      // 默认行为（如超链接跳转、表单提交等）通常是在所有事件处理函数执行完毕后才会发生
+
+      // 捕获阶段 外到内传递事件
+      // window.addEventListener('click', function (e) {
+      //   console.log('window')
+      // }, true)
+
+      // document.addEventListener('click', function (e) {
+      //   console.log('document')
+      // }, true)
+
+      // document.documentElement.addEventListener('click', function (e) {
+      //   console.log('html')
+      // }, true)
+
+      // document.body.addEventListener('click', function (e) {
+      //   console.log('body')
+      // }, true)
+
+      // box1.addEventListener('click', function (e) {
+      //   console.log('box1')
+      // }, true)
+
+      // box2.addEventListener('click', function (e) {
+      //   console.log('box2')
+      // }, true)
+
+      // box3.addEventListener('click', function (e) {
+      //   console.log('box3', e.target)
+      // }, true)
+
+      // 冒泡阶段 内向外传递事件
+      // ie6.0 : 最终不会在 window 上触发监听
+      // window.addEventListener('click', function (e) {
+      //   console.log('window', e.target)
+      // })
+
+      // document.addEventListener('click', function (e) {
+      //   console.log('document')
+      // })
+
+      // document.documentElement.addEventListener('click', function (e) {
+      //   console.log('html')
+      // })
+
+      // document.body.addEventListener('click', function (e) {
+      //   console.log('body')
+      // })
+
+      // box1.addEventListener('click', function (e) {
+      //   console.log('box1')
+      // })
+
+      // box2.addEventListener('click', function (e) {
+      //   console.log('box2')
+      // })
+
+      // box3.addEventListener('click', function (e) {
+      //   console.log('box3')
+      // })
+
+      // 不是所有的事件都能冒泡：blur、focus、load、unload、onmouseenter、onmouseleave
+      // 这些事件都不会往父元素传递 event，也就是说，发生了不代表冒泡
+      // box1.addEventListener('mouseenter', function (e) {
+      //   console.log('box1', e.target)
+      // })
+
+      // box2.addEventListener('mouseenter', function (e) {
+      //   console.log('box2', e.target)
+      // })
+
+      // 检查是否会冒泡
+      // console.log(e.bubbles) // 可查看是否能够冒泡
+
+      // 阻止冒泡
+      // w3c            event.stopPropagation()
+      // ie10 以下      event.cancelBubble = true
+      // 兼容代码如下：
+      function stopPropagation(e) {
+        if (e && e.stopPropagation) {
+          event.stopPropagation()
+        } else if (event.hasOwnProperty('cancelable')) {
+          event.cancelable = true
+        }
+      }
+
+      box1.addEventListener('click', function (e) {
+        console.log('box1')
+      })
+
+      box2.addEventListener('click', function (e) {
+        console.log('box2')
+      })
+
+      box3.addEventListener('click', function (e) {
+        e = e || window.event
+        console.log('box3')
+        stopPropagation(e)
+      })
+    </script>
+  </body>
+</html>

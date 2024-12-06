@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>history.length: <span id="history-length"></span></div>
+    <button class="back">回退</button>
+    <button class="forward">前进</button>
+    <button class="refresh">刷新</button>
+    <script>
+      // History对象：可以用来操作浏览器的向前或向后翻页
+      // history.length: 获取浏览器历史列表中的 url 数量。注意，只是统计当次的数量，如果浏览器关了，数量会重置为1
+      let historyLength = document.querySelector('#history-length')
+      historyLength.innerHTML = history.length
+      // history.back() 用来回退到上一个页面，作用和浏览器的「回退按钮」一样
+      let backBtn = document.querySelector('.back')
+      backBtn.onclick = function () {
+        history.back()
+      }
+      // history.forward() 用来回到下一个页面，作用和浏览器的「前进按钮」一样
+      let forwardBtn = document.querySelector('.forward')
+      forwardBtn.onclick = function () {
+        history.forward()
+      }
+      // history.go( int n) 跳转到第 n 个页面，如果 n 为负数，则跳转到第 n 个页面之前
+      // history.go( -1 ) 等同于 history.back()
+      // history.go( 1 ) 等同于 history.forward()
+      // history.go( 0 ) 跳转到当前页面
+      let refreshBtn = document.querySelector('.refresh')
+      refreshBtn.onclick = function () {
+        history.go(0)
+      }
+      // history.go( 2 ) 跳转到第 3 个页面
+      // history.go( -2 ) 跳转到第1 个页面
+    </script>
+  </body>
+</html>
