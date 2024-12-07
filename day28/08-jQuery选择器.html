@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <style>
+      body {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div>纯标签</div>
+    <div class="box">带类标签</div>
+    <div id="box">带ID标签</div>
+    <div class="box">带类标签</div>
+    <div>纯标签</div>
+    <br style="clear: both;">
+    <ul>
+      <li>111</li>
+      <li>222</li>
+      <li>333</li>
+      <ol>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+      </ol>
+    </ul>
+
+    <ul class="ex1">
+      <li>gupingan，永不止步</li>
+      <li class="box">gupingan，永不止步</li>
+      <span>gupingan，永不止步</span>
+      <li class="box">gupingan，永不止步</li>
+      <i>gupingan，永不止步</i>
+      <li>gupingan，永不止步</li>
+      <a id="box" href="#">gupingan，永不止步</a>
+      <ol>
+          <li>我是ol中的li</li>
+          <li>我是ol中的li</li>
+          <li>我是ol中的li</li>
+          <li>我是ol中的li</li>
+      </ol>
+  </ul>
+
+    <script>
+      // 基本选择器
+      // 1. id $('#demo')
+      // 2. 类名 $('.item')
+      // 3. 标签 $('div')
+      // 4. 所有元素 $('*')  少用或者配合其他选择器使用
+      // 5. 并集 $('div,p,.item')
+      //三种方式获取jquery对象
+      var jqBox1 = $('#box')
+      var jqBox2 = $('.box')
+      var jqBox3 = $('div')
+      //操作标签选择器
+      jqBox3.css('float', 'left')
+      jqBox3.css('width', 100)
+      jqBox3.css('height', 100)
+      jqBox3.css('margin', 10)
+      jqBox3.css('background', 'pink')
+      //操作类选择器(隐式迭代，不用一个一个设置)
+      jqBox2.css('background', 'red')
+      //操作id选择器
+      jqBox1.css('background', 'yellow')
+
+      // 层级选择器
+      // 1. 后代 $('div p')
+      // 2. 子代 $('div>p')
+      // 3. 后面紧邻 $('div+p')
+      // 4. 后面兄弟(包含了自身) $('div~p')
+      let jqLi = $('ul li')
+      jqLi.css('margin', 5)
+      jqLi.css('background', 'pink')
+
+      let jqUlLi = $('ul>li')
+      jqUlLi.css('background', 'red')
+
+      // $('.box~div').css('background', 'yellow')
+
+      // 基本过滤选择器
+      // 1. :eq(index) $('div:eq(2)')
+      // 2. :gt(index) $('div:gt(2)')
+      // 3. :lt(index) $('div:lt(2)')
+      // 4. :odd $('div:odd')
+      // 5. :even $('div:even')
+      // 6. :first $('div:first')
+      // 7. :last $(div:last'')
+      // 8. :not(selector) $('div:not(.box)')
+      let jqOlLi1 = $('ul li:eq(0)')
+      jqOlLi1.css('background-color', 'blue')
+      let jqOlLiFirst = $('ul li:first')
+      jqOlLiFirst.css('color', 'white')
+
+      // 属性选择器
+      // 1. [attr] $('input[type]') 具备这个属性
+      // 2. [attr='value'] $('input[type="button"]') 等于
+      // 3. [attr!='value'] $('input[type!="button"]') 不等于
+      // 4. [attr^='value'] $('input[name^="user"]')  开头包含
+      // 5. [attr$='value'] $('input[name$="name"]')  结尾包含
+      // 6. [attr*='value'] $('input[name*="name"]')  其中包含
+      // 7. [attr][title='我']  多属性筛选
+
+      // 筛选选择器
+      // 1. find(selector)   $('div').find('p')  查找指定元素的符合规则的所有后代元素
+      // 2. chidren(selector)  $('div').children('p')  查找指定元素的符合规则的子代元素
+      // 3. siblings(selector) $('div').siblings('p')  查找所有符合规则的兄弟元素（不包括自己）
+      // 4. parent(selector) $('div').parent('ul')  查找指定元素符合规则的的父元素
+      // 5. eq(index)   $('li').eq(2)  查找指定元素中的指定索引的元素
+      // 6. next(selector)  $('li').next('ol')  查找指定元素之后的兄弟元素（不包括自己）
+      // 7. nextAll(selector)  $('li').nextAll('ol')  查找指定元素之后的所有兄弟元素（不包括自己）
+      // 8. prev(selector)  $('li').prev('ol')  查找指定元素之前的兄弟元素（不包括自己）
+      // 9. prevAll(selector)  $('li').prevAll('ol')  查找指定元素之前的所有兄弟元素（不包括自己）
+      let jqEx1 = $('.ex1')
+      jqEx1.find('li').css('background', 'pink')
+      jqEx1.children('li').css('background', 'green')
+      jqEx1.children().eq(0).next('li').css('background', 'yellow')
+      jqEx1.children().eq(0).next().siblings().css('border', '1px solid blue')
+      console.log(jqEx1.children().eq(0).parent())
+    </script>
+  </body>
+</html>

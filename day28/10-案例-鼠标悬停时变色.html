@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <ul>
+      <li>无畏无惧，必定冲破一切困难</li>
+      <li>无畏无惧，必定冲破一切困难</li>
+      <li>无畏无惧，必定冲破一切困难</li>
+      <li>无畏无惧，必定冲破一切困难</li>
+      <li>无畏无惧，必定冲破一切困难</li>
+      <li>无畏无惧，必定冲破一切困难</li>
+      <li>无畏无惧，必定冲破一切困难</li>
+    </ul>
+    <script>
+      // 隔行变色
+      $('ul>li:odd').css('backgroundColor', '#aaa')
+      $('ul>li:even').css('backgroundColor', '#eee')
+      // 方法1
+      let color = ''
+      $('ul>li').hover(
+        function () {
+          color = $(this).css('backgroundColor')
+          $(this).css('backgroundColor', 'red')
+        },
+        function () {
+          $(this).css('backgroundColor', color)
+        }
+      )
+
+      // 方法2
+      // let color = ''
+      // $('ul>li').mouseenter(function () {
+      //   color = $(this).css('backgroundColor')
+      //   $(this).css('backgroundColor', 'red')
+      // })
+      // $('ul>li').mouseleave(function () {
+      //   $(this).css('backgroundColor', color)
+      // })
+    </script>
+  </body>
+</html>

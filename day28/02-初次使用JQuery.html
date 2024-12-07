@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      height: 100px;
+      background-color: gold;
+      margin: 10px;
+      display: none;
+    }
+  </style>
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script>
+    // window.onload = function () {
+    //   let btn = document.getElementsByTagName('button')[0]
+    //   let boxes = document.getElementsByClassName('box')
+    //   btn.onclick = function () {
+    //     for (let i = 0; i < boxes.length; i++) {
+    //       boxes[i].style.display = 'block'
+    //       boxes[i].innerHTML = '第' + (i + 1) + '个DIV盒子'
+    //     }
+    //   }
+    // }
+
+    // JQuery
+    $(document).ready(function () {
+      let btn = $('button')
+      let boxes = $('.box')
+      btn.click(function () {
+        boxes.show(1000).html(function (index) {
+          return '第' + (index + 1) + '个DIV盒子'
+        })
+      })
+    })
+
+    // JQuery 两大特点
+    // 链式编程 比如 .show() 和 .html() 可以连用 .show().html() 原理就是 return this 返回自身
+    // 隐式迭代 隐式对应的是显式，在方法的内部会为匹配到的所有元素进行循环遍历，执行响应的方法，而不需要手动循环
+  </script>
+</head>
+<body>
+  <button>显示五个DIV盒子与设置内容</button>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</body>
+</html>

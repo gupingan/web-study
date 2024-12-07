@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/jquery-1.12.4.min.js"></script>
+  <script>
+    // 需要等文本图片等加载完毕后再执行
+    // window.onload = function () {
+    //   alert(1)
+    // }
+
+    // JQuery 文档加载、图片不用加载完毕就执行
+    // $(document).ready(function () {
+    //   alert(1)
+    // })
+    // 上方的简洁版
+    // $(function() {
+    //   alert(1)
+    // })
+    // 文档、图片加载完毕才执行
+    // $(window).ready(function () {
+    //   alert(1)
+    // })
+
+    // 区别1
+    // JS 的入口只能出现一次，出现多次会覆盖
+    // JQuery 可以多次出现，不存在事件覆盖
+    // 区别2
+    // 执行时机不同
+    // JS的入口函数在所有文件资源加载完成后才执行，包括 页面文档 外部的JS文件 外部的CSS文件 图片等资源
+    // JQuery 的入口函数是在文档加载完成后执行，文档加载完成指的是 DOM 树加载完成，可以操作 DOM 时，不用等其他资源加载完成
+
+    // 文档加载的顺序
+    // 从上往下、边解析变执行
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

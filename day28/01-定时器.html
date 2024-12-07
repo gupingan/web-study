@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .l-ad, .r-ad {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+
+      .l-ad {
+        left: 10px;
+      }
+
+      .r-ad {
+        right: 10px;
+      }
+
+      .l-ad img, .r-ad img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="l-ad"><img src="" alt="左边广告" /></div>
+    <div class="r-ad"><img src="" alt="右边广告" /></div>
+    <script>
+      // setInterval()：循环调用。将一段代码，每隔一段时间执行一次。（循环执行）
+      // setTimeout()：延时调用。将一段代码，等待一段时间之后再执行。（只执行一次）
+
+      // setInterval(fn, time)  回调函数, 间隔时间(ms)  返回 Number 类型(定时器标识)
+      let num = 0
+      let timer1 = setInterval(() => {
+        num++
+        console.log(num)
+        if (num >= 5) clearInterval(timer1)
+      }, 1000)
+
+      // setTimeout(fn, time)  回调函数, 间隔时间(ms) 返回 Number 类型(定时器标识)
+      let timer2 = setTimeout(() => {
+        console.log('3s后执行')
+      }, 3000)
+
+      // clearTimeout(timer2)
+      // 定时器不会阻塞执行
+
+      // 案例：广告关闭
+      let leftAd = document.querySelector('.l-ad')
+      let rightAd = document.querySelector('.r-ad')
+      let timer3 = setTimeout(() => {
+        leftAd.style.display = 'none'
+        rightAd.style.display = 'none'
+      }, 5000)
+    </script>
+  </body>
+</html>

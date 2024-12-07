@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <div class="box"></div>
+    <div id="box"></div>
+    <div class="box"></div>
+    <div></div>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script>
+      let idBox = document.getElementById('box')
+      let clsBox = document.getElementsByClassName('box')
+      let tagBox = document.getElementsByTagName('div')
+      console.log('原生', idBox)
+      console.log('原生', clsBox)
+      console.log('原生', tagBox)
+      // 通过 jQuery 获取的元素是一个数组，数组中包含着原生JS中的DOM对象
+      let box1 = $('#box')
+      let box2 = $('.box')
+      let box3 = $('div')
+      console.log('jQuery', box1)
+      console.log('jQuery', box2)
+      console.log('jQuery', box3)
+      // jQuery 对象还有 css 方法，但是原生JS没有
+      box1.css({'width': '200px', 'height': '200px', 'background-color': 'red'})
+      // jQuery 把DOM对象包装，并具有更多的方法
+
+      // 两者的转换
+      // DOM -> jQuery
+      let jqIdBox = $(idBox)
+      console.log('idBox -> jqIdBox', jqIdBox)
+      // jQuery -> DOM
+      let domIdBox = jqIdBox[0]
+      console.log('jqIdBox -> domBox', domIdBox)
+      let domClsBox = box1.get(0)
+      console.log('box1[0] -> domClsBox', domClsBox)
+    </script>
+  </body>
+</html>
