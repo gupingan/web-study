@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>右下角广告弹窗</title>
+    <style>
+      /* 广告弹窗容器 */
+      .ad-popup {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+        display: none;
+        flex-direction: column;
+      }
+
+      /* 广告内容 */
+      .ad-content {
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* 关闭按钮 */
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        color: #999;
+      }
+
+      /* 关闭按钮悬停效果 */
+      .close-btn:hover {
+        color: #333;
+      }
+
+      /* 广告标题 */
+      .ad-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      /* 广告描述 */
+      .ad-description {
+        font-size: 14px;
+        color: #666;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <!-- 广告弹窗 -->
+    <div class="ad-popup">
+      <!-- 关闭按钮 -->
+      <span class="close-btn">&times;</span>
+      <!-- 广告内容 -->
+      <div class="ad-content">
+        <div class="ad-title">特别优惠</div>
+        <div class="ad-description">立即注册，享受限时折扣！</div>
+      </div>
+    </div>
+    <script>
+      $('.ad-popup').slideDown(1000).children('.close-btn').click(function () {
+        $(this).parent().stop().slideUp(600)
+      })
+    </script>
+  </body>
+</html>

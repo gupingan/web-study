@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      button {
+        padding: 10px;
+        margin-left: 10px;
+      }
+
+      div {
+        width: 100%;
+        height: 150px;
+        margin: 0 auto;
+        display: none;
+      }
+
+      hr {
+        margin: 10px 0;
+      }
+
+      .box1 {
+        background-color: palegreen;
+      }
+
+      .box2 {
+        background-color: rosybrown;
+      }
+
+      .box3 {
+        background-color: lightskyblue;
+      }
+
+      .box4 {
+        position: relative;
+        background-color: chocolate;
+        top: 0;
+        display: block;
+      }
+
+      .box5 {
+        background-color: darkslateblue;
+      }
+    </style>
+  </head>
+  <body>
+    <hr />
+    <button class="btn1">show()显示box1</button>
+    <button class="btn2">show(1s)显示box1</button>
+    <button class="btn3">hide()隐藏box1</button>
+    <button class="btn4">toggle(fast)切换box1</button>
+    <div class="box1"></div>
+    <hr />
+    <button class="btn5">slideDown(normal)显示box2</button>
+    <button class="btn6">slideUp(fast)隐藏box2</button>
+    <button class="btn7">slideToggle()切换box2</button>
+    <div class="box2"></div>
+    <hr />
+    <button class="btn8">fadeIn(2000)显示box3</button>
+    <button class="btn9">fadeOut(slow)隐藏box3</button>
+    <button class="btn10">fadeToggle()切换box3</button>
+    <div class="box3"></div>
+    <hr />
+    <button class="btn11">自定义：宽高、移动、圆角</button>
+    <div class="box4"></div>
+    <hr />
+    <button class="btn12">测试box5</button>
+    <button class="btn13">stop(true, false)</button>
+    <button class="btn14">stop(true, true)</button>
+    <button class="btn15">stop(false, false)</button>
+    <button class="btn16">stop(false, true)</button>
+    <button class="btn17">隐藏box5</button>
+    <div class="box5"></div>
+    <hr />
+    <script>
+      // 显示动画 -----------------------------------------------------
+      // show 直接显示 修改 display:none
+      $('.btn1').click(function () {
+        $('.box1').show()
+      })
+
+      // show 动画显示 宽高、透明度、display属性
+      $('.btn2').click(function () {
+        $('.box1').show(1000, function () {
+          console.log('显示box1完成') // 动画执行结束后，执行回调函数
+        }) // 1s显示
+        // slow 慢 600ms   normal 400ms  fast 200ms
+      })
+      // 隐藏动画 -----------------------------------------------------
+      // hide() 同理类似的
+      $('.btn3').click(function () {
+        $('.box1').hide()
+      })
+
+      // toggle show和hide的来回切换
+      $('.btn4').click(function () {
+        $('.box1').toggle('fast')
+      })
+
+      // 滑入滑出动画 -----------------------------------------------------
+      // 滑入 $(selector).slideDown(duration, callback)  下拉动画，显示元素
+      // 滑出 $(selector).slideUp(duration, callback)  上拉动画，隐藏元素
+      // duration 默认值 400ms 也就是 normal
+      $('.btn5').click(function () {
+        $('.box2').slideDown('normal', function () {
+          console.log('显示box2完成')
+        })
+      })
+
+      $('.btn6').click(function () {
+        $('.box2').slideUp('fast')
+      })
+
+      // slideToggle() 来回切换如上动作
+      $('.btn7').click(function () {
+        $('.box2').slideToggle()
+      })
+
+      // 淡入淡出动画 -----------------------------------------------------
+      // 淡入 $(selector).fadeIn(duration, callback)  元素以淡淡的方式进入视线
+      // 淡出 $(selector).fadeOut(duration, callback)  元素以渐渐消失的方式隐藏
+      // 同样的，也有 fadeToggle() 实现来回切换
+      // 通过改变透明度，切换匹配元素的显示和隐藏状态
+      $('.btn8').click(function () {
+        $('.box3').fadeIn(2000, function () {
+          console.log('显示box3完成')
+        })
+      })
+
+      $('.btn9').click(function () {
+        $('.box3').fadeOut('slow')
+      })
+
+      $('.btn10').click(function () {
+        $('.box3').fadeToggle()
+      })
+
+      // 自定义动画 -----------------------------------------------------
+      // $(selector).animate({params}, speed, callback)
+      // {params}：要执行动画的CSS属性（必选）
+      // speed：执行动画时长（可选）
+      // callback：动画执行完后，立即执行的回调函数（可选）
+      $('.btn11').click(function () {
+        const json1 = {
+          width: '50%',
+          height: '100px',
+          top: '100px',
+          'border-radius': '12px',
+        }
+        const json2 = {
+          width: '100%',
+          height: '150px',
+          top: '0',
+          'border-radius': '0px',
+        }
+        $('.box4').animate(json1, 1000, function () {
+          $('.box4').animate(json2, 1000, function () {
+            console.log('自定义动画完成')
+          })
+        })
+      })
+      // 停止动画 -----------------------------------------------------
+      // $(selector).stop(clearQueue, jumpToEnd)  停止当前动画
+      // clearQueue：默认false，是否需要清除动画队列，清除后，后续的动画都不会执行
+      // jumpToEnd：可选参数，默认false，当前动画是否直接跳到终点
+      $('.btn12').click(function () {
+        $('.box5').slideDown(3000) // 动画1  添加到动画队列
+        $('.box5').slideUp(3000)  // 动画2  添加到动画队列
+      })
+      // 假设是在动画1运行中stop
+      $('.btn13').click(function () {
+        $('.box5').stop(true, false)  // 队列清空，动画1停止，不跳到终点，动画2不执行
+        // 停止当前动画，清除队列，不跳到终点
+      })
+      $('.btn14').click(function () {
+        $('.box5').stop(true, true)  // 队列清空，动画1停止，跳到动画1的终点，动画2不执行
+        // 停止当前动画，清除队列，跳到终点
+      })
+      $('.btn15').click(function () {
+        $('.box5').stop(false, false)  // 队列不清空，动画1停止，从动画1当前位置 动画2正常执行
+        // 停止当前动画，不清除队列，不跳到终点
+      })
+      $('.btn16').click(function () {
+        $('.box5').stop(false, true)  // 队列不清空，动画1停止，跳到动画1的终点，动画2正常执行
+        // 停止当前动画，不清除队列，跳到终点
+      })
+      $('.btn17').click(function () {
+        $('.box5').hide()
+      })
+      // stop总结：第一个参数如果设置为 true，该元素将停止所有动画，如果为 false，后续其他动画会正常执行
+      // 第二个参数如果设置为 true，当前动画直接到达终点，不设置为 false，就停留在该在的位置
+      // 通常使用最多的就是 默认情况，直接调用 stop()
+    </script>
+  </body>
+</html>

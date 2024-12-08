@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <style>
+      .nice {
+        height: 100px !important;
+        width: 200px !important;
+        background-color: aquamarine !important;
+      }
+
+      .box3 {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1 test"></div>
+    <div class="box2"></div>
+    <button class="btn3">切换box3类</button>
+    <div class="box3"></div>
+    <script>
+      // 设置单个样式
+      $('.box1').css('background-color', 'red')
+      // 设置多个样式
+      $('.box1').css({
+        width: '100px',
+        height: '100px',
+        border: '1px solid #000',
+      })
+      // 获取样式
+      console.log($('.box1').css('background-color'))
+      console.log($('.box1').css('border'))
+
+      // 判断是否有类
+      console.log('box1是否有类名 test', $('.box1').hasClass('test'))
+      // 移除类
+      $('.box1').removeClass('test')
+      console.log('box1是否有类名 test', $('.box1').hasClass('test'))
+      // 添加类
+      $('.box2').addClass('nice')
+      // 获取类
+      console.log($('.box2').attr('class'))
+      // 切换类
+      $('.btn3').click(function () {
+        $('.box3').toggleClass('nice')
+        console.log('box3是否有类名 nice', $('.box3').hasClass('nice'))
+      })
+
+      // 操作的样式非常少，那么可以通过.css()实现
+      // 操作的样式很多，建议通过使用类 class 的方式来操作
+    </script>
+  </body>
+</html>

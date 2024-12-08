@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #ccc;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .wrap {
+        width: 330px;
+        height: 30px;
+        margin: 100px auto 0;
+        padding-left: 10px;
+        background-color: pink;
+      }
+
+      .wrap li {
+        background-color: white;
+      }
+
+      .wrap > ul > li {
+        position: relative;
+        margin-right: 10px;
+        float: left;
+      }
+
+      .wrap a {
+        display: block;
+        height: 100%;
+        min-width: 100px;
+        text-decoration: none;
+        color: #000;
+        white-space: nowrap;
+        text-align: center;
+        line-height: 30px;
+      }
+
+      .wrap li ul {
+        position: absolute;
+        top: 100%;
+        display: none;
+      }
+      .wrap li ul > li {
+        position: relative;
+      }
+      .wrap li ul > li > ul {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        display: none;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <ul>
+        <li>
+          <a href="javascript:void(0);">一级菜单</a>
+          <ul>
+            <li><a href="javascript:void(0);">登录</a></li>
+            <li><a href="javascript:void(0);">注册</a></li>
+            <li><a href="javascript:void(0);">退出</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);">一级菜单</a>
+          <ul>
+            <li><a href="javascript:void(0);">修改密码</a></li>
+            <li><a href="javascript:void(0);">修改昵称</a></li>
+            <li><a href="javascript:void(0);">修改头像</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);">一级菜单</a>
+          <ul>
+            <li><a href="javascript:void(0);">打印资料</a></li>
+            <li>
+              <a href="javascript:void(0);">查看邮箱</a>
+              <ul>
+                <li>
+                  <a href="javascript:void(0);">主邮箱：g3329202@gmail.com</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">辅邮箱：gupingan@foxmail.com</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:void(0);">反馈</a>
+              <ul>
+                <li><a href="javascript:void(0);">QQ</a></li>
+                <li><a href="javascript:void(0);">微信</a></li>
+                <li><a href="javascript:void(0);">邮箱</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <script>
+      let lis = $('.wrap ul>li')
+      lis.mouseenter(function () {
+        console.log('鼠标进入', $(this))
+        $(this).children('ul').stop().slideDown()
+      })
+
+      lis.mouseleave(function () {
+        $(this).children('ul').stop().slideUp()
+      })
+    </script>
+  </body>
+</html>

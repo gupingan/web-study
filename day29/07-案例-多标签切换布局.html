@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "微软雅黑";
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .tab {
+        display: flex;
+        list-style: none;
+      }
+
+      .tab .active::before {
+        content: '';
+        width: 90px;
+        height: 2px;
+        background-color: rgb(255, 80, 0);
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+
+      .tab-item {
+        position: relative;
+        display: flex;
+        font-size: 16px;
+        height: 40px;
+        width: 120px;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        cursor: pointer;
+      }
+
+      .tab-item img {
+        height: 24px;
+        width: 24px;
+        object-fit: fill;
+      }
+
+      .products {
+        padding: 20px;
+      }
+
+      .products img {
+        width: 560px;
+      }
+
+      .products .main {
+        display: none;
+      }
+
+      .products .selected {
+        display: block;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <ul class="tab">
+        <li class="tab-item active">
+          <img src="images/01.png" alt="" /><span>猜你喜欢</span>
+        </li>
+        <li class="tab-item">
+          <img src="images/02.png" alt="" /><span>运动户外</span>
+        </li>
+        <li class="tab-item">
+          <img src="images/03.png" alt="" /><span>馋嘴零食</span>
+        </li>
+        <li class="tab-item">
+          <img src="images/04.png" alt="" /><span>潮电数码</span>
+        </li>
+        <li class="tab-item">
+          <img src="images/05.png" alt="" /><span>服饰时尚</span>
+        </li>
+      </ul>
+      <div class="products">
+        <div class="main selected">
+          <a href="###"><img src="images/猜你喜欢.png" alt="" /></a>
+        </div>
+        <div class="main">
+          <a href="###"><img src="images/运动户外.png" alt="" /></a>
+        </div>
+        <div class="main">
+          <a href="###"><img src="images/馋嘴零食.png" alt="" /></a>
+        </div>
+        <div class="main">
+          <a href="###"><img src="images/潮电数码.png" alt="" /></a>
+        </div>
+        <div class="main">
+          <a href="###"><img src="images/服饰时尚.png" alt="" /></a>
+        </div>
+      </div>
+    </div>
+    <script>
+      $('.tab').children('.tab-item').click(function() {
+        $(this).addClass('active').siblings().removeClass('active')
+        $('.products').children().eq($(this).index()).addClass('selected').siblings().removeClass('selected')
+      })
+    </script>
+  </body>
+</html>

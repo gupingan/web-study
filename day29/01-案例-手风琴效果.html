@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @font-face {
+        font-family: 'iconfont';
+        src: url('./font_irpjhxqjvg/iconfont.ttf?t=1733657451287')
+          format('truetype');
+      }
+
+      .shrink::after {
+        font-family: 'iconfont';
+        content: '\e607';
+        margin-left: 10px;
+      }
+
+      .expand::after {
+        content: '\e606';
+        font-family: 'iconfont';
+        margin-left: 10px;
+      }
+
+      body {
+        background-color: rgb(22, 22, 26);
+      }
+
+      main {
+        background-color: rgb(35, 36, 41);
+        width: max-content;
+        min-height: 300px;
+        display: inline-block;
+        padding: 20px;
+        font-size: 14px;
+        border-radius: 3px;
+      }
+
+      .collapse .item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(249, 249, 249, 0.6);
+      }
+
+      .collapse .item .head {
+        color: rgba(249, 249, 249, 1);
+        font-weight: bold;
+        padding: 8px;
+        margin: 4px;
+        user-select: none;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+
+      .collapse .item .head:hover {
+        background-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .collapse .item .head:active {
+        background-color: rgba(255, 255, 255, 0.16);
+      }
+
+      .collapse .item .main {
+        color: #b2b2b4;
+        padding: 4px 16px 8px;
+        display: none;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <h3 style="color: white">仿 Semi-Design 框架</h3>
+    <main>
+      <div class="collapse">
+        <div class="item">
+          <div class="head shrink">This is panel header 1</div>
+          <div class="main">三十年河东</div>
+        </div>
+        <div class="item">
+          <div class="head shrink">This is panel header 2</div>
+          <div class="main">三十年河西</div>
+        </div>
+        <div class="item">
+          <div class="head shrink">This is panel header 3</div>
+          <div class="main">
+            <div class="collapse">
+              <div class="item">
+                <div class="head shrink">子 header 1</div>
+                <div class="main">莫欺少年穷</div>
+              </div>
+              <div class="item">
+                <div class="head shrink">子 header 2</div>
+                <div class="main">莫欺中年穷</div>
+              </div>
+              <div class="item">
+                <div class="head shrink">子 header 3</div>
+                <div class="main">莫欺中年穷</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      // 展开折叠面板中的ITEM
+      function expandCollapseItem(jqHead, jqMain) {
+        // jqMain.show()
+        jqMain.slideDown()
+        jqHead.removeClass('shrink').addClass('expand')
+      }
+
+      // 收缩折叠面板中的ITEM
+      function shrinkCollapseItem(jqHead, jqMain) {
+        // jqMain.hide()
+        jqMain.slideUp()
+        jqHead.removeClass('expand').addClass('shrink')
+      }
+
+      $('.collapse .item>.head').click(function () {
+        const $head = $(this)
+        const $main = $head.siblings('.main')
+        const $siblings = $head.parent().siblings('.item')
+
+        if ($head.hasClass('expand')) {
+          shrinkCollapseItem($head, $main)
+        } else {
+          shrinkCollapseItem($siblings.find('.head'), $siblings.find('.main'))
+          expandCollapseItem($head, $main)
+        }
+      })
+    </script>
+  </body>
+</html>
