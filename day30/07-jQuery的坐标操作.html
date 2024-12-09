@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        height: 100vh;
+      }
+
+      div[class^='box'] {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        text-align: center;
+        line-height: 100px;
+        font-weight: bold;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .box1 {
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        z-index: 99;
+      }
+
+      .box2 {
+        background-color: aqua !important;
+      }
+
+      .box3 {
+        position: absolute;
+        width: 400px !important;
+        height: 200px !important;
+        border: 1px solid #777;
+        background-color: #fff !important;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .box3-1 {
+        position: relative;
+        top: 10px;
+        left: 40px;
+      }
+
+      .box4 {
+        position: absolute;
+        top: 100px;
+        left: 0px;
+        height: 400px !important;
+        background-color: orange !important;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box3"><div class="box3-1">box3-1</div></div>
+    <div class="box4">
+      box4
+      <p>p1</p>
+      <p>p1</p>
+      <p>p1</p>
+      <p>p1</p>
+      <p>p1</p>
+    </div>
+    <script>
+      // offset()方法
+      // $(selector).offset(); 返回：{left:num, top:num}。返回值是相对于document的位置
+      // $(selector).offset({left:100, top: 150}); 表示设置。参数建议使用 number 数值类型
+      // 设置offset后，如果元素没有定位(默认值：static)，则被修改为relative
+      $('.box1').click(function () {
+        console.log($(this).offset())
+        $(this).offset({ left: 200, top: 200 })
+      })
+      // offset(function(index,coords))
+      // index - 可选。接受选择器的 index 位置
+      // coords - 可选。接受选择器的当前坐标
+      $('.box2').click(function () {
+        $(this).offset(function (index, coords) {
+          console.log(coords)
+          return { left: coords.left + 10, top: coords.top }
+        })
+      })
+
+      // position()方法
+      // $(selector).position(); 只能获取不能设置，获取相对最近带有定位父元素的位置 {left:num, top:num}
+      $('.box3-1').click(function () {
+        console.log($(this).position())
+      })
+
+      // scrollTop()方法 获取或者设置元素被卷去的头部的距离
+      // $(selector).scrollTop(); 表示获取偏移
+      // $(selector).scrollTop(100); 表示设置偏移，参数为数值类型
+      $('.box4').scroll(function () {
+        console.log($(this).scrollTop())
+      })
+
+      $('.box4').click(function () {
+        let centerHeight = ($(this).prop('scrollHeight') - $(this).height()) / 2
+        $(this).scrollTop(centerHeight)
+      })
+
+      // scrollLeft()方法 获取或者设置元素水平方向滚动的位置
+      // $(selector).scrollLeft(); 表示获取偏移
+      // $(selector).scrollLeft(100); 表示设置偏移，参数为数值类型
+    </script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <style>
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 5px;
+        text-align: center;
+      }
+
+      tr th {
+        min-width: 120px;
+      }
+
+      tr th:first-child,
+      tr th:nth-child(2) {
+        min-width: auto;
+      }
+
+      tr th:first-child,
+      tr td:first-child {
+        padding: 0;
+      }
+
+      tr label {
+        width: 100%;
+        height: 100%;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>
+          <label for="cball">
+            <input type="checkbox" name="" id="cball" />
+          </label>
+        </th>
+        <th>序号</th>
+        <th>书名</th>
+        <th>作者</th>
+      </tr>
+    </table>
+    <button id="btn-fall">反选</button>
+    <script>
+      let data = [
+        {
+          name: 'JavaScript从入门到精通',
+          author: '老马',
+        },
+        {
+          name: 'Java SE 从入门到放弃',
+          author: '小马',
+        },
+        {
+          name: 'Python 从入门到入狱',
+          author: '逆向王',
+        },
+        {
+          name: 'PHP 是世界上最好的语言.js',
+          author: '傻哥',
+        },
+      ]
+      data.forEach((item, index) => {
+        $('table').append(
+          `<tr><td><label class="cb${index}"><input type="checkbox" name="select-index" id="cb${index}" /></label></td><td>${
+            index + 1
+          }</td><td>《${item.name}》</td><td>${item.author}</td></tr>`
+        )
+      })
+      $('#cball').click(function () {
+        let checked = $(this).prop('checked')
+        // 获取所有的复选框进行状态跟随
+        $('td input[type="checkbox"][id^="cb"]').prop('checked', checked)
+      })
+
+      $('#btn-fall').click(function () {
+        let $checkedEl = $('td input[type="checkbox"][id^="cb"]:checked')
+        $('td input[type="checkbox"][id^="cb"]').prop('checked', true)
+        let unCheckedCount = $checkedEl.prop('checked', false).length
+        if (unCheckedCount === 0) {
+          // 没有不勾选的选择框
+          $('#cball').prop({ checked: true, indeterminate: false })
+        } else if (unCheckedCount === data.length) {
+          // 所有选择框未勾选
+          $('#cball').prop({ checked: false, indeterminate: false })
+        } else {
+          // 部分勾选，部分未勾选
+          $('#cball').prop({ checked: false, indeterminate: true })
+        }
+      })
+
+      $('td input[type="checkbox"][id^="cb"]').change(function (e) {
+        let checked = $(this).prop('checked')
+        let checkedCount = $(
+          'td input[type="checkbox"][id^="cb"]:checked'
+        ).length
+        if (checkedCount === data.length) {
+          // 所有的框被勾选
+          $('#cball').prop({ checked: true, indeterminate: false })
+        } else if (checkedCount === 0) {
+          // 所有的框都没有被勾选
+          $('#cball').prop({ checked: false, indeterminate: false })
+        } else {
+          // 部分勾选，部分未勾选
+          $('#cball').prop({ checked: false, indeterminate: true })
+        }
+      })
+    </script>
+  </body>
+</html>

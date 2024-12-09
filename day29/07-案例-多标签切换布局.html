@@ -11,24 +11,26 @@
       }
 
       body {
-        font-family: "微软雅黑";
+        font-family: '微软雅黑';
       }
 
       .wrapper {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
+        max-width: 880px;
+        margin: 20px auto;
       }
 
       .tab {
         display: flex;
+        flex-wrap: wrap;
         list-style: none;
+        border: 1px solid #ccc;
+        border-bottom: none;
       }
 
       .tab .active::before {
         content: '';
-        width: 90px;
-        height: 2px;
+        width: 100px;
+        height: 3px;
         background-color: rgb(255, 80, 0);
         position: absolute;
         bottom: 0;
@@ -48,6 +50,17 @@
         cursor: pointer;
       }
 
+      .tab-item:not(:first-child)::after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 50%;
+        background-color: #ccc;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+      }
+
       .tab-item img {
         height: 24px;
         width: 24px;
@@ -56,18 +69,25 @@
 
       .products {
         padding: 20px;
-      }
-
-      .products img {
-        width: 560px;
+        border: 1px solid #ccc;
       }
 
       .products .main {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 620px;
         display: none;
       }
 
+      .products img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+      }
+
       .products .selected {
-        display: block;
+        display: flex;
       }
     </style>
     <script src="js/jquery-1.12.4.min.js"></script>
@@ -93,27 +113,34 @@
       </ul>
       <div class="products">
         <div class="main selected">
-          <a href="###"><img src="images/猜你喜欢.png" alt="" /></a>
+          <img src="images/猜你喜欢.png" alt="" />
         </div>
         <div class="main">
-          <a href="###"><img src="images/运动户外.png" alt="" /></a>
+          <img src="images/运动户外.png" alt="" />
         </div>
         <div class="main">
-          <a href="###"><img src="images/馋嘴零食.png" alt="" /></a>
+          <img src="images/馋嘴零食.png" alt="" />
         </div>
         <div class="main">
-          <a href="###"><img src="images/潮电数码.png" alt="" /></a>
+          <img src="images/潮电数码.png" alt="" />
         </div>
         <div class="main">
-          <a href="###"><img src="images/服饰时尚.png" alt="" /></a>
+          <img src="images/服饰时尚.png" alt="" />
         </div>
       </div>
     </div>
     <script>
-      $('.tab').children('.tab-item').click(function() {
-        $(this).addClass('active').siblings().removeClass('active')
-        $('.products').children().eq($(this).index()).addClass('selected').siblings().removeClass('selected')
-      })
+      $('.tab')
+        .children('.tab-item')
+        .click(function () {
+          $(this).addClass('active').siblings().removeClass('active')
+          $('.products')
+            .children()
+            .eq($(this).index())
+            .addClass('selected')
+            .siblings()
+            .removeClass('selected')
+        })
     </script>
   </body>
 </html>

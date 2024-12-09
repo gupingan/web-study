@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input[type='text'] {
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #777;
+        padding: 5px;
+        margin: 0 10px;
+        font-family: '微软雅黑';
+        width: 200px;
+        line-height: 20px;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <input type="text" value="" />
+    <button id="btn1">val()修改</button>
+    <button id="btn2">prop()修改</button>
+    <button id="btn3">attr()修改</button>
+    <div class="box">
+      <li>你好</li>
+    </div>
+    <button id="btn4">设置text</button>
+    <button id="btn5">设置innerHTML</button>
+    <button id="btn6">获取innerHTML</button>
+    <button id="btn7">获取outerHTML</button>
+    <script>
+      // value 获取和设置
+      // val()
+      // prop('value')
+      let $input = $('input[type="text"]')
+      $('#btn1').click(function () {
+        $input.val('小肥羊不许跑')
+        console.log('val函数修改')
+        logValue()
+      })
+
+      $('#btn2').click(function () {
+        $input.prop('value', '让灰太狼大王好好享受你')
+        console.log('prop函数修改')
+        logValue()
+      })
+
+      $('#btn3').click(function () {
+        $input.attr('value', '小肥羊你别跑, 我给你做spa')
+        console.log('attr函数修改')
+        logValue()
+      })
+
+      function logValue() {
+        console.log(' val()获取:', $input.val())
+        console.log('prop()获取:', $input.prop('value'))
+        console.log('attr()获取:', $input.attr('value'))
+      }
+
+      // text 获取和设置
+      // text()
+      $('#btn4').click(function () {
+        $(this).text('<b>我是小肥羊</b>')
+        console.log('text()获取:', $(this).text())
+      })
+
+      // HTML 获取和设置
+      // html()
+      // prop('outerHTML')
+      $('#btn5').click(function () {
+        $('.box').html('我是<b>小肥羊</b>')
+      })
+
+      $('#btn6').click(function () {
+        console.log('html()获取:', $('.box').html())
+      })
+
+      $('#btn7').click(function () {
+        console.log('prop(\'outerHTML\')获取:\n', $('.box').prop('outerHTML'))
+      })
+    </script>
+  </body>
+</html>

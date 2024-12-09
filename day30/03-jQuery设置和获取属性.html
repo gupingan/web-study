@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .aaa {
+        border: 1px solid red;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <button>设置属性</button>
+    <input type="text" class="aaa"/>
+    <input type="checkbox"/>
+    <div class="box"></div>
+    <script>
+      // 设置 HTML 元素属性
+      // $(selector).attr(k, v)
+      // 获取 HTML 元素属性
+      // $(selector).attr(k)
+      // 移除 HTML 元素属性
+      // $(selector).removeAttr(k)
+
+      // 设置 DOM 元素属性
+      // $(selector).prop(k, v)
+      // 获取 DOM 对象属性
+      // $(selector).prop(k)
+      // 移除 DOM 对象属性
+      // $(selector).removeProp(k)
+
+      // k指属性名称 或者 键/值对对象
+      // v指value或者fn，也就是说支持回调 function(index, origin_value)  索引和原先值
+
+      // attr 与 prop 的区别
+      // attr 获取和设置 HTML 属性的值，prop 用于获取和设置 DOM 属性的值
+      // 对于动态属性（如 checked、selected、value、disabled、nodeName、tagName、outerHTML 等），建议使用 prop 相关方法
+      // 对于静态属性（如 id、class、value(能读) 等一些需要呈现在 HTML 标签属性中的属性），建议使用 attr 相关方法
+      // 少部分呈现在标签但是能用prop访问的，只是刚好封装了这个属性，所以还是上方的原则为准
+      // 类似于DOM操作中提到的 Obj.attr 和 set/getAttribute() 这两种方式
+
+      $('button').click(function() {
+        $('input[type="text"]').attr('class', '')  // 红边框会消失，类似 removeClass()
+
+        $('input[type="text"]').prop('title1', '明天会更好')
+        console.log($('input[type="text"]').prop('outerHTML'))  // A
+        console.log('attr title1:', $('input[type="text"]').attr('title1'))
+        console.log('prop title1:', $('input[type="text"]').prop('title1'))
+        $('input[type="text"]').attr('title2', '今天会更好')
+        console.log($('input[type="text"]').prop('outerHTML'))  // B
+        console.log('attr title2:', $('input[type="text"]').attr('title2'))
+        console.log('prop title2:', $('input[type="text"]').prop('title2'))
+
+        $('input[type="checkbox"]').prop('checked', true)
+        $('.box').attr('class', 'aaa box')
+      })
+    </script>
+  </body>
+</html>

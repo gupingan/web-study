@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <style>
+    .box2 {
+      border: 1px solid #ccc;
+    }
+
+    .inner-p {
+      border: 1px solid green;
+    }
+  </style>
+  <body>
+    <button id="btn1">append(已创建的元素)</button>
+    <button id="btn2">append(未创建的元素)</button>
+    <button id="btn3">appendTo()</button>
+    <button id="btn4">prepend()</button>
+    <button id="btn5">after()</button>
+    <button id="btn6">empty 清空子元素</button>
+    <button id="btn7">置空 清空子元素</button>
+    <button id="btn8">remove 移除元素</button>
+    <button id="btn9">clone btn7</button>
+    <div class="box2"></div>
+    <script>
+      // jQuery 动态创建元素
+      // 方式一  类似 document.createElement()
+      let $spanNode1 = $('<span>动态创建的span元素1</span><br/>')
+      // 方式二  类似 HtmlElement.innerHTML
+      let $spanNode2 = $('.box1').html('<span>动态创建的span元素2</span><br/>')
+      // 注意这里创建的并非原生JS中的DOM元素，而是jQuery对象
+
+      // jQuery 添加元素
+      // 方式一
+      $('#btn1').click(function () {
+        $('.box2').append($spanNode1)
+      })
+      // 方式二
+      $('#btn2').click(function () {
+        $('.box2').append('<span>动态创建的span元素3</span><br/>')
+      })
+      // 尝试交错点击方式一方式二，可得知，已存在的元素会移动追加末尾，如果是纯字符串，则是创建元素不断的追加末尾
+      // 其他添加方法
+      // node1.appendTo(node2)  node1被追加到node2的子元素中
+      $('#btn3').click(function () {
+        $('<li>这是一个 li 元素</li>').appendTo($('.box2'))
+      })
+      // node1.prepend(node2)  在node1中子元素前方添加node2   有 pretentTo() 类似，将前个作为后个的首个子元素插入
+      $('#btn4').click(function () {
+        $('.box2').prepend('<li>这是一个 li 元素</li>')
+      })
+      // node1.after(node2)  node1的后面添加node2（兄弟元素）  有 before() 类似
+      $('#btn5').click(function () {
+        $('.box2').after('<p class="inner-p">这是一个 p 元素</p>')
+      })
+
+      // jQuery 清空元素
+      // 清空指定元素的子元素
+      $('#btn6').click(function () {
+        // 清空子元素  清除子元素前会先移除data和event handler，如果不需要移除，这两，可以使用 detach
+        console.log('移除其中的子元素 -->', $('.box2').empty())
+      })
+      $('#btn7').click(function () {
+        $('.box2').html('') // 清空子元素
+      })
+      // 移除指定元素（包含其后代）
+      $('#btn8').click(function () {
+        $('.inner-p').remove()
+      })
+
+      // jQuery 复制元素
+      // clone(是否拷贝数据和事件，是否深拷贝数据和事件)  默认都为 false（1.51及其以上版本）
+      $('#btn9').click(function () {
+        $('#btn6').first().clone().appendTo('.box2') // 复制元素，未携带data和event
+        $('#btn6').first().clone(true).appendTo('.box2') // 复制元素，携带了data和event，但不是深拷贝，深层次属性共享
+      })
+    </script>
+  </body>
+</html>

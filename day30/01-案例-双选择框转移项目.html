@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrapper {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .main .title {
+        margin: 10px 0;
+        display: flex;
+        height: 24px;
+      }
+
+      .main .t-text{
+        flex: 1;
+      }
+
+      .main .clear-left,
+      .main .clear-right {
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        cursor: pointer;
+        line-height: 24px;
+        user-select: none;
+      }
+
+      .main .clear-left:hover,
+      .main .clear-right:hover {
+        color: rgba(0, 0, 0, .7);
+      }
+
+      .main .clear-left:active,
+      .main .clear-right:active {
+        color: rgba(0, 0, 0, .5);
+      }
+
+      .main select {
+        appearance: none;
+        width: 300px;
+        height: 500px;
+        padding: 4px;
+        border: 1px solid rgb(118, 118, 118);
+        outline: none;
+      }
+
+      .main option {
+        height: 20px;
+        padding: 4px;
+        border-radius: 5px;
+      }
+
+      .main option:hover {
+        background-color: #ddd;
+      }
+
+      .main option:not(:last-child) {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 2px;
+      }
+
+      .operate {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .operate .hor:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      .operate button {
+        min-width: 50px;
+      }
+
+      .operate button:not(:last-child) {
+        margin-right: 10px;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main left">
+        <div class="title">
+          <span class="t-text">男频小说</span><span class="clear-left">x</span>
+        </div>
+        <select name="select1" id="select1" multiple>
+          <option value="0">《锦医春色》</option>
+          <option value="1">《凡女登仙录》</option>
+          <option value="2">《斗破苍穹》</option>
+          <option value="3">《遮天》</option>
+          <option value="4">《打怪戒指》</option>
+          <option value="5">《重生刘姑娘有点癫》</option>
+        </select>
+      </div>
+      <div class="operate">
+        <div class="hor">
+          <button id="all-to-left">&lt;&lt;&lt;</button
+          ><button id="all-to-right">&gt;&gt;&gt;</button>
+        </div>
+        <div class="hor">
+          <button id="select-to-left">&lt;</button
+          ><button id="select-to-right">&gt;</button>
+        </div>
+      </div>
+      <div class="main right">
+        <div class="title">
+          <span class="t-text">女频小说</span><span class="clear-right">x</span>
+        </div>
+        <select name="select2" id="select2" multiple>
+          <option value="0">《御兽飞升》</option>
+          <option value="1">《边关小厨娘》</option>
+          <option value="2">《没钱修什么仙？》</option>
+          <option value="3">《盛世春》</option>
+        </select>
+      </div>
+    </div>
+    <script>
+      let $selectLeft = $('#select1'),
+        $selectRight = $('#select2')
+      let $selectToRight = $('#select-to-right'),
+        $selectToLeft = $('#select-to-left'),
+        $allToRight = $('#all-to-right'),
+        $allToLeft = $('#all-to-left')
+
+      let $clearLeft = $('.clear-left')
+      let $clearRight = $('.clear-right')
+
+      function moveOptionToTarget(origin, target, isAll) {
+        if (!origin || !target) return
+        if (isAll) {
+          origin.children('option').appendTo(target)
+        } else {
+          origin.children('option:selected').prop('selected', false).appendTo(target)
+        }
+      }
+
+      $selectToRight.click(function () {
+        moveOptionToTarget($selectLeft, $selectRight)
+      })
+
+      $selectToLeft.click(function () {
+        moveOptionToTarget($selectRight, $selectLeft)
+      })
+
+      $allToRight.click(function () {
+        moveOptionToTarget($selectLeft, $selectRight, true)
+      })
+
+      $allToLeft.click(function () {
+        moveOptionToTarget($selectRight, $selectLeft, true)
+      })
+
+      $clearRight.click(function() {
+        $selectRight.children('option:selected').prop('selected', false)
+      })
+
+      $clearLeft.click(function() {
+        $selectLeft.children('option:selected').prop('selected', false)
+      })
+    </script>
+  </body>
+</html>
