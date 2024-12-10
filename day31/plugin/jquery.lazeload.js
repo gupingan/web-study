@@ -6,6 +6,7 @@
 
   // 提供 setLazyloadOptions 接口设置参数
   $.fn.setLazyloadOptions = function (options) {
+    if (typeof options !== 'object') return
     options = {
       ...defaultOptions,
       ...options,
@@ -25,8 +26,7 @@
       var element = $(this)
       if (element.prop('tagName') === 'IMG') {
         element.setLazyloadOptions(options)
-        // 如果检测不在视口内，加载失败，就添加到懒加载数组中
-        if (!showImgForInner(element)) {
+        if (!loadImageIfInView(element)) {
           $.readyImgs.push(element)
         }
       }
@@ -34,7 +34,7 @@
   }
 
   // 判断是否出现在视口中，并显示
-  function showImgForInner(jQElem) {
+  function loadImageIfInView(jQElem) {
     var dataSrc = jQElem.getLazyloadOptions().dataSrc
     if (jQElem.attr(dataSrc) && isInViewport(jQElem)) {
       jQElem.attr('src', jQElem.attr(dataSrc)).removeAttr(dataSrc)
@@ -53,6 +53,6 @@
 
   // 监听滚动，检查已准备好的 img 元素并处理
   $(document).on('scroll', function () {
-    $.readyImgs.forEach(showImgForInner)
+    $.readyImgs.forEach(loadImageIfInView)
   })
 })(jQuery)
