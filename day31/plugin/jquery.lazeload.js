@@ -1,5 +1,5 @@
 ;(function ($) {
-  var defaultOptions = {
+  const defaultOptions = {
     dataSrc: 'data-src',
   }
   $.readyImgs = []
@@ -21,11 +21,11 @@
 
   // 提供 lazyload 接口注册需要懒加载的 img
   $.fn.lazyload = function (options) {
-    var $self = $(this)
+    const $self = $(this)
     $self.each(function () {
-      var element = $(this)
+      const element = $(this)
       if (element.prop('tagName') === 'IMG') {
-        element.setLazyloadOptions(options)
+        element.setLazyloadOptions(options || {})
         if (!loadImageIfInView(element)) {
           $.readyImgs.push(element)
         }
@@ -35,9 +35,10 @@
 
   // 判断是否出现在视口中，并显示
   function loadImageIfInView(jQElem) {
-    var dataSrc = jQElem.getLazyloadOptions().dataSrc
-    if (jQElem.attr(dataSrc) && isInViewport(jQElem)) {
-      jQElem.attr('src', jQElem.attr(dataSrc)).removeAttr(dataSrc)
+    const dataSrc = jQElem.getLazyloadOptions().dataSrc
+    const src = jQElem.attr(dataSrc)
+    if (src && isInViewport(jQElem)) {
+      jQElem.attr('src', src).removeAttr(dataSrc)
       return true
     }
     return false
@@ -45,14 +46,15 @@
 
   // 判断方法：考虑元素刚好完全在视口边缘外进行判断
   function isInViewport(jQElem) {
-    var { top, bottom, left, right } = jQElem[0].getBoundingClientRect()
-    var vh = $(window).outerHeight(true),
+    const { top, bottom, left, right } = jQElem[0].getBoundingClientRect()
+    const vh = $(window).outerHeight(true),
       vw = $(window).outerWidth(true)
     return bottom >= 0 && top <= vh && right >= 0 && left <= vw
   }
 
   // 监听滚动，检查已准备好的 img 元素并处理
   $(document).on('scroll', function () {
+    // 增加防抖 醒来优化
     $.readyImgs.forEach(loadImageIfInView)
   })
 })(jQuery)
