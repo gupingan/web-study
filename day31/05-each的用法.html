@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      li {
+        width: 100px;
+        height: 100px;
+        margin: 20px;
+        float: left;
+        list-style: none;
+        text-align: center;
+        font: 50px/100px 'simsun';
+        color: white;
+        background-color: black;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <script>
+      // $(selector).each(function(index,element){});
+      // jQuery 中的操作尽管有隐式迭代的特性，但是有时不免要进行显示迭代进行不同的处理
+      // index 当前元素在匹配元素中的索引
+      // element 当前元素的 DOM 对象
+      // this 指向当前元素
+      $('ul li').each(function (i, e) {
+        let fontColor = (i / $('ul li').length) * 255
+        let bgAlpha = (i + 1) / $('ul li').length
+        $(this)
+          .text(i + 1)
+          .css({
+            'background-color': `rgba(0, 0, 0, ${bgAlpha})`,
+            color: `rgb(${fontColor}, ${fontColor}, ${fontColor})`,
+          })
+      })
+    </script>
+  </body>
+</html>

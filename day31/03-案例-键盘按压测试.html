@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        height: 100vh;
+        background-color: #ccc;
+      }
+
+      #anjian_dakuangjia {
+        background-color: rgb(50, 50, 50);
+        width: 1140px;
+        height: 320px;
+        overflow: hidden;
+        position: relative;
+        transform: translate(0, -50%);
+        top: 50%;
+        left: 0;
+        padding: 10px;
+        font-size: 12px;
+        user-select: none;
+      }
+
+      .anjian_1 {
+        color: black;
+        width: 42px;
+        height: 36px;
+        background-color: white;
+        float: left;
+        margin-left: 10px;
+      }
+
+      .anjian_jiange {
+        float: left;
+        height: 36px;
+      }
+
+      .anjian_pressed {
+        background-color: rgba(237, 207, 116, 0.962);
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <div id="anjian_dakuangjia">
+      <div style="float: left">
+        <div class="anjian_1" id="an_id_27">Esc</div>
+        <div class="anjian_jiange" style="width: 24px"></div>
+        <div class="anjian_1" id="an_id_112">F1</div>
+        <div class="anjian_1" id="an_id_113">F2</div>
+        <div class="anjian_1" id="an_id_114">F3</div>
+        <div class="anjian_1" id="an_id_115">F4</div>
+        <div class="anjian_jiange" style="width: 24px"></div>
+        <div class="anjian_1" id="an_id_116">F5</div>
+        <div class="anjian_1" id="an_id_117">F6</div>
+        <div class="anjian_1" id="an_id_118">F7</div>
+        <div class="anjian_1" id="an_id_119">F8</div>
+        <div class="anjian_jiange" style="width: 24px"></div>
+        <div class="anjian_1" id="an_id_120">F9</div>
+        <div class="anjian_1" id="an_id_121">F10</div>
+        <div class="anjian_1" id="an_id_122">F11</div>
+        <div class="anjian_1 anjian_1_up" id="an_id_123">F12</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_192">~<br />`</div>
+        <div class="anjian_1" id="an_id_49">!<br />1</div>
+        <div class="anjian_1" id="an_id_50">@<br />2</div>
+        <div class="anjian_1" id="an_id_51">#<br />3</div>
+        <div class="anjian_1" id="an_id_52">$<br />4</div>
+        <div class="anjian_1" id="an_id_53">%<br />5</div>
+        <div class="anjian_1" id="an_id_54">^<br />6</div>
+        <div class="anjian_1" id="an_id_55">&amp;<br />7</div>
+        <div class="anjian_1" id="an_id_56">*<br />8</div>
+        <div class="anjian_1" id="an_id_57">（<br />9</div>
+        <div class="anjian_1" id="an_id_48">）<br />0</div>
+        <div class="anjian_1" id="an_id_189">—<br />-</div>
+        <div class="anjian_1" id="an_id_187">+<br />=</div>
+        <div class="anjian_1" id="an_id_8" style="width: 60px">Backspace</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_9" style="width: 50px">Tab</div>
+        <div class="anjian_1" id="an_id_81">Q</div>
+        <div class="anjian_1" id="an_id_87">W</div>
+        <div class="anjian_1" id="an_id_69">E</div>
+        <div class="anjian_1" id="an_id_82">R</div>
+        <div class="anjian_1" id="an_id_84">T</div>
+        <div class="anjian_1" id="an_id_89">Y</div>
+        <div class="anjian_1" id="an_id_85">U</div>
+        <div class="anjian_1" id="an_id_73">I</div>
+        <div class="anjian_1" id="an_id_79">O</div>
+        <div class="anjian_1" id="an_id_80">P</div>
+        <div class="anjian_1" id="an_id_219">{<br />[</div>
+        <div class="anjian_1" id="an_id_221">}<br />]</div>
+        <div class="anjian_1" id="an_id_220" style="width: 50px">|<br />\</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_20" style="width: 76px">
+          Caps<br />Lock
+        </div>
+        <div class="anjian_1" id="an_id_65">A</div>
+        <div class="anjian_1" id="an_id_83">S</div>
+        <div class="anjian_1" id="an_id_68">D</div>
+        <div class="anjian_1" id="an_id_70">F</div>
+        <div class="anjian_1" id="an_id_71">G</div>
+        <div class="anjian_1" id="an_id_72">H</div>
+        <div class="anjian_1" id="an_id_74">J</div>
+        <div class="anjian_1" id="an_id_75">K</div>
+        <div class="anjian_1" id="an_id_76">L</div>
+        <div class="anjian_1" id="an_id_186">:<br />;</div>
+        <div class="anjian_1" id="an_id_222">"<br />'</div>
+        <div class="anjian_1" id="an_id_13" style="width: 76px">Enter</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_16_1" style="width: 102px">Shift</div>
+        <div class="anjian_1" id="an_id_90">Z</div>
+        <div class="anjian_1" id="an_id_88">X</div>
+        <div class="anjian_1" id="an_id_67">C</div>
+        <div class="anjian_1" id="an_id_86">V</div>
+        <div class="anjian_1" id="an_id_66">B</div>
+        <div class="anjian_1" id="an_id_78">N</div>
+        <div class="anjian_1" id="an_id_77">M</div>
+        <div class="anjian_1" id="an_id_188">&lt;<br />,</div>
+        <div class="anjian_1" id="an_id_190">&gt;<br />.</div>
+        <div class="anjian_1" id="an_id_191">?<br />/</div>
+        <div class="anjian_1" id="an_id_16_2" style="width: 102px">Shift</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_17_1" style="width: 62px">Ctrl</div>
+        <div class="anjian_1" id="an_id_91_1">Win</div>
+        <div class="anjian_1" id="an_id_18_1">Alt</div>
+        <div class="anjian_1" id="an_id_32" style="width: 350px">Space</div>
+        <div class="anjian_1" id="an_id_18_2">Alt</div>
+        <div class="anjian_1" id="an_id_91_2">Win</div>
+        <div class="anjian_1" id="an_id_93">Menu</div>
+        <div class="anjian_1" id="an_id_17_2">Ctrl</div>
+      </div>
+
+      <div style="float: left; margin-left: 14px">
+        <div class="anjian_1" id="an_id_44">Print<br />Scrn</div>
+        <div class="anjian_1" id="an_id_145">Scroll<br />Lock</div>
+        <div class="anjian_1" id="an_id_19">Pause<br />Break</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_45">Insert</div>
+        <div class="anjian_1" id="an_id_36">Home</div>
+        <div class="anjian_1" id="an_id_33">Page<br />Up</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_46">Delete</div>
+        <div class="anjian_1" id="an_id_35">End</div>
+        <div class="anjian_1" id="an_id_34">Page<br />Down</div>
+
+        <div style="clear: both; height: 55px"></div>
+
+        <div class="anjian_jiange" style="width: 52px"></div>
+
+        <div class="anjian_1" id="an_id_38">↑</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_37">←</div>
+        <div class="anjian_1" id="an_id_40">↓</div>
+        <div class="anjian_1" id="an_id_39">→</div>
+      </div>
+
+      <div style="float: left; margin-left: 14px">
+        <div style="clear: both; height: 47px"></div>
+
+        <div class="anjian_1" id="an_id_144">Num<br />Lock</div>
+        <div class="anjian_1" id="an_id_111">/</div>
+        <div class="anjian_1" id="an_id_106">*</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_103">7<br />Home</div>
+        <div class="anjian_1" id="an_id_104">8<br />↑</div>
+        <div class="anjian_1" id="an_id_105">9<br />Pg Up</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_100">4<br />←</div>
+        <div class="anjian_1" id="an_id_101">5</div>
+        <div class="anjian_1" id="an_id_102">6<br />→</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_97">1<br />End</div>
+        <div class="anjian_1" id="an_id_98">2<br />↓</div>
+        <div class="anjian_1" id="an_id_99">3<br />Pg Dn</div>
+
+        <div style="clear: both; height: 8px"></div>
+
+        <div class="anjian_1" id="an_id_96" style="width: 92px">0<br />Ins</div>
+        <div class="anjian_1" id="an_id_110">.<br />Del</div>
+      </div>
+
+      <div style="float: left">
+        <div style="clear: both; height: 47px"></div>
+        <div class="anjian_1" id="an_id_109">-</div>
+        <div style="clear: both; height: 8px"></div>
+        <div class="anjian_1" id="an_id_107" style="height: 83px">+</div>
+        <div style="clear: both; height: 8px"></div>
+        <div class="anjian_1" id="an_id_13_2" style="height: 83px">Enter</div>
+      </div>
+
+      <div style="width: 234px; margin-left: auto; margin-right: auto">
+        <div style="clear: both; height: 8px"></div>
+        <div
+          class="anjian_1 anjian_1_up"
+          id="mouse_id_1"
+          style="width: 92px; border-radius: 0 0 0 10px"
+        ></div>
+        <div
+          class="anjian_1 anjian_1_up"
+          id="mouse_id_2"
+          style="width: 14px"
+        ></div>
+        <div
+          class="anjian_1 anjian_1_up"
+          id="mouse_id_3"
+          style="width: 92px; border-radius: 0 0 10px 0"
+        ></div>
+      </div>
+    </div>
+    <!-- 键盘框架源于：https://keyboard.bmcx.com/ -->
+    <script>
+      $(document).on('keydown', function (e) {
+        // console.log(e)
+        console.log(`按下:`, e.which, e.originalEvent.location)
+        if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) {
+          $(`#an_id_${e.which}_${e.originalEvent.location}`).addClass('anjian_pressed')
+        } else {
+          $(`#an_id_${e.which}`).addClass('anjian_pressed')
+        }
+        return false
+      })
+
+      $('#anjian_dakuangjia').on('mousedown', function(e) {
+        $(`#mouse_id_${e.which}`).addClass('anjian_pressed')
+        return false
+      })
+
+      $('#anjian_dakuangjia').on('contextmenu', false)
+    </script>
+  </body>
+</html>

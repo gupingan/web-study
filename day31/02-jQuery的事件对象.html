@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // event.data 传递给事件处理程序的额外数据
+      // event.currentTarget 等同于this，当前DOM对象
+      // event.pageX 鼠标相对于文档左部边缘的位置
+      // event.pageY 鼠标相对于文档顶部边缘的位置
+      // event.target 触发事件源，不一定是this
+      // event.stopPropagation()； 阻止事件冒泡
+      // event.preventDefault(); 阻止默认行为
+      // event.type 事件类型：click，dbclick…
+      // event.which 鼠标的按键类型：左1 中2 右3
+      // event.keyCode 键盘按键代码
+      $(document).on('mousedown', null, [1, 2, 3], function (event) {
+        console.log(event.data)
+        console.log(event.currentTarget)
+        console.log(event.target)
+        console.log(event.pageX, event.pageY)
+        console.log(event.type)
+        console.log(event.which)
+        console.log(event.keyCode)
+      })
+    </script>
+  </body>
+</html>

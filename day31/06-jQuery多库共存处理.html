@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <script>
+      /*
+      多库共存指的是：jQuery占用了 $ 和 jQuery 这两个变量。
+      当在同一个页面中引用了 jQuery 库以及其他的库（或者其他版本的jQuery库），
+      恰好其他的库中也用到了 $ 或者jQuery变量.那么，要保证每个库都能正常使用，就产生了多库共存的问题
+      */
+      console.log($.fn.jquery) // 获取jQuery的版本号  3.7.1
+      // console.log(jQuery.fn.jquery)
+
+      // 如何让 jQuery 放弃对 $、jQuery 的使用权
+      $.noConflict()
+      console.log('$.noConflict() 导致 3.7.1 版本的 $ 失效')
+      console.log('当前的 $', $.fn.jquery) // 1.12.4
+      console.log('当前的 jQuery', jQuery.fn.jquery) // 3.7.1
+
+      // jQuery.noConflict(true)  // true 表示 removeAll
+      // console.log('jQuery.noConflict(true) 导致 3.7.1 版本的两者都失效')
+      // console.log('当前的 $', $.fn.jquery) // 1.12.4
+      // console.log('当前的 jQuery', jQuery.fn.jquery) // 1.12.4
+
+      // 如何恢复 jQuery 对 $、jQuery 的使用权(前提是没有移除 jQuery 这个变量)
+      globalThis.$ = jQuery
+      console.log('当前的 $', $.fn.jquery) // 3.7.1
+      console.log('当前的 jQuery', jQuery.fn.jquery) // 3.7.1
+
+      // 个人认为的解决办法: 基于 noConflict 返回值创建别名
+      const myJQuery = $$ = $.noConflict(true)
+      console.log('$.noConflict(true) 导致 3.7.1 版本的 $、jQuery 失效')
+      console.log('当前的 $', $.fn.jquery) // 1.12.4
+      console.log('当前的 jQuery', jQuery.fn.jquery) // 1.12.4
+      console.log('当前的 $$', $$.fn.jquery) // 3.7.1
+      console.log('当前的 myJQuery', myJQuery.fn.jquery) // 3.7.1
+    </script>
+  </body>
+</html>

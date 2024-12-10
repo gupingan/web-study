@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .rating {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .rating li {
+        float: left;
+        user-select: none;
+        cursor: pointer;
+        font-size: 40px;
+        line-height: 40px;
+        color: orangered;
+      }
+
+      .rating li:not(:first-child) {
+        margin-left: 4px;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <ul class="rating">
+      <li>☆</li>
+      <li>☆</li>
+      <li>☆</li>
+      <li>☆</li>
+      <li>☆</li>
+    </ul>
+    <script>
+      // 选分
+      $('.rating').on('mouseenter', 'li', function () {
+        // 方式1
+        // $(this).nextAll('li').text('☆')
+        // $(this).text('★').prevAll('li').text('★')
+        // 方式2
+        // $(this).text('★').nextAll('li').text('☆').first('li').prev().prevAll('li').text('★')
+        // 方式3  end() 筛选函数，回到改变匹配前的上个匹配（本来是 A 结果成了 B，调用 .end() 回到 A），破坏性操作单次回溯
+        $(this).text('★').prevAll('li').text('★').end().nextAll('li').text('☆')
+      })
+
+      // 定分
+      $('.rating').on('click', 'li', function () {
+        let score = $(this).index() + 1
+        score = score > 5 ? 5 : (score < 0 ? 0 : score)
+        $('.rating').off('mouseenter click', '**')
+        alert('评分为：' + score)
+      })
+    </script>
+  </body>
+</html>

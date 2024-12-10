@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        border: 10px solid red;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="plugin/jquery.animate-colors-min.js"></script>
+  </head>
+  <body>
+    <button id="btn1">变色</button>
+    <button id="btn2">复原</button>
+    <div class="box"></div>
+    <script>
+      $('#btn1').on('click', function () {
+        $('.box').stop().animate({
+          backgroundColor: '#400101',
+          borderColor: 'orangered',
+          width: '500px',
+        }, 3000, function () {
+          console.log('变色完成')
+        })
+      })
+
+      $('#btn2').on('click', function () {
+        $('.box').stop().animate({
+          backgroundColor: '#00f',
+          borderColor: '#f00',
+          width: '100px',
+        }, 3000, function () {
+          console.log('复原完成')
+        })
+      })
+    </script>
+  </body>
+</html>

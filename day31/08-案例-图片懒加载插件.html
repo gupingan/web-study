@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图片懒加载</title>
+    <style>
+      /* body {
+        width: 500%;
+      } */
+      .image-container {
+        width: 500px;
+        height: 300px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        transition: all 0.9s ease-in-out;
+      }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <!-- 引入插件（别人写的） -->
+    <!-- <script src="plugin/lazyload.js"></script> -->
+    <!-- 自己尝试写一个 -->
+    <script src="plugin/jquery.lazeload.js"></script>
+  </head>
+  <body>
+    <div class="box">
+
+    </div>
+    <script>
+      const images = [
+        {
+          src: 'https://w.wallhaven.cc/full/9d/wallhaven-9dqojx.jpg',
+          alt: '图片加载失败',
+        },
+        {
+          src: 'https://w.wallhaven.cc/full/vq/wallhaven-vq898p.png',
+          alt: '图片加载失败',
+        },
+        {
+          src: 'https://w.wallhaven.cc/full/zy/wallhaven-zywe5j.jpg',
+          alt: '图片加载失败',
+        },
+        {
+          src: 'https://w.wallhaven.cc/full/zy/wallhaven-zywwky.jpg',
+          alt: '图片加载失败',
+        },
+        {
+          src: 'https://w.wallhaven.cc/full/rr/wallhaven-rr886m.jpg',
+          alt: '图片加载失败',
+        },
+        {
+          src: 'https://w.wallhaven.cc/full/l8/wallhaven-l81qoy.png',
+          alt: '图片加载失败',
+        },
+        {
+          src: 'https://w.wallhaven.cc/full/l8/wallhaven-l8x1pr.jpg',
+          alt: '图片加载失败',
+        },
+      ]
+      for (let i = 0; i < images.length; i++) {
+        const element = images[i]
+        const $img = $(`<img data-src="${element.src}" alt="${element.alt}" />`)
+        $('<div class="image-container"></div>')
+          .append($img)
+          .appendTo($('.box'))
+      }
+      $('img').lazyload()
+    </script>
+  </body>
+</html>

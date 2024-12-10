@@ -5,17 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      .wrapper {
+        display: inline-block;
+        background-color: blue;
+        position: relative;
+      }
+
+      .inner {
+        width: 100%;
+        height: 100%;
+        background-color: yellow;
+        position: relative;
+      }
+
+      .inner:hover::after, .wrapper:hover::after, .box1:hover::after {
+        position: absolute;
+        top: 100%;
+        display: inline-block;
+        background-color: white;
+        padding: 5px;
+        text-align: center;
+        box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+      }
+
+      .inner:hover::after {
+        content: '内容区域';
+        top: 0;
+        transform: translate(0, -100%);
+      }
+
+      .wrapper:hover::after {
+        content: 'margin区域';
+      }
+
+      .box1:hover::after {
+        content: 'padding、border';
+        min-width: 120px;
+        top: 50%;
+        left: 100%;
+        transform: translate(0, -50%);
+      }
+
       .box1 {
+        position: relative;
         width: 100px;
         height: 100px;
         background-color: pink;
+        border-left: 10px solid red;
+        border-right: 10px solid red;
+        margin: 20px;
+        padding: 10px;
       }
     </style>
     <script src="js/jquery-1.12.4.min.js"></script>
   </head>
   <body>
     <button id="btn1">放大box1</button>
-    <div class="box1"></div>
+    <button id="btn2">获取css中宽高</button>
+    <button id="btn3">innerWidth/innerHeight</button>
+    <button id="btn4">outerWidth/outerHeight</button>
+    <button id="btn5">outerWidth/outerHeight(含margin)</button>
+    <div class="wrapper">
+      <div class="box1"><div class="inner"></div></div>
+    </div>
+
     <script>
       // $(selector).height();     //不带参数表示获取高度
       // $(selector).height(200);  //带参数表示设置高度
@@ -25,13 +79,38 @@
         let $box = $('.box1')
         let height = $box.height()
         let width = $box.width()
-        console.log('height:', height, 'width:', width)
         $box.height(height + 10)
         $box.width(width + 10)
-        console.log('height:', $box.css('height'), 'width:', $box.css('width'))
       })
       // $("div").css();     //返回的是string类型，例如：30px
-    	// $("div").height();  //返回得失number类型，例如：30。常用于数学计算。
+      // $("div").height();  //返回得失number类型，例如：30。常用于数学计算。
+      $('#btn2').click(function () {
+        let $box = $('.box1')
+        console.log('width:', $box.css('width'), 'height:', $box.css('height'))
+      })
+
+      $('#btn3').click(function () {
+        let $box = $('.box1')
+        // 只能获取，不能设置  element.width() + 内边距
+        console.log('width:', $box.innerWidth(), 'height:', $box.innerWidth())
+      })
+
+      $('#btn4').click(function () {
+        let $box = $('.box1')
+        // 只能获取，不能设置  element.width() + 内边距 + border + 隐藏元素等等，外边距之内
+        console.log('width:', $box.outerWidth(), 'height:', $box.outerHeight())
+      })
+
+      $('#btn5').click(function () {
+        let $box = $('.box1')
+        // 只能获取，不能设置  element.width() + 内边距 + border + margin + 隐藏元素等等
+        console.log(
+          'width:',
+          $box.outerWidth(true),
+          'height:',
+          $box.outerHeight(true)
+        )
+      })
     </script>
   </body>
 </html>
