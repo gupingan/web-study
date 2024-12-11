@@ -1,0 +1,15 @@
+{
+  "name": "05-es6demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "gupingan",
+  "license": "ISC",
+  "description": "6 to 5",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
