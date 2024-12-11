@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #btn {
+      width: 200px;
+      height: 100px;
+      background-color: pink;
+      margin: 10px auto;
+    }
+
+    #box1 {
+      display: none;
+      width: 200px;
+      height: 100px;
+      background-color: yellow;
+    }
+  </style>
+  <script src="js/jquery-1.12.4.min.js"></script>
+  <script>
+    // 不用也可以，zepto 会检测 $
+    let $$ = $.noConflict()
+  </script>
+  <script src="js/zepto.min.js"></script>
+  <script src="js/touch.js"></script>
+</head>
+<body>
+  <div id="btn">我是div</div>
+  <div id="box1">我是box1</div>
+  <script>
+    // zepto是轻量级的JavaScript库，专门为移动端定制的框架
+    // 与jquery有着类似的API，俗称：会jquery就会用zepto
+
+    // 特点：
+    // 针对移动端
+    // 压缩版本仅 8 kb
+    // 响应、执行快
+    // API、语法类似 jQuery
+
+    // 如 touch 等模块不在 zepto 中，通过官网下方可以下载他们
+    // 目前来说，zepto 包含：zepto 核心、event、ajax、form、ie 等模块部分
+    $('#btn').on('touchstart', function () {
+      // alert('hi world')
+      $$('#box1').fadeIn(2000)
+    })
+  </script>
+</body>
+</html>

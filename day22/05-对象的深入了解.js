@@ -12,20 +12,20 @@ let obj4 = new Object(obj3)
 console.log(obj4)
 console.log(obj3 === obj4)
 
-// 属性描述符
+// 属性描述符（对象属性）
 // 用于描述对象的值，控制其行为，是否可写可读可修改可枚举等的内部数据结构。
 // 每个属性都有自己对应的属性描述符，保存该属性的元信息
-// 两种形式：数据描述符和存储描述符
-// 数据描述符：具有属性的值，值可写不确定
-// 1.value          属性对应的值，默认为 undefined
-// 2.writable       value是否可被赋值运算符改变，默认为 false
-// 3.configurable   属性描述符是否可以被改变，默认为 false
-// 4.enumerable     该属性是否能出现在对象的枚举属性中，默认为 false
-// 存储描述符：由getter和setter函数对描述的属性
+// 两种形式：数据描述符（数据属性）和存储描述符（访问器属性）
+// 数据描述符（数据属性）：具有属性的值，值可写不确定
+// 1.value          通过属性的 get 访问获取值。可以是任意的 JavaScript 值，默认为 undefined
+// 2.writable       表示属性是否可以通过赋值进行修改，默认为 false
+// 3.configurable   表示属性是否可以删除，是否可以更改为访问器属性，以及是否可以更改其特性，默认为 false
+// 4.enumerable     表示属性是否可以通过 for...in 循环进行枚举，默认为 false
+// 存储描述符（访问器属性）：由getter和setter函数对描述的属性
 // 1.get            给属性提供 getter 的方法，如果没有getter则为undefined。属性被访问时执行该方法，无参数传入，但传入this对象
 // 2.set            给属性提供 setter 的方法，如果没有setter则为undefined。属性值被修改时执行该方法，传入新的属性值
-// 3.configurable   属性描述符是否可以被改变，默认为 false
-// 4.enumerable     仅当属性的值为 true，该属性才能出现在对象的枚举属性中，默认为 false
+// 3.configurable   表示属性是否可以删除，是否可以更改为访问器属性，以及是否可以更改其特性，默认为 false
+// 4.enumerable     表示属性是否可以通过 for...in 循环进行枚举，默认为 false
 
 // 获取属性描述符
 // Object.getOwnPropertyDescriptor(obj, prop)
@@ -130,7 +130,7 @@ console.log(obj8.name)  // 玛卡巴卡
 // 3. 冻结对象  禁止对对象执行任何修改的操作
 // 一旦定义防篡改对象，无法撤销，无法改回
 
-// 1. 禁止扩展  preventExtensions  禁止增，可改删，可配置所有  静默失败或者异常
+// 1. 禁止扩展  preventExtensions  禁止增加属性 + 原型不能更改，严格模式下会抛出 TypeError，非严格模式静默失败
 console.log('-------------禁止扩展------------')
 let obj9 = {name : '黑寡妇'}
 Object.preventExtensions(obj9)
@@ -147,7 +147,7 @@ console.log(obj9.name)  // undefined 说明可删除
 // 可通过 Object.isExtensible(obj9) 来判断对象是否可扩展
 console.log(Object.isExtensible(obj9)) // false
 
-// 2. 密封对象  seal  禁止增、删，可改，可配置writable  静默失败或者异常
+// 2. 密封对象  seal  禁止扩展 + 不能删除现有属性 + 不能更改可枚举性与可配置性
 console.log('-------------密封对象------------')
 let obj10 = {name : '黑寡妇'}
 Object.seal(obj10)
@@ -168,7 +168,7 @@ console.log(Object.getOwnPropertyDescriptor(obj10, 'name'))  // 说明可配置 
 // 可通过 Object.isSealed(obj10) 来判断对象是否密封
 console.log(Object.isSealed(obj10))  // true
 
-// 3. 冻结对象  freeze  禁止对对象执行任何修改的操作  静默失败或异常
+// 3. 冻结对象  freeze  密封 + 不可写入  静默失败或异常
 console.log('-------------冻结对象------------')
 let obj11 = {name : '黑寡妇'}
 Object.freeze(obj11)
