@@ -62,7 +62,7 @@ class Student extends Person {
 // Javascript 中类继承是通过原型模式实现的，何为原型？原型就是某个对象的内部属性[[Prototype]]，也是实现继承和属性共享的机制中
 // 重要的一环。 特别是对象之间的原型链关系，可以通过某个子对象访问其父对象的属性方法，因为[[Prototype]]无法被直接被访问，
 // 因此引擎提供了 __proto__属性可供访问，该属性并非 ES 规范，但是很多浏览器都支持它。一个对象的原型通常源于构造函数的实例原型
-//  prototype 对象，按照 ECMA Script 规范，实际上某个对象原型获取建议使用 Object.getPrototypeOf() 方法
+//  prototype 对象，按照 ECMAScript 规范，实际上某个对象原型获取建议使用 Object.getPrototypeOf() 方法
 
 // 问题二：[[Prototype]] 又是什么? 和 __proto__ 的差别是什么?
 // [[Prototype]]是对象的属性，指向该对象的原型对象，包含了该对象所继承的属性和方法。__proto__ 是非ES5标准但大多数浏览器可供
