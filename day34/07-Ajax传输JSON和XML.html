@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <person id="gupingan">
+    <name>顾平安</name>
+    <gender>男</gender>
+  </person>
+  <script>
+    // JSON JavaScript Object Notation JS对象表示法
+    // 数值、布尔、字符串、数组、对象、null 无函数等
+    // 键值对形式，其中键需要用双引号包裹，字符串值也是
+    let json = '{"name": "gupingan", "hobby": ["shopping", "coding"]}'
+
+    // JSON -> Object
+    let obj = JSON.parse(json)
+    console.log(obj, typeof obj)
+
+    // Object -> JSON
+    json = JSON.stringify(obj)
+    console.log(json, typeof json)
+
+    // php 中是 json_decode 和 json_encode
+
+    // ajax 读取 json 示例
+    let xmlhttp = new XMLHttpRequest()
+    xmlhttp.open('get', 'data1.json', false)
+    xmlhttp.send()
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        const jsonData = JSON.parse(this.responseText)
+        console.log(jsonData)
+      }
+    }
+
+    // XML（Extensible Markup Language）：可扩展标记语言
+    // 文件声明：<?xml version="1.0" encoding="UTF-8"?>
+    // 只有双标签 <cool></cool>
+    // 必须有一个根标签
+    // 可以对其标签进行类 Dom 操作
+    let gupingan = document.querySelector('#gupingan')
+    console.log(gupingan)
+    console.log(gupingan.innerHTML)
+
+    xmlhttp.open('get', './data1.xml')
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        console.log(this.responseXML)
+        console.log(this.responseXML.querySelector('user'))
+      }
+    }
+    xmlhttp.send()
+  </script>
+</body>
+</html>

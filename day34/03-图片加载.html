@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function loadImg(file, onsuccess, onerror) {
+        let img = new Image()
+        img.onload = () => {
+          onsuccess(img)
+        }
+        img.onerror = () => {
+          onerror(new Error('img load fail'), img)
+        }
+        img.src = file
+      }
+
+      loadImg(
+        '02.png',
+        function (img) {
+          console.log('加载成功')
+          document.body.appendChild(img)
+        },
+        function (error) {
+          console.log('加载失败', error)
+        }
+      )
+
+      loadImg(
+        '03.png',
+        function (img) {
+          console.log('加载成功')
+          document.body.appendChild(img)
+        },
+        function (error, img) {
+          console.log('加载失败', error, img)
+        }
+      )
+    </script>
+  </body>
+</html>

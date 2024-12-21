@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <textarea name="password" id="password" cols="30" rows="20"></textarea>
+    <br />
+    <input
+      type="number"
+      name="pwd-number"
+      value="1"
+      id="pwd-number"
+      min="1"
+      max="16"
+      placeholder="生成多少密码"
+      style="width: 120px"
+    />
+    <button id="yield">生成随机密码</button>
+
+    <script>
+      // 如果需要基于第一个请求再去发第二个请求，就需要回调中嵌套
+      $('#yield').on('click', () => {
+        $.ajax({
+          url: 'https://api.kuleu.com/api/suijimima',
+          data: `ss_sz=1&ss_cd=16&ss_sl=${$("#pwd-number").val()}`,
+          dataType: 'json',
+          type: 'get',
+          success: (response) => {
+            $('#password').val(response.data.password_box.join('\n'))
+          },
+          error: (error) => {
+            console.lop(error)
+          }
+        })
+      })
+      // 这种持续的回调嵌套构成了回调地狱，非常的难受，后面所学的 Promise 可以解决这个问题
+    </script>
+  </body>
+</html>

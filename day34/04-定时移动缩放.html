@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box1 {
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1"></div>
+  <script>
+    const box1Elem = document.querySelector('.box1')
+
+    function myInterval(callback, time) {
+      let timerId = setInterval(()=>callback(timerId), time)
+      return timerId
+    }
+
+    myInterval(function(timerId1) {
+      let box1Left = box1Elem.offsetLeft
+      box1Elem.style.left = box1Left + 20 + 'px'
+      if (box1Left > 500) {
+        clearInterval(timerId1)
+
+        myInterval(function(timerId2) {
+          let box1Width = box1Elem.clientWidth
+          box1Elem.style.width = box1Width - 2 + 'px'
+          if (box1Width <= 10) {
+            clearInterval(timerId2)
+          }
+        }, 200)
+      }
+    }, 200)
+  </script>
+</body>
+</html>

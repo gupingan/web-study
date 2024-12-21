@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <textarea name="password" id="password" cols="30" rows="20"></textarea>
+    <br />
+    <input
+      type="number"
+      name="pwd-number"
+      value="1"
+      id="pwd-number"
+      min="1"
+      max="16"
+      placeholder="生成多少密码"
+      style="width: 120px"
+    />
+    <button id="yield">生成随机密码</button>
+
+    <script>
+      const yieldBtn = document.querySelector('#yield')
+      const pwdTextArea = document.querySelector('#password')
+      const pwdNumber = document.querySelector('#pwd-number')
+
+      // 发送 Ajax 请求的五个步骤：
+      // （1）创建异步对象，即 XMLHttpRequest 对象。
+      // （2）使用 open 方法设置请求参数。open(method, url, async)。参数解释：请求的方法、请求的 url、是否异步。第三个参数如果不写，则默认为 true。
+      // （3）发送请求：send()。
+      // （4）注册事件：注册 onreadystatechange 事件，状态改变时就会调用。
+      // 如果要在数据完整请求回来的时候才调用，我们需要手动写一些判断的逻辑。
+      // （5）服务端响应，获取返回的数据。
+      function yieldRandomPassword() {
+        const xmlhttp = new XMLHttpRequest()
+        xmlhttp.open(
+          'get',
+          `https://api.kuleu.com/api/suijimima?ss_sz=1&ss_cd=16&ss_sl=${pwdNumber.value}`
+        )
+        // ss_sz	int	必填	开启数字字符，1开启0关闭
+        // ss_xx	int	选填	开启小写字母字符，1开启0关闭
+        // ss_dx	int	选填	开启大写字母字符，1开启0关闭
+        // ss_fh	int	选填	开启符号字符，1开启0关闭
+        // pc_fh	string	选填	输入排除字符，则生成的时候不包含排除的字符。如果什么都不如输入则正常生成随机密码
+        // ss_cd	int	选填	生成密码的长度
+        // ss_sl	int	选填	生成多个密码
+        xmlhttp.send()
+        xmlhttp.onreadystatechange = function () {
+          // 0: 请求未初始化
+          // 1: 服务器连接已建立
+          // 2: 请求已接收
+          // 3: 请求处理中
+          // 4: 请求已完成，且响应已就绪
+          if (this.readyState === 4 && this.status === 200) {
+            const jsonData = JSON.parse(this.responseText)
+            // console.log(jsonData)
+            const passwordBox = jsonData.data.password_box
+            pwdTextArea.value = passwordBox.join('\n')
+          }
+        }
+      }
+
+      // yieldBtn.addEventListener('click', yieldRandomPassword)
+
+      // 封装ajax请求
+      function request(method, url, success, failure, payload) {
+        const xmlhttp = new XMLHttpRequest()
+        if (!(method && url)) return
+        xmlhttp.open(method, url)
+        xmlhttp.send(payload || null)
+        xmlhttp.onreadystatechange = function () {
+          if (this.readyState === 4) {
+            if (this.status === 200) {
+              success && success(this.responseText)
+            } else {
+              failure && failure(new Error('请求失败'), this.responseText)
+            }
+          }
+        }
+        return xmlhttp
+      }
+
+      // yieldBtn.addEventListener('click', () => {
+      //   request(
+      //     'get',
+      //     `https://api.kuleu.com/api/suijimima?ss_sz=1&ss_cd=16&ss_sl=${pwdNumber.value}`,
+      //     (response) => {
+      //       const jsonData = JSON.parse(response)
+      //       const passwordBox = jsonData.data.password_box
+      //       pwdTextArea.value = passwordBox.join('\n')
+      //     },
+      //     (error) => {
+      //       console.log(error)
+      //     }
+      //   )
+      // })
+
+      // 如果需要基于第一个请求再去发第二个请求，就需要回调中嵌套
+      yieldBtn.addEventListener('click', () => {
+        request(
+          'get',
+          `https://api.kuleu.com/api/suijimima?ss_sz=1&ss_cd=16&ss_sl=${pwdNumber.value}`,
+          (response) => {
+            const jsonData = JSON.parse(response)
+            const passwordBox = jsonData.data.password_box
+            pwdTextArea.value = passwordBox.join('\n')
+            request(
+              'get',
+              `https://api.kuleu.com/api/suijimima?ss_sz=1&ss_cd=16&ss_sl=4`,
+              (response) => {
+                const jsonData = JSON.parse(response)
+                const passwordBox = jsonData.data.password_box
+                pwdTextArea.value += '\n' + passwordBox.join('\n')
+              }
+            )
+          }
+        )
+      })
+      // 这种持续的回调嵌套构成了回调地狱，非常的难受，后面所学的 Promise 可以解决这个问题
+    </script>
+  </body>
+</html>
