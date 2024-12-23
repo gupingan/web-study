@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Promise 可以很好的解决 ES5 中异步任务回调地狱的问题
+      // 统一规范、语法简洁、API简洁，本质上是处理异步任务的一种编程规范
+      // 是时候打王者了.然后点击打开().然后登录账号().然后点击匹配()
+      // 常规写法：
+      function requestData(url, success, error) {
+        let response = {
+          code: 200,
+          success: true,
+          data: [
+            { name: '顾平安', gender: '男' },
+            { name: '吴肉肉', gender: '女' },
+          ],
+          msg: '成功',
+        }
+
+        setTimeout(() => {
+          if (response.code === 200) {
+            success && success(response.data)
+          } else {
+            error && error(new Error(response.msg))
+          }
+        }, 2000)
+      }
+
+      requestData(
+        'http://example.com/data.json',
+        (data) => {
+          console.log('异步任务执行成功！', data)
+        },
+        (error) => {
+          console.log('异步任务执行失败！', error)
+        }
+      )
+
+      // Promise 写法
+      function aRequestData(url) {
+        let response = {
+          code: 403,
+          success: true,
+          data: [],
+          msg: 'no auth',
+        }
+
+        let promise = new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (response.code === 200) {
+              resolve(response.data)
+            } else {
+              reject(new Error(response.msg))
+            }
+          }, 3000)
+        })
+
+        return promise
+      }
+
+      aRequestData('http://example.com/data.json')
+        .then((data) => {
+          console.log('Promise 异步任务执行成功！', data)
+        })
+        .catch((error) => {
+          console.log('Promise 异步任务执行失败！', error)
+        })
+    </script>
+  </body>
+</html>

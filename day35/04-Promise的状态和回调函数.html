@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Promise（承诺） 三种状态
+      // pending 准备中。该状态表明该 promise 没有被兑现也没被拒绝
+      // fulfilled 已兑现/已解决。当调用 resolve(...) 时，promise 状态被更改为已兑现，成功执行异步任务，并触发 then 中的构造函数
+      // rejected 未兑现/已拒绝。当调用 reject(...) 时，promise 的状态被更改为已拒绝，执行异步任务失败，可能触发 then 中的回调函数（如果有），或者 catch 中的回调函数
+
+      // Promise 实例化后是个对象，其中实例化时传入的方法也称为执行器，实例化时即执行内部代码（其内部是按同步任务执行的），其实例化时，初始状态即为 pending，当代码中的同步任务执行结束后，resolve 将执行，其 promise 自身的状态也发生改变，也就是从微任务队列中拿出来 then 中的回调函数执行，reject 也是同理。
+
+      // 如果理解了上方的代码，下方代码的打印结果是非常简单的：
+      new Promise((resolve, reject) => console.log(1))
+        .then(() => console.log(2))
+        .catch(() => console.log(3))
+      console.log(4)
+      new Promise((resolve, reject) => {
+        reject()
+        console.log(5)
+      })
+        .then(() => console.log(6))
+        .catch(() => {
+          console.log(7)
+          new Promise((resolve, reject) => {
+            resolve()
+            console.log(8)
+          })
+            .then(() => console.log(9))
+            .catch(() => console.log(10))
+        })
+      console.log(11)
+      // 同步代码
+      // console.log(1)
+      // console.log(4)
+      // console.log(5)
+      // console.log(11)
+
+      // 第1个promise：状态未更改，then 和 catch 后的不打印
+      // 第2个promise：调用了 reject，执行 catch 后的 console.log(7)
+      // 以及同步的 console.log(8)
+      // 其中的第3个promise：调用了 resolve，执行 then 后的 console.log(9)
+
+      // 1 4 5 11 7 8 9
+
+      // 对于 then 函数，其中两个参数，分别代表 onFulfilled 和 onRejected
+      
+      // Promise 的状态一经改变，无法二次更改，不可逆
+    </script>
+  </body>
+</html>

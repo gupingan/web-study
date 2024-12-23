@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 回调函数，将指定函数作为另一个函数的参数，在特定时机执行这个参数指向的函数
+      const dynamicFunc1 = function (callback) {
+        setTimeout(function () {
+          let num = 0
+          for (let i = 0; i < 5; i++) {
+            console.log(i)
+            num += i
+          }
+          callback && callback(num)
+        }, 1000)
+      }
+
+      dynamicFunc1(function (num) {
+        console.log('运算结果：', num)
+        console.log('平方后：', num ** 2)
+      })
+      // 如果希望等待异步任务结束之后再执⾏想做的操作，需要通过回调函数这样的⽅式进⾏处理（ES5）
+
+      // 回调函数异步处理
+      const dynamicFunc2 = function (
+        throwError, // 指定内部模拟异常
+        successCallback,
+        errorCallback
+      ) {
+        setTimeout(function () {
+          let num = 0
+          for (let i = 0; i < 5; i++) {
+            console.log(i)
+            num += i
+          }
+          if (throwError) errorCallback && errorCallback(new Error('发生异常'))
+          else successCallback && successCallback(num)
+        }, 1000)
+      }
+
+      dynamicFunc2(
+        true,
+        (num) => {
+          console.log('结果是：', num)
+        },
+        (error) => {
+          console.log('待处理：', error)
+        }
+      )
+
+      // 回调层级过多容易造成回调地狱，每个回调函数的参数设计不一致、差异也导致维护、记忆更加艰难
+    </script>
+  </body>
+</html>

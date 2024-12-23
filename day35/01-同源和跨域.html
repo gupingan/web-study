@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../day34/js/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // 同源：同源策略是浏览器的一种安全策略，同源指协议、域名、端口完全相同
+      // 跨域：当从我自己的网站访问别人的网站内容，这就是跨域
+      // 出于安全考虑，浏览器是不允许 ajax 跨域的
+      // iframe：出于安全考虑，浏览器开发厂商已经禁止了这种方式进行跨域
+
+      // 解决方案 1
+      /* JSONP(JSON with Padding)：带补丁的 json，本质是利用了 <script src=""><\/script>标签具有可跨域的特性，由服务端返回一个预先定义好的JS函数的调用，并且将服务器数据以该函数参数的形式传递过来。此方法需要前后端配合完成。*/
+      // html标签的 src 属性是支持跨域的
+      // JSONP 利用的是 script 标签的 src 属性
+      // JQuery 中的 Ajax 请求自带了 JSONP 的处理（script标签创建和销毁）
+      // 正常情况，但是跨域限制
+      // $.ajax({
+      //   url: 'http://127.0.0.1/jsonp.php',
+      //   type: 'get',
+      //   success: function (response) {
+      //     console.log(response)
+      //   },
+      //   error: function (error) {
+      //     console.log(error)
+      //   },
+      // })
+
+      // 待执行的函数
+      function fn(data) {
+        console.log(data)
+      }
+
+      $.ajax({
+        url: 'http://127.0.0.1/jsonp.php?callback=?',
+        type: 'get',
+        dataType: 'jsonp', // 必填，指明按 jsonp 方式处理
+        jsonp: 'callback', // 指定查询字符串查询参数的名称，该参数的值是回调函数，默认是 callback
+        jsonpCallback: 'fn', // 回调函数的名称，默认是随机生成，替换callback=?中的问号处
+      })
+      /* php 后端
+      <?php
+      $_fn_name = $_GET["callback"];
+      $_json = file_get_contents("./data1.json");
+      echo $_fn_name . "(" . $_json . ")" ;
+      ?>
+      */
+
+      // 可以这样做
+      $.getJSON('http://127.0.0.1/jsonp.php?callback=?', function (data) {
+        console.log('getJSON:', data)
+      })
+
+      // 1.2 之后支持跨域 该方法将拉取内容 当成 js 执行
+      $.getScript('http://127.0.0.1/jsonp.php?callback=fn')
+    </script>
+
+    <iframe
+      id="proxy"
+      src="about:blank"
+      style="display: none"
+      onload="onProxyLoad()"
+    ></iframe>
+    <script>
+      // 解决方案 2
+      // window.name 窗口的一个特殊属性，同一窗口多页面该值不变
+      // 利用隐藏的 iframe 作为代理，通过 window.name 传递数据
+      // 这个方法需要在后端或者指定页面中的 script 配置好 window.name
+      function onProxyLoad() {
+        let proxyIFrame = document.getElementById('proxy')
+        proxyIFrame.onload = () => {
+          // 要做的事
+          const data = proxyIFrame.contentWindow.name
+          console.log('window.name:', JSON.parse(data))
+        }
+        proxyIFrame.src = 'about:blank'
+      }
+
+      function modifyProxySrc(src) {
+        let proxyIFrame = document.getElementById('proxy')
+        proxyIFrame.src = src
+      }
+
+      modifyProxySrc('http://127.0.0.1/read-json.php')
+      /* php 后端
+      <?php
+      $_json = json_decode(file_get_contents("./data1.json"));
+      echo "<script>window.name='" . json_encode($_json) . "'<\/script>";
+      ?>
+      */
+    </script>
+
+    <script>
+      // 解决方案 3
+      // 后端控制，允许来自指定源请求
+      // header('Access-Control-Allow-Origin: *');
+    </script>
+  </body>
+</html>
