@@ -14,6 +14,11 @@ new MyPromise((resolve, reject) => {
   setTimeout(() => resolve(4), 3000)
 }).then(function (msg) {
   console.log(msg)
+  return new MyPromise((resolve, reject) => {
+    resolve(6)
+  }).then((msg) => {
+    console.log(msg)
+  })
 })
 
 console.log(5)

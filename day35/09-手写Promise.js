@@ -102,28 +102,32 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
   if (this.state === pending) {
     const otherPromise = new MyPromise((resolve, reject) => {
       that.onFulfilledCallbacks.push(function () {
-        try {
-          if (typeof onFulfilled !== 'function') {
-            resolve(that.value)
-          } else {
-            let retValue = realOnFulfilled(that.value)
-            resolvePromise(otherPromise, retValue, resolve, reject)
+        setTimeout(function () {
+          try {
+            if (typeof onFulfilled !== 'function') {
+              resolve(that.value)
+            } else {
+              let retValue = realOnFulfilled(that.value)
+              resolvePromise(otherPromise, retValue, resolve, reject)
+            }
+          } catch (error) {
+            reject(error)
           }
-        } catch (error) {
-          reject(error)
-        }
+        }, 0)
       })
       that.onRejectedCallbacks.push(function () {
-        try {
-          if (typeof onRejected !== 'function') {
-            reject(that.reason)
-          } else {
-            let retValue = realOnRejected(that.reason)
-            resolvePromise(otherPromise, retValue, resolve, reject)
+        setTimeout(function () {
+          try {
+            if (typeof onRejected !== 'function') {
+              reject(that.reason)
+            } else {
+              let retValue = realOnRejected(that.reason)
+              resolvePromise(otherPromise, retValue, resolve, reject)
+            }
+          } catch (error) {
+            reject(error)
           }
-        } catch (error) {
-          reject(error)
-        }
+        }, 0)
       })
     })
 
@@ -138,6 +142,59 @@ function resolvePromise(promise, retValue, resolve, reject) {
     )
   }
 
+  if (retValue instanceof MyPromise) {
+    retValue.then(function (ret) {
+      resolvePromise(promise, ret, resolve, reject)
+    }, reject)
+  } else if (typeof retValue === 'object' || typeof retValue === 'function') {
+    if (retValue === null) {
+      return resolve(retValue)
+    }
+
+    let then
+    try {
+      then = retValue.then
+    } catch (error) {
+      return reject(error)
+    }
+
+    if (typeof then === 'function') {
+      let called = false
+
+      try {
+        then.call(
+          retValue,
+          function (ret) {
+            if (called) return
+            called = true
+            resolvePromise(promise, ret, resolve, reject)
+          },
+          function (reason) {
+            if (called) return
+            called = true
+            reject(reason)
+          }
+        )
+      } catch (error) {
+        if (called) return
+        reject(error)
+      }
+    } else {
+      resolve(retValue)
+    }
+  } else {
+    resolve(retValue)
+  }
+}
+
+MyPromise.deferred = function () {
+  const result = {}
+  result.promise = new MyPromise((resolve, reject) => {
+    result.resolve = resolve
+    result.reject = reject
+  }) 
+
+  return result
 }
 
 module.exports = MyPromise
