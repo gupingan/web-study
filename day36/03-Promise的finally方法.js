@@ -12,3 +12,4 @@ promise1.finally(() => {
 
 // Promise 是⼀个拥有 then ⽅法的对象或函数，反之不一定。
 // 任何符合 promise 规范的对象或函数都可以成为 Promise
+// finally 回调函数的执行不会改变 Promise 的最终状态（即解决值或拒绝原因）

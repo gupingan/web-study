@@ -113,15 +113,6 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
   }
 }
 
-MyPromise.deferred = function () {
-  const result = {}
-  result.promise = new MyPromise((resolve, reject) => {
-    result.resolve = resolve
-    result.reject = reject
-  })
-  return result
-}
-
 function resolvePromise(promise, x, resolve, reject) {
   if (promise === x) {
     return reject(new TypeError('The promise and return value are the same'))
@@ -168,6 +159,140 @@ function resolvePromise(promise, x, resolve, reject) {
   } else {
     resolve(x)
   }
+}
+
+MyPromise.prototype.catch = function (onRejected) {
+  return this.then(undefined, onRejected)
+}
+
+// ES2018 引入
+MyPromise.prototype.finally = function (onFinally) {
+  return this.then(
+    function (value) {
+      return new MyPromise((resolve) => {
+        resolve(onFinally())
+      }).then(function () {
+        return value
+      })
+    },
+    function (reason) {
+      return new MyPromise((resolve) => {
+        resolve(onFinally())
+      }).then(function () {
+        throw reason
+      })
+    }
+  )
+}
+
+MyPromise.deferred = function () {
+  const result = {}
+  result.promise = new MyPromise((resolve, reject) => {
+    result.resolve = resolve
+    result.reject = reject
+  })
+  return result
+}
+
+MyPromise.resolve = function (value) {
+  if (value instanceof MyPromise) {
+    return value
+  }
+
+  return new MyPromise((resolve) => {
+    resolve(value)
+  })
+}
+
+MyPromise.reject = function (reason) {
+  return new MyPromise((_resolve, reject) => {
+    reject(reason)
+  })
+}
+
+MyPromise.all = function (values) {
+  return new MyPromise((resolve, reject) => {
+    const result = []
+    const valuesCount = values.length
+    let resolveCount = 0
+
+    if (valuesCount === 0) {
+      return resolve(result)
+    }
+
+    values.forEach((value, index) => {
+      const promise = MyPromise.resolve(value)
+      promise.then(
+        function (v) {
+          resolveCount += 1
+          result[index] = v
+
+          if (valuesCount === resolveCount) {
+            return resolve(result)
+          }
+        },
+        function (r) {
+          return reject(r)
+        }
+      )
+    })
+  })
+}
+
+MyPromise.race = function (values) {
+  return new MyPromise((resolve, reject) => {
+    values.forEach((value) => {
+      const promise = MyPromise.resolve(value)
+      promise.then(
+        function (v) {
+          return resolve(v)
+        },
+        function (r) {
+          return reject(r)
+        }
+      )
+    })
+  })
+}
+
+MyPromise.allSettled = function (values) {
+  return new MyPromise((resolve) => {
+    const result = []
+    const valuesCount = values.length
+    let count = 0
+
+    if (valuesCount === 0) {
+      return resolve(result)
+    }
+
+    values.forEach((value, index) => {
+      const promise = MyPromise.resolve(value)
+      // 也可以通过 .then.catch.finally 实现
+      promise.then(
+        function (v) {
+          count += 1
+          result[index] = {
+            status: FULFILLED.description,
+            value: v
+          }
+          if (count === valuesCount) {
+            return resolve(result)
+          }
+        },
+        function (r) {
+          count += 1
+          result[index] = {
+            status: REJECTED.description,
+            reason: r
+          }
+
+          if (count === valuesCount) {
+            return resolve(result)
+          }
+        }
+      )
+    })
+  })
 }
 
 module.exports = MyPromise
