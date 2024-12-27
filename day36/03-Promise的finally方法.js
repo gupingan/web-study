@@ -12,8 +12,8 @@ promise1.finally(() => {
 
 // Promise 是⼀个拥有 then ⽅法的对象或函数，反之不一定。
 // 任何符合 promise 规范的对象或函数都可以成为 Promise
-// finally 回调函数的返回值不会改变 Promise 的最终状态（即解决值或拒绝原因）
-// 如果其中的回调函数执行失败，将会捕获到错误，并返回一个拒绝状态的 Promise
+// finally 回调函数的返回值（如果不是拒绝态的 Promise 等）不会改变 Promise 的最终状态
+// 如果其中的回调函数执行失败或者返回一个拒绝的 Promise，将会捕获到错误，并返回一个拒绝状态的 Promise
 
 promise1
   .then((val) => {
@@ -37,6 +37,17 @@ Promise.resolve(42)
   })
   .catch((error) => {
     console.log('Catch:', error.message) // 输出: Catch: Finally error
+  })
+
+Promise.resolve(42)
+  .finally(() => {
+    return Promise.reject(new Error('Finally rejected'))
+  })
+  .then((result) => {
+    console.log('Then:', result) // 不会执行
+  })
+  .catch((error) => {
+    console.log('Catch:', error.message) // 输出: Catch: Finally rejected
   })
 
 /* 参考下列代码的原理
