@@ -1,5 +1,3 @@
-const { resolve, reject } = require('./默写MyPromise1')
-
 const PENDING = 'pending'
 const FULFILLED = 'fulfilled'
 const REJECTED = 'rejected'

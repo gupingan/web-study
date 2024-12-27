@@ -12,4 +12,52 @@ promise1.finally(() => {
 
 // Promise 是⼀个拥有 then ⽅法的对象或函数，反之不一定。
 // 任何符合 promise 规范的对象或函数都可以成为 Promise
-// finally 回调函数的执行不会改变 Promise 的最终状态（即解决值或拒绝原因）
+// finally 回调函数的返回值不会改变 Promise 的最终状态（即解决值或拒绝原因）
+// 如果其中的回调函数执行失败，将会捕获到错误，并返回一个拒绝状态的 Promise
+
+promise1
+  .then((val) => {
+    console.log(val)
+    return 'then finished'
+  })
+  .finally(() => {
+    console.log('finally.')
+    return promise1 // 不参与决策
+  })
+  .then((val) => {
+    console.log(val)
+  })
+
+Promise.resolve(42)
+  .finally(() => {
+    throw new Error('Finally error')
+  })
+  .then((result) => {
+    console.log('Then:', result) // 不会执行
+  })
+  .catch((error) => {
+    console.log('Catch:', error.message) // 输出: Catch: Finally error
+  })
+
+/* 参考下列代码的原理
+// 无论如何都会执行 onFinally
+// 通过创建新的 Promise 并中间加了一层 then 方法传递前一个 Promise 的值或者理由给下一个 then 方法（如果有）
+MyPromise.prototype.finally = function (onFinally) {
+  return this.then(
+    function (value) {
+      return new MyPromise((resolve) => {
+        resolve(onFinally())
+      }).then(function () {
+        return value
+      })
+    },
+    function (reason) {
+      return new MyPromise((resolve) => {
+        resolve(onFinally())
+      }).then(function () {
+        throw reason
+      })
+    }
+  )
+}
+*/
