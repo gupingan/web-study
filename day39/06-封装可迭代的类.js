@@ -5,7 +5,7 @@ class Person {
     this.hobbies = ['跑步', '唱歌', '篮球']
   }
 
-  *[Symbol.iterator] () {
+  *[Symbol.iterator]() {
     yield* this.hobbies
   }
 }

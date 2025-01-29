@@ -1,0 +1,71 @@
+/* 清除浮动 */
+.clearfix::before,
+.clearfix::after {
+  content: '';
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+/* 消除 a 默认样式 */
+a {
+  text-decoration: none;
+  color: #505259;
+}
+
+a:-webkit-any-link {
+  cursor: pointer;
+}
+
+/* 消除 li 默认样式 */
+ul li {
+  list-style: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+/* 颜色字体 */
+.style-red {
+  color: #f10215;
+}
+.style-white {
+  color: white;
+}
+
+/* 下拉框 ico */
+@font-face {
+  font-family: iconfont;
+  src: url(https://storage.360buyimg.com/libres/pc_fonts/iconfont.eot);
+  src: url(https://storage.360buyimg.com/libres/pc_fonts/iconfont.eot#iefix)
+      format('embedded-opentype'),
+    url(https://storage.360buyimg.com/libres/pc_fonts/iconfont.woff)
+      format('woff'),
+    url(https://storage.360buyimg.com/libres/pc_fonts/iconfont.ttf)
+      format('truetype'),
+    url(https://storage.360buyimg.com/libres/pc_fonts/iconfont.svg#iconfont)
+      format('svg');
+}
+
+.iconfont {
+  font-family: iconfont, sans-serif;
+  font-style: normal;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
