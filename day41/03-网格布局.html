@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="./bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <style>
+      .row > div {
+        border: 1px solid gray;
+      }
+
+      h5:not(:first-child) {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h5>自动等宽: row > col</h5>
+    <div class="row">
+      <div class="col">列1</div>
+      <div class="col">列2</div>
+      <div class="col">列3</div>
+    </div>
+
+    <h5>手动等宽: row > col-sm-3 屏幕宽度小于 576px 时上下堆叠</h5>
+    <div class="row">
+      <div class="col-sm-3">列1</div>
+      <div class="col-sm-3">列2</div>
+      <div class="col-sm-3">列3</div>
+      <div class="col-sm-3">列4</div>
+    </div>
+
+    <h5>手动不等宽: row > sm4/8 分 屏幕宽度小于 576px 时上下堆叠</h5>
+    <div class="row">
+      <div class="col-sm-4">列1</div>
+      <div class="col-sm-8">列2</div>
+    </div>
+
+    <h5>列偏移: row > sm4/4 分 屏幕宽度大于等于 576px 时左右端对齐</h5>
+    <div class="row">
+      <div class="col-sm-4">列1</div>
+      <div class="col-sm-4 offset-sm-4">列2</div>
+    </div>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="./bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

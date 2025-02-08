@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="./bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <style>
+      .row > div {
+        border: 1px solid gray;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- 小于 576px 堆叠，小于 992px 2/10 分栏，大于等于 992px 4/8 分栏 -->
+        <div class="col-sm-2 col-lg-4">
+          <p>左侧</p>
+        </div>
+        <div class="col-sm-10 col-lg-8">
+          <p>右侧</p>
+        </div>
+      </div>
+    </div>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="./bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
