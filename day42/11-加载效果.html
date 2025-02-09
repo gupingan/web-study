@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      /* reset bootstrap btn style */
+      .btn:hover,
+      .btn:focus,
+      .btn:active,
+      .btn:visited {
+        outline: none;
+        box-shadow: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container jumbotron">
+      <div class="spinner-border"></div>
+      <div class="spinner-border text-muted"></div>
+      <div class="spinner-border text-primary"></div>
+      <div class="spinner-border text-success"></div>
+      <div class="spinner-border text-info"></div>
+      <div class="spinner-border text-warning"></div>
+      <div class="spinner-border text-danger"></div>
+      <div class="spinner-border text-secondary"></div>
+      <div class="spinner-border text-dark"></div>
+      <div class="spinner-border text-light"></div>
+    </div>
+
+    <div class="container jumbotron">
+      <div class="spinner-grow"></div>
+      <div class="spinner-grow text-muted"></div>
+      <div class="spinner-grow text-primary"></div>
+      <div class="spinner-grow text-success"></div>
+      <div class="spinner-grow text-info"></div>
+      <div class="spinner-grow text-warning"></div>
+      <div class="spinner-grow text-danger"></div>
+      <div class="spinner-grow text-secondary"></div>
+      <div class="spinner-grow text-dark"></div>
+      <div class="spinner-grow text-light"></div>
+    </div>
+
+    <div class="container jumbotron">
+      <div class="spinner-grow spinner-grow-sm"></div>
+      <div class="spinner-grow text-muted spinner-grow-sm"></div>
+      <div class="spinner-grow text-primary spinner-grow-sm"></div>
+      <div class="spinner-grow text-success spinner-grow-sm"></div>
+      <div class="spinner-grow text-info spinner-grow-sm"></div>
+      <div class="spinner-grow text-warning spinner-grow-sm"></div>
+      <div class="spinner-grow text-danger spinner-grow-sm"></div>
+      <div class="spinner-grow text-secondary spinner-grow-sm"></div>
+      <div class="spinner-grow text-dark spinner-grow-sm"></div>
+      <div class="spinner-grow text-light spinner-grow-sm"></div>
+    </div>
+
+    <div class="container jumbotron">
+      <button class="btn btn-primary">
+        <span class="spinner-border spinner-border-sm"></span>
+        Loading..
+      </button>
+
+      <button class="btn btn-warning">
+        <span class="spinner-grow spinner-grow-sm"></span>
+        Loading..
+      </button>
+
+      <button class="btn btn-success" disabled>
+        <span class="spinner-border spinner-border-sm"></span>
+        Loading..
+      </button>
+
+      <button class="btn btn-danger" disabled>
+        <span class="spinner-grow spinner-grow-sm"></span>
+        Loading..
+      </button>
+
+      <a href="#" class="btn btn-info disabled" role="button" aria-disabled="true">
+        <span class="spinner-border spinner-border-sm"></span>
+        Loading..
+      </a>
+    </div>
+  </body>
+</html>

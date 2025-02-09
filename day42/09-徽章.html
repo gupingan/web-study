@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      /* reset bootstrap btn style */
+      .btn:hover,
+      .btn:focus,
+      .btn:active,
+      .btn:visited {
+        outline: none;
+        box-shadow: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container jumbotron">
+      <span class="badge badge-primary">主要</span>
+      <span class="badge badge-secondary">次要</span>
+      <span class="badge badge-success">成功</span>
+      <span class="badge badge-danger">危险</span>
+      <span class="badge badge-warning">警告</span>
+      <span class="badge badge-info">信息</span>
+      <span class="badge badge-light">浅色</span>
+      <span class="badge badge-dark">深色</span>
+      <h1>
+        徽章跟随父元素大小变化 <span class="badge badge-danger">紧急事件</span>
+      </h1>
+      <hr />
+      <h2>药丸类型徽章</h2>
+      <span class="badge badge-pill badge-primary">主要</span>
+      <span class="badge badge-pill badge-secondary">次要</span>
+      <span class="badge badge-pill badge-success">成功</span>
+      <span class="badge badge-pill badge-danger">危险</span>
+      <span class="badge badge-pill badge-warning">警告</span>
+      <span class="badge badge-pill badge-info">信息</span>
+      <span class="badge badge-pill badge-light">浅色</span>
+      <span class="badge badge-pill badge-dark">深色</span>
+      <hr />
+      <button type="button" class="btn btn-primary">
+        未读消息 <span class="badge badge-danger">4</span>
+      </button>
+    </div>
+  </body>
+</html>

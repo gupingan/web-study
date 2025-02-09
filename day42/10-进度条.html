@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      /* reset bootstrap btn style */
+      .btn:hover,
+      .btn:focus,
+      .btn:active,
+      .btn:visited {
+        outline: none;
+        box-shadow: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container jumbotron">
+      <div class="progress">
+        <div class="progress-bar" style="width: 70%">滴滴滴</div>
+      </div>
+
+      <hr />
+
+      <div class="progress" style="height: 4px">
+        <div class="progress-bar" style="width: 80%"></div>
+      </div>
+
+      <hr />
+
+      <div class="progress" style="height: 6px">
+        <div class="progress-bar bg-danger" style="width: 60%"></div>
+      </div>
+
+      <hr />
+
+      <div class="progress" style="height: 6px">
+        <div
+          class="progress-bar bg-warning progress-bar-striped"
+          style="width: 50%"
+        ></div>
+      </div>
+
+      <hr />
+
+      <div class="progress" style="height: 6px" id="pb1">
+        <div
+          class="progress-bar bg-success progress-bar-animated"
+          style="width: 0%"
+        ></div>
+      </div>
+
+      <hr />
+
+      <div class="progress">
+        <div class="progress-bar bg-success" style="width: 40%">Free Space</div>
+        <div class="progress-bar bg-warning" style="width: 10%">Warning</div>
+        <div class="progress-bar bg-danger" style="width: 20%">Danger</div>
+      </div>
+    </div>
+
+    <script>
+      const $pb1 = document.getElementById('pb1')
+      const $pb1Bar = $($pb1.querySelector('.progress-bar'))
+      let i = 0
+      let timer = setInterval(() => {
+        if (i < 100) {
+          $pb1Bar.css('width', `${i}%`)
+          i += Math.random() * 10
+        } else {
+          i = 100
+          $pb1Bar.css('width', `100%`)
+          clearInterval(timer)
+        }
+      }, 100)
+    </script>
+  </body>
+</html>

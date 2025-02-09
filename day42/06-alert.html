@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="bg-dark">
+    <div class="container">
+      <div class="alert alert-success"><strong>成功!</strong> 操作没问题！</div>
+      <div class="alert alert-warning">
+        <strong>警告!</strong> 你应该认真阅读
+        <a href="#" class="alert-link">这条信息</a>。
+      </div>
+      <div class="alert alert-danger">
+        <strong>异常!</strong> 操作存在问题！
+      </div>
+      <div class="alert alert-info">
+        <strong>信息!</strong> 你的陌陌收到一条新的消息！
+      </div>
+      <div class="alert alert-primary"><strong>重要!</strong> 版本已更新！</div>
+      <div class="alert alert-secondary">
+        <strong>次要!</strong> 版本已更新，快去查看<a
+          href="#"
+          class="alert-link"
+          >更新了什么</a
+        >吧！
+      </div>
+      <div class="alert alert-light"><strong>light!</strong> 浅灰的提示框~</div>
+      <div class="alert alert-dark"><strong>dark!</strong> 深灰的提示框~</div>
+      <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">
+          &times;
+        </button>
+        <strong>成功!</strong> 操作没问题！可以点击右方 X 按钮关闭弹窗
+      </div>
+
+      <button type="button" class="btn btn-warning" id="btn1">
+        弹出警告信息
+      </button>
+    </div>
+
+    <script>
+      const $btn1 = $('#btn1')
+      $btn1.click(function () {
+        // 创建一个新的 alert 元素
+        const $alert = $(
+          '<div class="alert alert-warning fade show" role="alert" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%);">'
+        )
+        $alert.html(
+          '<strong>警告!</strong> 这是一条动态弹出的警告信息！'
+        )
+
+        // 将 alert 添加到 body 中
+        $('body').append($alert)
+
+        // 设置 alert 自动消失
+        setTimeout(function () {
+          $alert.alert('close')
+        }, 3000) // 3秒后自动关闭
+      })
+    </script>
+  </body>
+</html>
