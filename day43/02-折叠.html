@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container jumbotron">
+      <button
+        class="btn btn-primary"
+        data-toggle="collapse"
+        data-target="#demo1"
+      >
+        折叠 button
+      </button>
+      <div id="demo1" class="collapse">Lorem ipsum dolor text....</div>
+
+      <hr />
+
+      <a
+        href="#demo2"
+        data-toggle="collapse"
+        role="button"
+        class="btn btn-primary"
+        >折叠 a</a
+      >
+      <div id="demo2" class="collapse">Lorem ipsum dolor text....</div>
+
+      <hr />
+
+      <a
+        href="#demo3"
+        data-toggle="collapse"
+        role="button"
+        class="btn btn-primary"
+        >折叠 a 默认展开</a
+      >
+      <div id="demo3" class="collapse show">Lorem ipsum dolor text....</div>
+      <hr />
+
+      <h4>手风琴效果</h4>
+      <div id="accordion1" style="max-width: 540px">
+        <div class="card">
+          <div class="card-header">
+            <a
+              href="#collapse1"
+              data-toggle="collapse"
+              class="card-link d-block"
+              >菜单 1</a
+            >
+          </div>
+          <div class="collapse show" id="collapse1" data-parent="#accordion1">
+            <div class="card-body">
+              <p class="card-text">菜单文本……</p>
+              <p class="card-text">菜单文本……</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <a
+              href="#collapse2"
+              data-toggle="collapse"
+              class="card-link d-block"
+              >菜单 2</a
+            >
+          </div>
+          <div class="collapse" id="collapse2" data-parent="#accordion1">
+            <div class="card-body">
+              <p class="card-text">菜单文本……</p>
+              <p class="card-text">菜单文本……</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <a
+              href="#collapse3"
+              data-toggle="collapse"
+              class="card-link d-block"
+              >菜单 3</a
+            >
+          </div>
+          <div class="collapse" id="collapse3" data-parent="#accordion1">
+            <div class="card-body">
+              <p class="card-text">菜单文本……</p>
+              <p class="card-text">菜单文本……</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <a
+              href="#collapse4"
+              data-toggle="collapse"
+              class="card-link d-block"
+              >菜单 4</a
+            >
+          </div>
+          <div class="collapse" id="collapse4" data-parent="#accordion1">
+            <div class="card-body">
+              <p class="card-text">菜单文本……</p>
+              <p class="card-text">菜单文本……</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <a
+              href="#collapse5"
+              data-toggle="collapse"
+              class="card-link d-block"
+              >菜单 5</a
+            >
+          </div>
+          <div class="collapse" id="collapse5" data-parent="#accordion1">
+            <div class="card-body">
+              <p class="card-text">菜单文本……</p>
+              <p class="card-text">菜单文本……</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

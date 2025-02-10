@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <form action="">
+        <div class="form-group">
+          <label for="nickname">艾特用户：</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="nickname"
+              id="nickname"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email-pre">您的谷歌邮箱：</label>
+          <div class="input-group">
+            <input
+              type="text"
+              name="email-pre"
+              id="email-pre"
+              class="form-control"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">@gmail.com</span>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <h5>输入框不同大小</h5>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="nickname"
+              id="nickname"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="nickname"
+              id="nickname"
+            />
+          </div>
+        </div>
+
+        <hr />
+
+        <h5>多个输入框与文本</h5>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Person Name</span>
+            </div>
+            <input type="text" class="form-control" placeholder="First Name" />
+            <input type="text" class="form-control" placeholder="Last Name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <span class="badge badge-primary">索引</span>
+              </span>
+              <span class="input-group-text">仅支持从 0 开始</span>
+            </div>
+            <input
+              type="number"
+              class="form-control"
+              value="28"
+              min="0"
+              style="max-width: 120px"
+            />
+          </div>
+        </div>
+
+        <hr />
+
+        <h5>复选框和单选框</h5>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <input type="checkbox" name="select-google" id="select-google" />
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="GOOGLE EMAIL"
+            id="email-pre"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text">@gmail.com</span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <input
+                type="radio"
+                name="select-email"
+                value="google"
+                class="radio"
+              />
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="GOOGLE EMAIL"
+            id="email-pre"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text" style="width: 240px"
+              >@gmail.com</span
+            >
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <input
+                type="radio"
+                name="select-email"
+                value="tencent"
+                class="radio"
+              />
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="TENCENT EMAIL"
+            id="email-pre"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text" style="width: 240px"
+              >@foxmail.com</span
+            >
+          </div>
+        </div>
+
+        <hr />
+
+        <h5>组内按钮</h5>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button type="button" class="btn btn-primary">绑定邮箱</button>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="GOOGLE EMAIL"
+            id="email-pre"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text">@gmail.com</span>
+          </div>
+        </div>
+
+        <hr />
+        <h5>下拉菜单</h5>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button
+              type="button"
+              class="btn btn-success dropdown-toggle"
+              data-toggle="dropdown"
+            >
+              常用网站
+            </button>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item">Google</a
+              ><a href="#" class="dropdown-item">Bing</a
+              ><a href="#" class="dropdown-item">Yahoo</a
+              ><a href="#" class="dropdown-item">Baidu</a
+              ><a href="#" class="dropdown-item">Ask</a>
+            </div>
+          </div>
+          <input
+            type="tel"
+            name="url"
+            id="url"
+            class="form-control"
+            placeholder="请输入网址"
+          />
+          <div class="input-group-append">
+            <button type="button" class="btn btn-primary">跳转网址</button>
+          </div>
+        </div>
+
+        <hr>
+      </form>
+    </div>
+  </body>
+</html>

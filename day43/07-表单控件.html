@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <form action="">
+        <div class="from-group">
+          <label for="usr">用户名:</label>
+          <input type="text" class="form-control" id="usr" />
+        </div>
+        <div class="form-group">
+          <label for="pwd">密码:</label>
+          <input type="password" class="form-control" id="pwd" />
+        </div>
+      </form>
+
+      <form action="">
+        <div class="form-group">
+          <label for="comment">评论:</label>
+          <textarea id="comment" class="form-control" rows="5" name="comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">提交评论</button>
+      </form>
+
+      <hr />
+
+      <form action="">
+        <div class="form-group">
+          <label for="">兴趣爱好：</label>
+          <div class="form-check form-check-inline">
+            <label for="op1" class="form-check-label">
+              <input type="checkbox" id="op1" name="option" value="option1" />
+              钓鱼
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label for="op2" class="form-check-label">
+              <input type="checkbox" id="op2" name="option" value="option2" />
+              种地
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label for="op3" class="form-check-label">
+              <input
+                type="checkbox"
+                id="op3"
+                name="option"
+                value="option3"
+                disabled
+              />
+              写代码
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">用户性别：</label>
+          <label for="nan" class="radio-inline"
+            ><input type="radio" name="gender" id="nan" /> 男</label
+          >
+          <label for="nv" class="radio-inline"
+            ><input type="radio" name="gender" id="nv" /> 女</label
+          >
+          <label for="bm" class="radio-inline"
+            ><input type="radio" name="gender" id="bm" /> 保密</label
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="role">用户角色：</label>
+          <select
+            name="role"
+            class="form-control"
+            id="role"
+            style="max-width: 576px"
+          >
+            <option value="admin">管理员</option>
+            <option value="editor">编辑</option>
+            <option value="user">用户</option>
+            <option value="guest">游客</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

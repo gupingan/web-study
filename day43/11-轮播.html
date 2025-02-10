@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="demo" class="carousel slide d-flex mx-auto" data-ride="carousel" style="width: min-content;">
+        <!-- 提示符 -->
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+        <!-- 轮播图 -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://picsum.photos/500/200?random=1" alt="IMG" />
+            <div class="carousel-caption">
+              <h3>第一张图片描述标题</h3>
+              <p>描述文字!</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://picsum.photos/500/200?random=2" alt="IMG" />
+            <div class="carousel-caption">
+              <h3>第二张图片描述标题</h3>
+              <p>描述文字!</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://picsum.photos/500/200?random=3" alt="IMG" />
+            <div class="carousel-caption">
+              <h3>第三张图片描述标题</h3>
+              <p>描述文字!</p>
+            </div>
+          </div>
+        </div>
+        <!-- 左右切换 -->
+        <a href="#demo" class="carousel-control-prev" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a href="#demo" class="carousel-control-next" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

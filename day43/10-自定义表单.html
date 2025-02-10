@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="customCheck"
+            name="example1"
+          />
+          <label class="custom-control-label" for="customCheck"
+            >自定义复选框</label
+          >
+        </div>
+      </form>
+
+      <form>
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            class="custom-control-input"
+            id="customRadio"
+            name="example1"
+            value="customEx"
+          />
+          <label class="custom-control-label" for="customRadio"
+            >自定义单选框</label
+          >
+        </div>
+      </form>
+
+      <form>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input
+            type="radio"
+            class="custom-control-input"
+            id="customRadio1"
+            name="example"
+            value="customEx"
+          />
+          <label class="custom-control-label" for="customRadio1"
+            >自定义单选框 1</label
+          >
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input
+            type="radio"
+            class="custom-control-input"
+            id="customRadio2"
+            name="example"
+            value="customEx"
+          />
+          <label class="custom-control-label" for="customRadio2"
+            >自定义单选框 2</label
+          >
+        </div>
+      </form>
+
+      <form>
+        <select name="cars" class="custom-select-sm">
+          <option selected>自定义选择菜单</option>
+          <option value="Google">Google</option>
+          <option value="Runoob">Runoob</option>
+          <option value="Taobao">Taobao</option>
+        </select>
+      </form>
+
+      <form>
+        <!-- 小 -->
+        <select name="cars" class="custom-select-sm">
+          <option selected>比较小的自定义选择菜单</option>
+          <option value="Google">Google</option>
+          <option value="Runoob">Runoob</option>
+          <option value="Taobao">Taobao</option>
+        </select>
+
+        <!-- 大 -->
+        <select name="cars" class="custom-select-lg">
+          <option selected>比较大的自定义选择菜单</option>
+          <option value="Google">Google</option>
+          <option value="Runoob">Runoob</option>
+          <option value="Taobao">Taobao</option>
+        </select>
+      </form>
+
+      <form>
+        <label for="customRange">自定义滑块控件</label>
+        <input
+          type="range"
+          class="custom-range"
+          id="customRange"
+          name="points1"
+        />
+      </form>
+
+      <form>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile">
+          <label class="custom-file-label" for="customFile">选择文件</label>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

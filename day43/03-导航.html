@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container jumbotron">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+      <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+            >Link</a
+          >
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Link</a>
+            <a class="dropdown-item" href="#">Link</a>
+            <a class="dropdown-item" href="#">Link</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+            >Link</a
+          >
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Link</a>
+            <a class="dropdown-item" href="#">Link</a>
+            <a class="dropdown-item" href="#">Link</a>
+          </div>
+        </li>
+      </ul>
+
+      <h5>动态选项卡</h5>
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <a href="#rm" data-toggle="pill" class="nav-link active">热门</a>
+        </li>
+        <li class="nav-item">
+          <a href="#js" data-toggle="pill" class="nav-link">计算</a>
+        </li>
+        <li class="nav-item">
+          <a href="#cc" data-toggle="pill" class="nav-link">存储</a>
+        </li>
+        <li class="nav-item">
+          <a href="#spfw" data-toggle="pill" class="nav-link">视频服务</a>
+        </li>
+        <li class="nav-item">
+          <a href="#sjk" data-toggle="pill" class="nav-link">数据库</a>
+        </li>
+        <li class="nav-item">
+          <a href="#wl" data-toggle="pill" class="nav-link">网络</a>
+        </li>
+        <li class="nav-item">
+          <a href="#cdn" data-toggle="pill" class="nav-link">CDN与加速服务</a>
+        </li>
+      </ul>
+      <div class="tab-content" role="tabpanel">
+        <div class="tab-pane container active" id="rm">热门...</div>
+        <div class="tab-pane container" id="js">计算...</div>
+        <div class="tab-pane container" id="cc">存储...</div>
+        <div class="tab-pane container" id="spfw">视频服务...</div>
+        <div class="tab-pane container" id="sjk">数据库...</div>
+        <div class="tab-pane container" id="wl">网络...</div>
+        <div class="tab-pane container" id="cdn">CDN...</div>
+      </div>
+    </div>
+
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
