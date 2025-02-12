@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <span class="border">123</span>
+      <span class="border border-0">123</span>
+      <span class="border border-top-0">123</span>
+      <span class="border border-right-0">123</span>
+      <span class="border border-bottom-0">123</span>
+      <span class="border border-left-0">123</span>
+    </div>
+
+    <div class="container">
+      <hr />
+      <span class="border border-primary">123</span>
+      <span class="border border-secondary">123</span>
+      <span class="border border-warning">123</span>
+      <span class="border border-success">123</span>
+      <span class="border border-danger">123</span>
+      <span class="border border-info">123</span>
+      <span class="border border-dark">123</span>
+      <span class="border border-light">123</span>
+      <span class="border border-white">123</span>
+    </div>
+
+    <div class="container">
+      <hr />
+      <span class="border border-info rounded">123</span>
+      <span class="border border-info rounded-top">123</span>
+      <span class="border border-info rounded-right">123</span>
+      <span class="border border-info rounded-bottom">123</span>
+      <span class="border border-info rounded-left">123</span>
+      <span class="border border-info rounded-circle">123</span>
+    </div>
+
+    <div class="container">
+      <hr />
+      <div class="clearfix">
+        <span class="float-left">左浮动</span>
+        <span class="float-right">右浮动</span>
+      </div>
+
+      <div class="clearfix">
+        <div class="float-sm-right">在大于小屏幕尺寸上右浮动</div>
+        <br />
+        <div class="float-md-right">在大于中等屏幕尺寸上右浮动</div>
+        <br />
+        <div class="float-lg-right">在大于大屏幕尺寸上右浮动</div>
+        <br />
+        <div class="float-xl-right">在大于超大屏幕尺寸上右浮动</div>
+        <br />
+        <div class="float-none">没有浮动</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <hr />
+      <div
+        class="mx-auto bg-warning text-center text-light"
+        style="width: 150px"
+      >
+        居中显示
+      </div>
+    </div>
+
+    <div class="container text-light">
+      <hr />
+      <div class="w-25 bg-primary">宽度 25%</div>
+      <div class="w-50 bg-danger">宽度 50%</div>
+      <div class="w-75 bg-warning">宽度 75%</div>
+      <div class="w-100 bg-info">宽度 100%</div>
+      <div class="mw-100 bg-success">最大宽度 100%</div>
+    </div>
+
+    <div class="container">
+      <hr />
+      <div class="d-flex text-light" style="height: 200px">
+        <div class="h-25 bg-primary">高度 25%</div>
+        <div class="h-50 bg-danger">高度 50%</div>
+        <div class="h-75 bg-warning">高度 75%</div>
+        <div class="h-100 bg-info">高度 100%</div>
+        <div class="mh-100 bg-success" style="height: 500px">最大高度 100%</div>
+      </div>
+    </div>
+
+    <div class="container text-light">
+      <hr />
+      <div class="text-center bg-primary w-25 mx-auto">block</div>
+      <div class="text-center bg-danger w-25 mt-4 ml-n4">block</div>
+      <div class="text-center bg-warning w-25 p-2 rounded m-5">
+        block
+      </div>
+    </div>
+  </body>
+</html>

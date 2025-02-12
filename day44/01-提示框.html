@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container jumbotron">
+      <h3>默认提示</h3>
+      <a href="#" data-toggle="tooltip" title="我是提示内容!">鼠标移动到我这</a>
+
+      <h3>不同方向</h3>
+
+      <a
+        href="#"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="我是提示内容!"
+        >鼠标移动到我这</a
+      >
+      <a
+        href="#"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="我是提示内容!"
+        >鼠标移动到我这</a
+      >
+      <a
+        href="#"
+        data-toggle="tooltip"
+        data-placement="left"
+        title="我是提示内容!"
+        >鼠标移动到我这</a
+      >
+      <a
+        href="#"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="我是提示内容!"
+        >鼠标移动到我这</a
+      >
+
+      <h3>按钮中使用</h3>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Tooltip on top"
+      >
+        top
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Tooltip on right"
+      >
+        right
+      </button>
+      <button
+        type="button"
+        class="btn btn-warning"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="Tooltip on bottom"
+      >
+        bottom
+      </button>
+      <button
+        type="button"
+        class="btn btn-success"
+        data-toggle="tooltip"
+        data-placement="left"
+        title="Tooltip on left"
+      >
+        left
+      </button>
+
+      <h3>提示内容为 HTML</h3>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-toggle="tooltip"
+        data-html="true"
+        title="<em>Tooltip</em> <u>with</u> <b>HTML</b>"
+      >
+        Tooltip with HTML
+      </button>
+
+      
+    </div>
+
+    <script>
+      $(function () {
+        $("[data-toggle='tooltip']").tooltip()
+      })
+    </script>
+  </body>
+</html>

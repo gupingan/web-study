@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container jumbotron">
+      <h3>默认弹出框</h3>
+      <a
+        href="#"
+        data-toggle="popover"
+        title="弹出框标题"
+        data-content="弹出框内容"
+        >多次点我</a
+      >
+
+      <h3>不同方向</h3>
+      <a
+        href="#"
+        title="Header"
+        data-toggle="popover"
+        data-placement="top"
+        data-content="Content"
+        >点我</a
+      >
+      <a
+        href="#"
+        title="Header"
+        data-toggle="popover"
+        data-placement="bottom"
+        data-content="Content"
+        >点我</a
+      >
+      <a
+        href="#"
+        title="Header"
+        data-toggle="popover"
+        data-placement="left"
+        data-content="Content"
+        >点我</a
+      >
+      <a
+        href="#"
+        title="Header"
+        data-toggle="popover"
+        data-placement="right"
+        data-content="Content"
+        >点我</a
+      >
+
+      <h3>按钮中使用</h3>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-container="body"
+        data-toggle="popover"
+        data-placement="top"
+        data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+      >
+        top
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-warning"
+        data-container="body"
+        data-toggle="popover"
+        data-placement="right"
+        data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+      >
+        right
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-danger"
+        data-container="body"
+        data-toggle="popover"
+        data-placement="bottom"
+        data-content="Vivamus
+      sagittis lacus vel augue laoreet rutrum faucibus."
+      >
+        bottom
+      </button>
+
+      <!-- data-container 是一个用于 Popover（弹出框） 或 Tooltip（工具提示） 的自定义属性。它的作用是 指定弹出框或工具提示的父容器，即弹出框或工具提示会被插入到哪个 DOM 元素中。 -->
+      <button
+        type="button"
+        class="btn btn-success"
+        data-container="body" 
+        data-toggle="popover"
+        data-placement="left"
+        data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+      >
+        left
+      </button>
+
+      <h3>关闭弹出框</h3>
+      <a
+        href="#"
+        title="取消弹出框"
+        data-toggle="popover"
+        data-trigger="focus"
+        data-content="点击文档的其他地方关闭我"
+        >点我</a
+      >
+
+      <a
+        href="#"
+        data-toggle="popover"
+        data-trigger="hover"
+        data-content="hover 显示/移除"
+        >鼠标移动过来</a
+      >
+    </div>
+
+    <script>
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+      })
+    </script>
+  </body>
+</html>

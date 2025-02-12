@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../day41/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <script src="../day41/js/jquery-1.12.4.min.js"></script>
+    <script src="../day41/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="d-flex">
+        <div class="p-2 bg-primary">Flex item 1</div>
+        <div class="p-2 bg-secondary">Flex item 2</div>
+        <div class="p-2 bg-success">Flex item 3</div>
+      </div>
+      <hr>
+      <div class="d-flex">
+        <div class="p-2 bg-primary order-3">Flex item 1</div>
+        <div class="p-2 bg-secondary order-2">Flex item 2</div>
+        <div class="p-2 bg-success order-1">Flex item 3</div>
+      </div>
+      <hr />
+      <div class="d-inline-flex">
+        <div class="p-2 bg-primary">Flex item 1</div>
+        <div class="p-2 bg-secondary">Flex item 2</div>
+        <div class="p-2 bg-success">Flex item 3</div>
+      </div>
+      <div class="d-inline-flex">
+        <div class="p-2 bg-primary">Flex item 1</div>
+        <div class="p-2 bg-secondary">Flex item 2</div>
+        <div class="p-2 bg-success">Flex item 3</div>
+      </div>
+      <hr />
+      <div class="d-flex flex-row-reverse">
+        <div class="p-2 bg-primary">Flex item 1</div>
+        <div class="p-2 bg-secondary">Flex item 2</div>
+        <div class="p-2 bg-success">Flex item 3</div>
+      </div>
+      <hr />
+      <div class="d-flex flex-column">
+        <div class="p-2 bg-primary">Flex item 1</div>
+        <div class="p-2 bg-secondary">Flex item 2</div>
+        <div class="p-2 bg-success">Flex item 3</div>
+      </div>
+      <hr />
+      <div class="d-sm-flex justify-content-sm-between">
+        <div class="p-2 bg-primary">Flex item 1</div>
+        <div class="p-2 bg-secondary">Flex item 2</div>
+        <div class="p-2 bg-success">Flex item 3</div>
+      </div>
+      <hr />
+      <div class="d-sm-flex">
+        <div class="p-2 bg-primary flex-fill">Flex item 1</div>
+        <div class="p-2 bg-secondary flex-fill">Flex item 2</div>
+        <div class="p-2 bg-success">Flex item 3</div>
+      </div>
+      <hr />
+      <div class="d-sm-flex">
+        <div class="p-2 bg-primary">Flex item 1</div>
+        <div class="p-2 bg-secondary">Flex item 2</div>
+        <div class="p-2 bg-success flex-grow-1">Flex item 3</div>
+      </div>
+      <hr />
+      <div class="d-flex bg-secondary">
+        <div class="p-2 mr-auto bg-info">Flex item 1</div>
+        <div class="p-2 bg-warning">Flex item 2</div>
+        <div class="p-2 bg-primary">Flex item 3</div>
+      </div>
+
+      <div class="d-flex bg-secondary">
+        <div class="p-2 bg-info">Flex item 1</div>
+        <div class="p-2 bg-warning">Flex item 2</div>
+        <div class="p-2 ml-auto bg-primary">Flex item 3</div>
+      </div>
+
+      <hr />
+
+      <div class="d-flex mx-auto" style="width: fit-content">
+        <div class="p-2 bg-info">Flex item 1</div>
+        <div class="p-2 bg-warning">Flex item 2</div>
+        <div class="p-2 bg-primary">Flex item 3</div>
+      </div>
+
+      <hr />
+
+      <div class="d-sm-flex flex-wrap">
+        <div class="p-2 bg-info">Flex item 1</div>
+        <div class="p-2 bg-warning">Flex item 2</div>
+        <div class="p-2 bg-primary">Flex item 3</div>
+        <div class="p-2 bg-danger">Flex item 4</div>
+        <div class="p-2 bg-success">Flex item 5</div>
+        <div class="p-2 bg-secondary">Flex item 6</div>
+        <div class="p-2 bg-warning">Flex item 7</div>
+        <div class="p-2 bg-primary">Flex item 8</div>
+      </div>
+
+      <hr />
+
+      <div class="d-sm-flex bg-secondary flex-wrap align-content-end" style="width: 450px; height: 450px;">
+        <div class="p-2 bg-info h-25">Flex item 1</div>
+        <div class="p-2 bg-warning h-25">Flex item 2</div>
+        <div class="p-2 bg-primary h-25">Flex item 3</div>
+        <div class="p-2 bg-danger h-25">Flex item 4</div>
+        <div class="p-2 bg-success h-25">Flex item 5</div>
+        <div class="p-2 bg-secondary h-25">Flex item 6</div>
+        <div class="p-2 bg-warning h-25">Flex item 7</div>
+        <div class="p-2 bg-primary h-25">Flex item 8</div>
+      </div>
+      <hr>
+      <div class="d-sm-flex bg-secondary flex-wrap" style="width: 450px; height: 450px;">
+        <div class="p-2 bg-info h-25">Flex item 1</div>
+        <div class="p-2 bg-warning h-25">Flex item 2</div>
+        <div class="p-2 bg-primary h-25">Flex item 3</div>
+        <div class="p-2 bg-danger h-25">Flex item 4</div>
+        <div class="p-2 bg-success h-25">Flex item 5</div>
+        <div class="p-2 bg-secondary h-25">Flex item 6</div>
+        <div class="p-2 bg-warning h-25">Flex item 7</div>
+        <div class="p-2 bg-primary h-25 align-self-end">Flex item 8</div>
+      </div>
+    </div>
+  </body>
+</html>
